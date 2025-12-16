@@ -1,15 +1,21 @@
 site_name: Sotterranei & Dragoni
 site_url: https://dnd.michaelfrancazzi.com/
+repo_url: https://github.com/MikeFrank99/nome-tuo-repo # Sostituisci col nome vero del repo
+
 theme:
   name: material
   language: it
+  logo: material/sword-cross
+  favicon: material/sword-cross
   features:
     - navigation.tabs        # Menu a schede in alto
     - navigation.sections    # Sezioni nella sidebar
+    - navigation.top         # Bottone "Torna su"
+    - navigation.tracking    # Evidenzia dove sei mentre scorri
     - search.suggest         # Suggerimenti nella ricerca
     - search.highlight       # Evidenzia i risultati
+    - content.code.copy      # Bottone per copiare il codice
   palette: 
-    # Configurazione per il tema chiaro
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: brown
@@ -17,7 +23,6 @@ theme:
       toggle:
         icon: material/book-open-variant
         name: Scurovisione
-    # Configurazione per il tema scuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: brown
@@ -25,18 +30,19 @@ theme:
       toggle:
         icon: material/candle
         name: Luci Danzanti
-  icon:
-    logo: material/sword-cross        # Un'icona con le spade incrociate invece del logo standard
-    repo: fontawesome/brands/github   # Icona di GitHub
-  features:
-    - navigation.sections             # Organizza il menu in capitoli
-    - navigation.top                  # Bottone "Torna su" a forma di freccia
-    - content.code.copy               # Permette di copiare eventuali statistiche
   font:
-    text: Crimson Text   # Un font con le "grazie" che ricorda i libri stampati
-    code: Roboto Mono    # Per le statistiche tecniche
+    text: Crimson Text
+    code: Roboto Mono
 
-# Navigazione (Sidebar)
+# Estensioni per rendere il sito "professionale" (Box colorati, icone, ecc.)
+markdown_extensions:
+  - admonition         # Per i box !!! info o !!! quote (perfetti per le note del Master)
+  - pymdownx.details   # Per i box che si aprono/chiudono (perfetti per spoiler o statblock)
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
 nav:
   - Il Mondo: index.md
   - Lore e Storia:
