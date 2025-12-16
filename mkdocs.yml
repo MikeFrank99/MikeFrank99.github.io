@@ -1,4 +1,4 @@
-site_name: Il Mio Progetto
+site_name: Sotterranei & Dragoni
 theme:
   name: material
   language: it
@@ -11,23 +11,39 @@ theme:
     # Configurazione per il tema chiaro
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: brown
+      accent: amber
       toggle:
-        icon: material/brightness-7
-        name: Passa al tema scuro
+        icon: material/book-open-variant
+        name: Scurovisione
     # Configurazione per il tema scuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: brown
+      accent: orange
       toggle:
-        icon: material/brightness-4
-        name: Passa al tema chiaro
+        icon: material/calndle
+        name: Luci Danzanti
+  icon:
+    logo: material/sword-cross        # Un'icona con le spade incrociate invece del logo standard
+    repo: fontawesome/brands/github   # Icona di GitHub
+  features:
+    - navigation.sections             # Organizza il menu in capitoli
+    - navigation.top                  # Bottone "Torna su" a forma di freccia
+    - content.code.copy               # Permette di copiare eventuali statistiche
+  font:
+    text: Crimson Text   # Un font con le "grazie" che ricorda i libri stampati
+    code: Roboto Mono    # Per le statistiche tecniche
 
 # Navigazione (Sidebar)
 nav:
-  - Home: index.md
-  - Guida: 
-    - Installazione: installazione.md
-    - Uso: uso.md
+  - Il Mondo: index.md
+  - Lore e Storia:
+      - La Creazione: storia/origine.md
+      - Grandi Regni: storia/regni.md
+  - Bestiario:
+      - Draghi: creature/draghi.md
+      - Mostri Erranti: creature/mostri.md
+  - Personaggi (NPC):
+      - Alleati: npc/alleati.md
+      - Nemici: npc/nemici.md
