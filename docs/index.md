@@ -24,3 +24,16 @@ Se cerchi informazioni specifiche, usa la **barra di ricerca** in alto o esplora
 Ricordate che questa Wiki è in continuo aggiornamento. Se trovate un'informazione mancante, consultate il Dungeon Master o aggiornate i vostri diari di viaggio.
 
 *Che i vostri tiri siano sempre naturali 20!*
+
+# Benvenuti nei Sotterranei & Dragoni
+
+!!! quote "Leggenda antica"
+    "In un'era di oscurità, solo coloro che hanno il coraggio di lanciare il dado cambieranno il destino del mondo."
+
+## Ultime scoperte nel Bestiario
+??? info "Il Drago Rosso (Statistiche)"
+    * **Forza**: 27 (+8)
+    * **Abilità**: Soffio di Fuoco
+    * *Nota: Estremamente pericoloso se affamato.*
+
+[Esplora la Lore](./storia/origine.md)
