@@ -2,7 +2,7 @@
 ---
 icon: material/book-cross
 ---
-
+Questo è un test: :material-sword: :material-shield: :material-fire:
 # 📜 Benvenuti nelle Cronache dell'Antico Regno
 
 > "In un'era di miti e leggende, dove il fumo dei draghi oscura il sole e l'acciaio decide il destino dei regni, solo i più audaci lasceranno il segno."
