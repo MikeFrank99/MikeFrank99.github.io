@@ -1,6 +1,6 @@
 site_name: Sotterranei & Dragoni
 site_url: https://dnd.michaelfrancazzi.com/
-repo_url: https://github.com/MikeFrank99/nome-tuo-repo # Sostituisci col nome vero del repo
+repo_url: https://github.com/MikeFrank99/MikeFrank99.github.io # Sostituisci col nome vero del repo
 
 theme:
   name: material
@@ -33,6 +33,10 @@ theme:
   font:
     text: Crimson Text
     code: Roboto Mono
+
+plugins:
+  - search
+  - roamlinks
 
 # Estensioni per rendere il sito "professionale" (Box colorati, icone, ecc.)
 markdown_extensions:
