@@ -1,1 +1,33 @@
+site_name: Il Mio Progetto
+theme:
+  name: material
+  language: it
+  features:
+    - navigation.tabs        # Menu a schede in alto
+    - navigation.sections    # Sezioni nella sidebar
+    - search.suggest         # Suggerimenti nella ricerca
+    - search.highlight       # Evidenzia i risultati
+  palette: 
+    # Configurazione per il tema chiaro
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Passa al tema scuro
+    # Configurazione per il tema scuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Passa al tema chiaro
 
+# Navigazione (Sidebar)
+nav:
+  - Home: index.md
+  - Guida: 
+    - Installazione: installazione.md
+    - Uso: uso.md
