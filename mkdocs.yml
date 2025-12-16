@@ -22,7 +22,7 @@ theme:
       primary: brown
       accent: orange
       toggle:
-        icon: material/calndle
+        icon: material/candle
         name: Luci Danzanti
   icon:
     logo: material/sword-cross        # Un'icona con le spade incrociate invece del logo standard
