@@ -5,18 +5,20 @@ repo_url: https://github.com/MikeFrank99/MikeFrank99.github.io
 theme:
   name: material
   language: it
-  logo: material/sword-cross
-  favicon: material/sword-cross
+  # Le icone del logo e della scheda del browser vanno qui dentro
+  icon:
+    logo: material/book-open
+    favicon: material/sword-cross
   features:
-    - navigation.tabs        # Menu a schede in alto
-    - navigation.sections    # Sezioni nella sidebar
-    - navigation.top         # Bottone "Torna su"
-    - navigation.tracking    # Evidenzia dove sei mentre scorri
-    - search.suggest         # Suggerimenti nella ricerca
-    - search.highlight       # Evidenzia i risultati
-    - content.code.copy      # Bottone per copiare il codice
-    - header.autohide  # L'header scompare quando scendi e riappare quando sali
-  palette: 
+    - navigation.tabs         # Menu a schede in alto
+    - navigation.sections     # Sezioni nella sidebar
+    - navigation.top          # Bottone "Torna su"
+    - navigation.tracking     # Evidenzia dove sei mentre scorri
+    - search.suggest          # Suggerimenti nella ricerca
+    - search.highlight        # Evidenzia i risultati
+    - content.code.copy       # Bottone per copiare il codice
+    - header.autohide         # L'header scompare quando scendi
+  palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: brown
@@ -35,16 +37,21 @@ theme:
     text: Crimson Text
     code: Roboto Mono
 
+# Qui colleghiamo il tuo file CSS per lo sfondo che scorre
+extra_css:
+  - stylesheets/extra.css
+
 plugins:
   - search
   - roamlinks
 
-# Estensioni per rendere il sito "professionale" (Box colorati, icone, ecc.)
+# Estensioni per icone, box colorati e dettagli GDR
 markdown_extensions:
-  - admonition         # Per i box !!! info o !!! quote (perfetti per le note del Master)
-  - pymdownx.details   # Per i box che si aprono/chiudono (perfetti per spoiler o statblock)
+  - admonition         # Per i box !!! info o !!! quote
+  - pymdownx.details   # Per i box che si aprono/chiudono
   - pymdownx.superfences
-  - pymdownx.emoji:
+  - attr_list          # Necessario per gestire meglio lo stile
+  - pymdownx.emoji:    # Questo abilita le icone nel testo (es. :material-sword:)
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
@@ -59,6 +66,3 @@ nav:
   - Personaggi (NPC):
       - Alleati: npc/alleati.md
       - Nemici: npc/nemici.md
-
-extra_css:
-  - stylesheets/extra.css
