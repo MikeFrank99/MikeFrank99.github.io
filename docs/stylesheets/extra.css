@@ -1,19 +1,39 @@
 /* Sfondo per l'intero sito */
 body {
-    background-image: url('https://static1.thegamerimages.com/wordpress/wp-content/uploads/2025/05/magic-the-gathering-john-avon-swamp-full-art.jpg'); /* Metti il link alla tua immagine */
-    background-attachment: fixed; /* Questo blocca lo sfondo mentre il testo scorre */
+    background-image: url('https://static1.thegamerimages.com/wordpress/wp-content/uploads/2025/05/magic-the-gathering-john-avon-swamp-full-art.jpg');
+    background-attachment: fixed;
     background-size: cover;
     background-position: center;
 }
 
-/* Rende il contenuto leggermente trasparente per far vedere lo sfondo sotto */
-.md-content {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    padding: 20px;
+/* Rende trasparenti i contenitori principali (Navigazione, Articolo, Indice) */
+.md-main__inner,
+.md-content,
+.md-sidebar,
+.md-nav {
+    background-color: transparent !important;
 }
 
-/* Se usi il tema Dark, usa questo per il contenuto */
-[data-md-color-scheme="slate"] .md-content {
-    background-color: rgba(30, 30, 30, 0.85);
+/* Crea un effetto "vetro satinato" solo sulla colonna centrale del testo */
+.md-content__inner {
+    background-color: rgba(255, 255, 255, 0.85); /* Chiaro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Adattamento per il TEMA DARK (Scurovisione) */
+[data-md-color-scheme="slate"] .md-content__inner {
+    background-color: rgba(30, 30, 30, 0.85); /* Scuro */
+    color: #e0e0e0;
+}
+
+/* Rende trasparente anche l'header se vuoi vedere lo sfondo passare sotto */
+.md-header {
+    background-color: rgba(64, 46, 36, 0.9) !important; /* Marrone scuro semi-trasparente */
+}
+
+/* Opzionale: nasconde le linee di separazione per un look più pulito */
+.md-sidebar__scrollwrap {
+    border: none !important;
 }
