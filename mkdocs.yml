@@ -1,6 +1,6 @@
 site_name: Sotterranei & Dragoni
 site_url: https://dnd.michaelfrancazzi.com/
-repo_url: https://github.com/MikeFrank99/MikeFrank99.github.io # Sostituisci col nome vero del repo
+repo_url: https://github.com/MikeFrank99/MikeFrank99.github.io
 
 theme:
   name: material
@@ -15,6 +15,7 @@ theme:
     - search.suggest         # Suggerimenti nella ricerca
     - search.highlight       # Evidenzia i risultati
     - content.code.copy      # Bottone per copiare il codice
+    - header.autohide  # L'header scompare quando scendi e riappare quando sali
   palette: 
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -58,3 +59,6 @@ nav:
   - Personaggi (NPC):
       - Alleati: npc/alleati.md
       - Nemici: npc/nemici.md
+
+extra_css:
+  - stylesheets/extra.css
