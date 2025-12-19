@@ -1,41 +1,35 @@
+# 📜 Benvenuti nei Sotterranei & Dragoni
 
----
-icon: material/book-cross
----
-
-sdf<df<df<[<df<f]
-Questo è un test: :material-sword: :material-shield: :material-fire:
-# 📜 Benvenuti nelle Cronache dell'Antico Regno
-
-> "In un'era di miti e leggende, dove il fumo dei draghi oscura il sole e l'acciaio decide il destino dei regni, solo i più audaci lasceranno il segno."
-
-Benvenuti viandanti. Questa è la raccolta ufficiale di conoscenze per la nostra campagna di **Dungeons & Dragons**. Qui troverete mappe, resoconti di battaglie, dettagli sulle razze che popolano le terre selvagge e i segreti degli antichi dei.
+!!! quote "Dalle cronache del Primo Eone"
+    "Il mondo era muto, finché il primo drago non scagliò il suo ruggito contro il vuoto, tessendo la trama della magia che oggi calpestiamo."
+    -- *Mastro Alistair, Bibliotecario di Candlekeep*
 
 ---
 
-### 🗺️ Navigazione Rapida
-Se cerchi informazioni specifiche, usa la **barra di ricerca** in alto o esplora le sezioni laterali:
+## 🖋️ Introduzione al Tomo
+Questo manoscritto raccoglie la sapienza accumulata durante i secoli di esplorazione delle terre selvagge. Qui troverai i segreti delle gilde, le debolezze delle creature abiette e le mappe dei regni dimenticati. 
 
-* **[Lore e Storia](storia/origine.md)**: Per scoprire come tutto ha avuto inizio.
-* **[Bestiario](creature/draghi.md)**: Per conoscere i pericoli che vi attendono.
-* **[Alleati e Nemici](npc/alleati.md)**: Per ricordare i volti incontrati nel cammino.
+Ogni parola contenuta in queste pagine è stata vergata con inchiostro di seppia gigante e protetta da incantesimi di conservazione.
+
+### 🗺️ Le Grandi Sezioni
+* [**Lore e Storia**](storia/origine.md): Scopri come il mondo è stato plasmato.
+* [**Bestiario**](creature/draghi.md): Conosci i tuoi nemici prima di affrontarli.
+* [**Il Mondo**](storia/regni.md): Mappe e descrizioni dei luoghi che visiterai.
 
 ---
 
-### 🛡️ Note per i Giocatori
-Ricordate che questa Wiki è in continuo aggiornamento. Se trovate un'informazione mancante, consultate il Dungeon Master o aggiornate i vostri diari di viaggio.
+## 🛡️ Avviso per gli Avventurieri
+!!! danger "Attenzione"
+    La conoscenza è un'arma a doppio taglio. Alcune sezioni di questo tomo potrebbero richiedere un tiro di **Salvezza su Saggezza** per essere comprese appieno senza impazzire.
 
-*Che i vostri tiri siano sempre naturali 20!*
+---
 
-# Benvenuti nei Sotterranei & Dragoni
+### 🎲 Cronologia delle Sessioni Recenti
+| Data | Evento | Luogo |
+| :--- | :--- | :--- |
+| 15/12 | Il risveglio del Lich | Valle delle Ombre |
+| 01/12 | La caduta del Ponte di Pietra | Fortezza di Ferro |
+| 20/11 | Incontro con la delegazione Elfica | Bosco d'Argento |
 
-!!! quote "Leggenda antica"
-    "In un'era di oscurità, solo coloro che hanno il coraggio di lanciare il dado cambieranno il destino del mondo."
-
-## Ultime scoperte nel Bestiario
-??? info "Il Drago Rosso (Statistiche)"
-    * **Forza**: 27 (+8)
-    * **Abilità**: Soffio di Fuoco
-    * *Nota: Estremamente pericoloso se affamato.*
-
-[Esplora la Lore](./storia/origine.md)
+---
+{: .antico-testo}

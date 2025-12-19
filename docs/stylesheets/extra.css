@@ -72,3 +72,40 @@ h1, h2, h3, .md-content__button {
     color: #8b0000;
     text-decoration: underline wavy rgba(139, 0, 0, 0.3);
 }
+
+/* Stile per i box delle citazioni (Quote) */
+.md-typeset blockquote {
+    font-style: italic;
+    border-left: 4px solid #8b0000;
+    background-color: rgba(139, 0, 0, 0.05);
+    padding: 10px 20px;
+    margin: 20px 0;
+    color: #4a3728;
+}
+
+/* Stile per le tabelle in stile medievale */
+.md-typeset table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    font-family: 'Crimson Pro', serif;
+}
+
+.md-typeset th {
+    background-color: #5d4a37;
+    color: #e8dcc4;
+    text-transform: uppercase;
+    font-family: 'MedievalSharp', cursive;
+}
+
+.md-typeset td {
+    border: 1px solid #5d4a37;
+    padding: 10px;
+}
+
+/* Effetto pergamena per i box di avviso (Danger/Info) */
+.md-typeset .admonition {
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    border-left: 10px solid #8b0000;
+}
