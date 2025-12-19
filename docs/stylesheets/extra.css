@@ -1,39 +1,74 @@
-/* Sfondo per l'intero sito */
+/* Import dei font medievali */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=MedievalSharp&display=swap');
+
+/* Sfondo per l'intero sito (Tavolo di legno o atmosfera cupa) */
 body {
     background-image: url('https://static1.thegamerimages.com/wordpress/wp-content/uploads/2025/05/magic-the-gathering-john-avon-swamp-full-art.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
+    font-family: 'Crimson Pro', serif;
 }
 
-/* Rende trasparenti i contenitori principali (Navigazione, Articolo, Indice) */
+/* Rende trasparenti i contenitori della navigazione */
 .md-main__inner,
-.md-content,
 .md-sidebar,
 .md-nav {
     background-color: transparent !important;
 }
 
-/* Crea un effetto "vetro satinato" solo sulla colonna centrale del testo */
+/* LA PAGINA DEL TOMO: Trasforma la colonna centrale in pergamena antica */
 .md-content__inner {
-    background-color: rgba(255, 255, 255, 0.85); /* Chiaro */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    background-color: #e8dcc4 !important; /* Colore pergamena */
+    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'); /* Texture carta invecchiata */
+    padding: 40px 60px !important;
+    border-radius: 5px;
+    /* Ombra profonda per staccare il libro dal tavolo */
+    box-shadow: 5px 5px 25px rgba(0,0,0,0.7), inset 0 0 50px rgba(139, 69, 19, 0.2);
+    border: 2px solid #5d4a37;
+    color: #2c241e !important; /* Testo seppia scuro */
 }
 
-/* Adattamento per il TEMA DARK (Scurovisione) */
+/* Titoli in stile manoscritto */
+h1, h2, h3, .md-content__button {
+    font-family: 'MedievalSharp', cursive !important;
+    color: #8b0000 !important; /* Rosso antico */
+    border-bottom: 1px solid rgba(93, 74, 55, 0.3) !important;
+}
+
+/* Capolettera (Drop Cap) sul primo paragrafo di ogni nota */
+.md-content__inner p:first-of-type::first-letter {
+    font-family: 'MedievalSharp', cursive;
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-top: 4px;
+    padding-right: 8px;
+    color: #8b0000;
+}
+
+/* Adattamento per il TEMA DARK (diventa una pergamena bruciata/scura) */
 [data-md-color-scheme="slate"] .md-content__inner {
-    background-color: rgba(30, 30, 30, 0.85); /* Scuro */
-    color: #e0e0e0;
+    background-color: #2c241e !important; /* Carta bruciata */
+    background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    color: #d2b48c !important; /* Testo color sabbia */
+    border-color: #1a1510;
 }
 
-/* Rende trasparente anche l'header se vuoi vedere lo sfondo passare sotto */
+/* Header: Stile rilegatura in pelle */
 .md-header {
-    background-color: rgba(64, 46, 36, 0.9) !important; /* Marrone scuro semi-trasparente */
+    background-color: #3e2723 !important; /* Cuoio scuro */
+    font-family: 'MedievalSharp', cursive;
+    border-bottom: 3px solid #8b0000 !important;
 }
 
-/* Opzionale: nasconde le linee di separazione per un look più pulito */
+/* Nasconde le sidebar se vuoi un focus totale sul tomo (opzionale) */
 .md-sidebar__scrollwrap {
     border: none !important;
+}
+
+/* Link che sembrano scritti a mano */
+.md-content a {
+    color: #8b0000;
+    text-decoration: underline wavy rgba(139, 0, 0, 0.3);
 }
