@@ -1,3 +1,16 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
+<div class="hero-section">
+    <h1 class="hero-title">Sotterranei & Dragoni</h1>
+    <p class="hero-subtitle">Il Manoscritto di Michael Francazzi</p>
+</div>
+
+<div class="tomo-content" markdown="1">
+
 # 📜 Benvenuti nei Sotterranei & Dragoni
 
 !!! quote "Dalle cronache del Primo Eone"
@@ -34,3 +47,5 @@ Ogni parola contenuta in queste pagine è stata vergata con inchiostro di seppia
 ---
 Infine, ecco le cronache.
 {: .antico-testo}
+
+</div>
