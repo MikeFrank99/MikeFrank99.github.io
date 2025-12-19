@@ -1,7 +1,7 @@
 /* Import dei font medievali */
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=MedievalSharp&display=swap');
 
-/* Sfondo per l'intero sito (Tavolo di legno o atmosfera cupa) */
+/* Sfondo per l'intero sito */
 body {
     background-image: url('https://static1.thegamerimages.com/wordpress/wp-content/uploads/2025/05/magic-the-gathering-john-avon-swamp-full-art.jpg');
     background-attachment: fixed;
@@ -17,27 +17,36 @@ body {
     background-color: transparent !important;
 }
 
-/* LA PAGINA DEL TOMO: Trasforma la colonna centrale in pergamena antica */
+/* LA PAGINA DEL TOMO: Colonna centrale */
 .md-content__inner {
-    background-color: #e8dcc4 !important; /* Colore pergamena */
-    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'); /* Texture carta invecchiata */
+    background-color: #e8dcc4 !important;
+    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
     padding: 40px 60px !important;
     border-radius: 5px;
-    /* Ombra profonda per staccare il libro dal tavolo */
     box-shadow: 5px 5px 25px rgba(0,0,0,0.7), inset 0 0 50px rgba(139, 69, 19, 0.2);
     border: 2px solid #5d4a37;
-    color: #2c241e !important; /* Testo seppia scuro */
+    color: #2c241e !important;
+}
+
+/* CLASSE SPECIFICA PER IL CONTENUTO (Quella che hai usato nella Home) */
+.antico-testo {
+    font-size: 1.1rem;
+    line-height: 1.7;
 }
 
 /* Titoli in stile manoscritto */
-h1, h2, h3, .md-content__button {
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-content__button {
     font-family: 'MedievalSharp', cursive !important;
-    color: #8b0000 !important; /* Rosso antico */
+    color: #8b0000 !important;
     border-bottom: 1px solid rgba(93, 74, 55, 0.3) !important;
+    font-weight: normal;
 }
 
-/* Capolettera (Drop Cap) sul primo paragrafo di ogni nota */
-.md-content__inner p:first-of-type::first-letter {
+/* Capolettera (Drop Cap) - Funziona solo se il paragrafo è dentro .md-typeset */
+.md-typeset p:first-of-type::first-letter {
     font-family: 'MedievalSharp', cursive;
     float: left;
     font-size: 3.5em;
@@ -47,65 +56,58 @@ h1, h2, h3, .md-content__button {
     color: #8b0000;
 }
 
-/* Adattamento per il TEMA DARK (diventa una pergamena bruciata/scura) */
+/* TEMA DARK (Scurovisione) */
 [data-md-color-scheme="slate"] .md-content__inner {
-    background-color: #2c241e !important; /* Carta bruciata */
+    background-color: #2c241e !important;
     background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-    color: #d2b48c !important; /* Testo color sabbia */
+    color: #d2b48c !important;
     border-color: #1a1510;
 }
 
 /* Header: Stile rilegatura in pelle */
 .md-header {
-    background-color: #3e2723 !important; /* Cuoio scuro */
+    background-color: #3e2723 !important;
     font-family: 'MedievalSharp', cursive;
     border-bottom: 3px solid #8b0000 !important;
 }
 
-/* Nasconde le sidebar se vuoi un focus totale sul tomo (opzionale) */
-.md-sidebar__scrollwrap {
-    border: none !important;
+/* Link inchiostro */
+.md-typeset a {
+    color: #8b0000 !important;
+    text-decoration: underline wavy rgba(139, 0, 0, 0.3) !important;
 }
 
-/* Link che sembrano scritti a mano */
-.md-content a {
-    color: #8b0000;
-    text-decoration: underline wavy rgba(139, 0, 0, 0.3);
-}
-
-/* Stile per i box delle citazioni (Quote) */
+/* Citazioni */
 .md-typeset blockquote {
     font-style: italic;
-    border-left: 4px solid #8b0000;
-    background-color: rgba(139, 0, 0, 0.05);
-    padding: 10px 20px;
-    margin: 20px 0;
-    color: #4a3728;
+    border-left: 4px solid #8b0000 !important;
+    background-color: rgba(139, 0, 0, 0.05) !important;
+    color: #4a3728 !important;
 }
 
-/* Stile per le tabelle in stile medievale */
+/* Tabelle Medievali */
 .md-typeset table {
     border-collapse: collapse;
-    width: 100%;
     margin: 20px 0;
-    font-family: 'Crimson Pro', serif;
 }
 
 .md-typeset th {
-    background-color: #5d4a37;
-    color: #e8dcc4;
-    text-transform: uppercase;
+    background-color: #5d4a37 !important;
+    color: #e8dcc4 !important;
     font-family: 'MedievalSharp', cursive;
 }
 
 .md-typeset td {
-    border: 1px solid #5d4a37;
-    padding: 10px;
+    border: 1px solid #5d4a37 !important;
 }
 
-/* Effetto pergamena per i box di avviso (Danger/Info) */
+/* Admonitions (Box info/danger) */
 .md-typeset .admonition {
-    border-radius: 2px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    border-left: 10px solid #8b0000;
+    background-color: rgba(232, 220, 196, 0.5) !important;
+    border-left: 0.4rem solid #8b0000 !important;
+    color: #2c241e !important;
+}
+.md-typeset .admonition-title {
+    background-color: rgba(139, 0, 0, 0.1) !important;
+    font-family: 'MedievalSharp', cursive;
 }
