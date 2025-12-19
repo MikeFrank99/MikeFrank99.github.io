@@ -3,11 +3,7 @@ hide:
   - navigation
   - toc
 ---
-
-<div class="hero-section">
-    <h1 class="hero-title">Sotterranei & Dragoni</h1>
-    <p class="hero-subtitle">Il Manoscritto di Michael Francazzi</p>
-</div>
+<div class="hero-section"> <h1 class="hero-title">Sotterranei & Dragoni</h1> </div>
 
 <div class="tomo-content" markdown="1">
 
