@@ -32,4 +32,5 @@ Ogni parola contenuta in queste pagine è stata vergata con inchiostro di seppia
 | 20/11 | Incontro con la delegazione Elfica | Bosco d'Argento |
 
 ---
+Infine, ecco le cronache.
 {: .antico-testo}
