@@ -47,5 +47,3 @@ Ogni parola contenuta in queste pagine è stata vergata con inchiostro di seppia
 ---
 Infine, ecco le cronache.
 {: .antico-testo}
-
-</div>
