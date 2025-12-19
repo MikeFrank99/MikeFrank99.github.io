@@ -2,6 +2,8 @@
 ---
 icon: material/book-cross
 ---
+
+<[<df<f]
 Questo è un test: :material-sword: :material-shield: :material-fire:
 # 📜 Benvenuti nelle Cronache dell'Antico Regno
 
