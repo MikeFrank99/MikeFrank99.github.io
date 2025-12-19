@@ -1,166 +1,110 @@
 /* ============================================================
- *  IMPORT E VARIABILI GLOBALI
+ *  IMPORT E RESET
  *  ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=MedievalSharp&display=swap');
 
 :root {
     --pergamena-bg: #e8dcc4;
-    --inchiostro-scuro: #2c241e;
-    --sangue-antico: #8b0000;
-    --cuoio-header: #3e2723;
+    --inchiostro: #2c241e;
+    --sangue: #8b0000;
+}
+
+/* Sfondo body fisso */
+body {
+    background-image: url('https://static1.thegamerimages.com/wordpress/wp-content/uploads/2025/05/magic-the-gathering-john-avon-swamp-full-art.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-color: #1a1510;
 }
 
 /* ============================================================
- *  LAYOUT E STRUTTURA (Allargamento Margini)
+ *  STRUTTURA PAGINA (RISOLTO IL "ROTTO")
  *  ============================================================ */
 
-/* Rimuove i limiti stretti di Material per un tomo più ampio */
+/* Allarga il contenitore principale senza rompere il flexbox */
+.md-grid {
+    max-width: 95% !important;
+}
+
 .md-main__inner {
-    max-width: 1300px !important; /* Molto più largo del default */
+    margin-top: 0 !important;
 }
 
-/* Gestione dello sfondo generale */
-body {
-    background-color: #1a1510;
-    font-family: 'Crimson Pro', serif;
-    margin: 0;
-}
-
-/* La pagina del Tomo */
+/* La pagina del Tomo - Più larga e leggibile */
 .md-content__inner {
     background-color: var(--pergamena-bg) !important;
     background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
-    padding: 60px 100px !important; /* Più spazio interno per il testo */
-    font-size: 1.35rem !important;  /* Testo più grande e leggibile */
+    margin: 20px auto !important;
+    padding: 60px 8% !important; /* Padding in percentuale per adattarsi allo schermo */
+    font-size: 1.3rem !important;
     line-height: 1.8;
-    color: var(--inchiostro-scuro) !important;
-    border-radius: 2px;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5), inset 0 0 60px rgba(139, 69, 19, 0.15);
+    color: var(--inchiostro) !important;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
     border: 1px solid #5d4a37;
-    margin-bottom: 50px;
-}
-
-/* Rende trasparenti le sidebar per non spezzare l'immersione */
-.md-sidebar, .md-nav {
-    background-color: transparent !important;
+    border-radius: 4px;
 }
 
 /* ============================================================
- *  EFFETTO HERO (Titolo Iniziale)
+ *  EFFETTO HERO (SEZIONE TITOLO)
  *  ============================================================ */
 
 .hero-section {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-    url('https://static1.thegamerimages.com/wordpress/wp-content/uploads/2025/05/magic-the-gathering-john-avon-swamp-full-art.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    /* Forza l'uscita dai margini del container */
-    margin: -48px -10vw 40px -10vw;
-    padding: 0 10vw;
+    padding: 100px 20px;
+    margin-bottom: 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 8px;
+    border: 2px solid var(--sangue);
 }
 
 .hero-title {
     font-family: 'MedievalSharp', cursive !important;
-    font-size: 6rem !important;
+    font-size: 4.5rem !important;
     color: var(--pergamena-bg) !important;
-    text-shadow: 5px 5px 20px rgba(0,0,0,1) !important;
-    margin-bottom: 10px !important;
-    border: none !important;
-}
-
-.hero-subtitle {
-    font-size: 2rem !important;
-    color: var(--sangue-antico) !important;
-    font-style: italic;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    text-shadow: 3px 3px 10px #000;
+    margin: 0 !important;
 }
 
 /* ============================================================
- *  TIPOGRAFIA E DETTAGLI GDR
+ *  TIPOGRAFIA E ICONE
  *  ============================================================ */
 
-/* Titoli interni */
 .md-typeset h1, .md-typeset h2, .md-typeset h3 {
     font-family: 'MedievalSharp', cursive !important;
-    color: var(--sangue-antico) !important;
+    color: var(--sangue) !important;
     font-weight: normal !important;
-    margin-top: 1.5em;
     border-bottom: 1px solid rgba(93, 74, 55, 0.3) !important;
 }
 
-/* Capolettera (Iniziale miniata) */
+/* Iniziale miniata */
 .md-typeset p:first-of-type::first-letter {
     font-family: 'MedievalSharp', cursive !important;
     float: left;
-    font-size: 4.5em !important;
+    font-size: 4em !important;
     line-height: 0.8;
-    padding: 8px 12px 0 0;
-    color: var(--sangue-antico) !important;
+    padding: 5px 12px 0 0;
+    color: var(--sangue) !important;
 }
 
-/* Link inchiostro con effetto hover */
-.md-typeset a {
-    color: var(--sangue-antico) !important;
-    text-decoration: none !important;
-    transition: all 0.3s ease;
-}
-
-.md-typeset a:hover {
-    text-decoration: underline wavy rgba(139, 0, 0, 0.6) !important;
-}
-
-/* ============================================================
- *  COMPONENTI (Tabelle, Citazioni, Box)
- *  ============================================================ */
-
-/* Tabelle Medievali */
-.md-typeset table {
-    border-collapse: collapse;
-    background-color: rgba(0,0,0,0.03);
-}
-
-.md-typeset th {
-    background-color: #5d4a37 !important;
-    color: var(--pergamena-bg) !important;
+/* Navigazione laterale - la rendiamo leggibile sulla palude */
+.md-nav__link {
+    color: #e8dcc4 !important;
     font-family: 'MedievalSharp', cursive;
-    text-transform: uppercase;
 }
 
-.md-typeset td {
-    border: 1px solid #5d4a37 !important;
+.md-nav__link:hover {
+    color: var(--sangue) !important;
 }
 
-/* Citazioni (Quote) */
-.md-typeset blockquote {
-    font-style: italic;
-    border-left: 5px solid var(--sangue-antico) !important;
-    background-color: rgba(139, 0, 0, 0.05) !important;
-    color: #4a3728 !important;
-}
-
-/* Callouts (Admonitions) */
-.md-typeset .admonition {
-    background-color: rgba(232, 220, 196, 0.5) !important;
-    border-left: 0.5rem solid var(--sangue-antico) !important;
-    box-shadow: 3px 3px 15px rgba(0,0,0,0.1) !important;
-}
-
-.md-typeset .admonition-title {
-    background-color: rgba(139, 0, 0, 0.1) !important;
-    font-family: 'MedievalSharp', cursive !important;
-    color: var(--sangue-antico) !important;
-}
-
-/* Header (Rilegatura) */
+/* Header (Barra superiore) */
 .md-header {
-    background-color: var(--cuoio-header) !important;
-    border-bottom: 3px solid var(--sangue-antico) !important;
+    background-color: #3e2723 !important;
+    border-bottom: 2px solid var(--sangue) !important;
+}
+
+/* Admonitions e Tabelle */
+.md-typeset .admonition {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-left: 0.4rem solid var(--sangue) !important;
 }
