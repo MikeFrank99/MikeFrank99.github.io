@@ -6,42 +6,40 @@ theme:
   name: material
   language: it
   icon:
-    logo: material/book-open-page-variant # Un'icona più "da tomo"
-    favicon: material/sword-cross
+    logo: material/book-open-variant
+    favicon: material/github
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - navigation.tracking
+    - navigation.sections    # Sezioni nella sidebar
+    - navigation.expand      # Espande l'albero di navigazione
+    - navigation.top         # Bottone per tornare su
+    - navigation.tracking    # Evidenzia la posizione nella sidebar durante lo scroll
     - search.suggest
     - search.highlight
     - content.code.copy
-    - header.autohide
   palette:
+    # Look GitHub Light
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: brown
-      accent: red # Rosso per richiamare i titoli in inchiostro
+      primary: white
+      accent: indigo
       toggle:
-        icon: material/book-open-variant
-        name: Scurovisione
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Look GitHub Dark
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: black # Più cupo per la modalità scura
-      accent: deep orange
+      primary: black
+      accent: indigo
       toggle:
-        icon: material/candle
-        name: Luci Danzanti
+        icon: material/brightness-4
+        name: Switch to light mode
   font:
-    text: Crimson Pro # 'Pro' è più rifinito per il look antico
+    text: Roboto
     code: Roboto Mono
 
+# Rimosso MedievalSharp per pulizia tecnica
 extra_css:
   - stylesheets/extra.css
-
-# Carichiamo MedievalSharp separatamente poiché MkDocs supporta un solo font 'text'
-extra_javascript:
-  - https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap
 
 plugins:
   - search
