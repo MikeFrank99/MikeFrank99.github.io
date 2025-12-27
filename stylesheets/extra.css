@@ -1,0 +1,32 @@
+/* Rimuove l'ombra dell'header per un look flat stile GitHub */
+.md-header {
+  box-shadow: none;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Colore dei link blu GitHub */
+:root {
+  --md-typeset-a-color: #0969da;
+}
+
+/* Sidebar: Font più compatto e pulito */
+.md-nav__link {
+  font-size: 0.75rem;
+}
+
+/* Evidenziazione pagina attiva nella sidebar */
+.md-nav__link--active {
+  font-weight: 600;
+  color: var(--md-typeset-a-color) !important;
+}
+
+/* Adattamento per la modalità scura */
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #58a6ff;
+}
+
+/* Rende i blocchi di codice e le tabelle più "Wiki" */
+.md-typeset table {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+}
