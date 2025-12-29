@@ -28,3 +28,9 @@ hide:
 </div>
 
 <div class="bookmark">Indice</div>
+
+<!-- Aggiungere il label per la icona del tema -->
+<label for="theme-toggle" id="theme-toggle-label">
+  <input type="checkbox" id="theme-toggle" class="hidden" />
+  <span class="slider"></span>
+</label>
