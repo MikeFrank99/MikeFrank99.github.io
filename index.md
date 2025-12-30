@@ -1,4 +1,4 @@
-# Benvenuto sul Mio Sito
+# Home Placeholder
 
-Questa è la pagina di benvenuto del mio sito.
-Puoi trovare qui informazioni generali e utili.
+Questa è una pagina di placeholder.
+Puoi rimuovere questo contenuto e sostituirlo con quello desiderato.
