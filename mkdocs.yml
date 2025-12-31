@@ -7,7 +7,6 @@ repo_url: https://github.com/MikeFrank99/MikeFrank99.github.io
 theme:
   name: material
   language: it
-  custom_dir: overrides
   icon:
     logo: material/circle
     favicon: material/circle
@@ -22,10 +21,16 @@ theme:
       scheme: default
       primary: white
       accent: black
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
       accent: white
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   font:
     text: Inter
     code: JetBrains Mono
