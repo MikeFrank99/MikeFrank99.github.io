@@ -1,32 +1,172 @@
-/* Rimuove l'ombra dell'header per un look flat stile GitHub */
-.md-header {
-  box-shadow: none;
-  border-bottom: 1px solid var(--md-default-fg-color--lightest);
-}
-
-/* Colore dei link blu GitHub */
+/* Global Styles */
 :root {
-  --md-typeset-a-color: #0969da;
+  --md-primary-fg-color: #000000;
+  --md-primary-bg-color: #ffffff;
+  --md-accent-fg-color: #000000;
 }
 
-/* Sidebar: Font più compatto e pulito */
-.md-nav__link {
-  font-size: 0.75rem;
-}
-
-/* Evidenziazione pagina attiva nella sidebar */
-.md-nav__link--active {
-  font-weight: 600;
-  color: var(--md-typeset-a-color) !important;
-}
-
-/* Adattamento per la modalità scura */
 [data-md-color-scheme="slate"] {
-  --md-typeset-a-color: #58a6ff;
+  --md-primary-fg-color: #ffffff;
+  --md-primary-bg-color: #000000;
+  --md-accent-fg-color: #ffffff;
 }
 
-/* Rende i blocchi di codice e le tabelle più "Wiki" */
-.md-typeset table {
-  border: 1px solid var(--md-default-fg-color--lightest);
+/* Better Focus States */
+:focus {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 4px;
+}
+
+/* Minimalist Header */
+.md-header {
+  background-color: var(--md-primary-bg-color);
+  border-bottom: 0.05rem solid rgba(0,0,0,0.1);
+  box-shadow: none;
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  border-bottom: 0.05rem solid rgba(255,255,255,0.1);
+}
+
+.md-header__title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Typography */
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5em;
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Hero Section */
+.hero-container {
+  padding: 4rem 0;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+[data-md-color-scheme="slate"] .hero-subtitle {
+  color: #aaa;
+}
+
+/* Project Grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none !important;
+  color: inherit !important;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-md-color-scheme="slate"] .project-card {
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-color: var(--md-accent-fg-color);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  color: #666;
+  flex-grow: 1;
+}
+
+[data-md-color-scheme="slate"] .project-card p {
+  color: #aaa;
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(0,0,0,0.05);
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+[data-md-color-scheme="slate"] .tag {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Hide navigation on index if preferred */
+/* .view-index .md-sidebar--primary { display: none; } */
+
+/* CV Button */
+.cv-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: #000;
+  color: #fff !important;
   border-radius: 6px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+[data-md-color-scheme="slate"] .cv-button {
+  background: #fff;
+  color: #000 !important;
+}
+
+.cv-button:hover {
+  opacity: 0.8;
 }

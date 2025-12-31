@@ -1,49 +1,58 @@
-site_name: Sotterranei & Dragoni
-site_url: https://dnd.michaelfrancazzi.com/
+site_name: Michael Francazzi
+site_description: Portfolio personale di Michael Francazzi - Full Stack Developer & Designer. Progetti, competenze e contatti.
+site_author: Michael Francazzi
+site_url: https://michaelfrancazzi.com/
 repo_url: https://github.com/MikeFrank99/MikeFrank99.github.io
 
 theme:
   name: material
   language: it
   icon:
-    logo: material/book-open-variant
-    favicon: material/github
+    logo: material/account-circle-outline
+    favicon: material/briefcase-outline
   features:
-    - navigation.sections    # Sezioni nella sidebar
-    - navigation.expand      # Espande l'albero di navigazione
-    - navigation.top         # Bottone per tornare su
-    - navigation.tracking    # Evidenzia la posizione nella sidebar durante lo scroll
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
     - search.suggest
     - search.highlight
     - content.code.copy
+    - content.tooltips
   palette:
-    # Look GitHub Light
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: white
-      accent: indigo
+      accent: black
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    # Look GitHub Dark
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
-      accent: indigo
+      accent: white
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Inter
+    code: JetBrains Mono
 
-# Rimosso MedievalSharp per pulizia tecnica
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/MikeFrank99
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/michaelfrancazzi
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/MichaelF
+
 extra_css:
   - stylesheets/extra.css
 
 plugins:
   - search
-  - roamlinks
 
 markdown_extensions:
   - admonition
@@ -53,15 +62,11 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
 
 nav:
-  - Il Mondo: index.md
-  - Lore e Storia:
-      - La Creazione: storia/origine.md
-      - Grandi Regni: storia/regni.md
-  - Bestiario:
-      - Draghi: creature/draghi.md
-      - Mostri Erranti: creature/mostri.md
-  - Personaggi (NPC):
-      - Alleati: npc/alleati.md
-      - Nemici: npc/nemici.md
+  - Home: index.md
+  - Progetti: progetti/index.md
+  - Chi Sono: chi-sono.md
+  - Contatti: contatti.md
