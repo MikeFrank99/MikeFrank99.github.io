@@ -4,34 +4,33 @@ hide:
   - toc
 ---
 
-# Michael Francazzi
-{ .hero-title .animate-fade-in }
+<div class="reveal">
 
-Sviluppatore Full-Stack & Designer di Esperienze Digitali.
-{ .hero-subtitle .animate-fade-in }
+# Michael<br>Francazzi
+
+<p style="font-size: 1.8rem; font-weight: 300; margin-top: -1rem;">
+Full Stack Developer & Digital Architect.
+</p>
+
+[Esplora i Progetti](progetti/index.md){ .btn-huge }
 
 ---
 
-<div class="hero-container animate-fade-in">
-Benvenuti nel mio spazio digitale. Qui raccolgo i miei progetti, le mie sperimentazioni e il mio percorso nel mondo del software. Mi occupo di creare soluzioni eleganti a problemi complessi.
+## Filosofia
+Il design non è solo come appare, ma come funziona. Costruisco interfacce che parlano chiaro e codice che dura nel tempo.
 
-[Guarda i miei progetti](progetti/index.md){ .cv-button }
-</div>
+::: { .grid .cards style="margin-top: 4rem;" }
 
-## Competenze Tecniche
-
-::: { .grid .cards }
-
--   **Frontend**
+- **Semplifica**
     ---
-    React, Next.js, TypeScript, Tailwind CSS.
-
--   **Backend**
+    Rimuovere il superfluo finché non resta solo l'essenziale.
+- **Esegui**
     ---
-    Node.js, Python (FastAPI/Django), PostgreSQL.
-
--   **Strumenti**
+    Precisione tecnica e performance come standard di base.
+- **Evolvi**
     ---
-    Docker, Git, CI/CD, AWS.
+    Apprendimento continuo e adattamento alle nuove sfide.
 
 :::
+
+</div>

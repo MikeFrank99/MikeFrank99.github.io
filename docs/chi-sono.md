@@ -1,24 +1,22 @@
-# Chi Sono
-{ .animate-fade-in }
+# Michael Francazzi
+{ .reveal }
 
-<div class="animate-fade-in">
+<div class="reveal">
 
-Sono Michael, uno sviluppatore appassionato di tecnologia e design. Credo che il codice non debba solo funzionare, ma debba essere leggibile, manutenibile ed elegante.
+<p style="font-size: 2rem; font-weight: 700; margin-bottom: 4rem;">
+Costruisco soluzioni digitali che fondono estetica e funzionalità.
+</p>
 
-### Il mio percorso
-Ho iniziato il mio viaggio nel mondo del software esplorando le potenzialità del web, passando dalla curiosità per il frontend alla solidità del backend. Oggi mi concentro sulla creazione di esperienze utente fluide e architetture scalabili.
+## Background
+Con oltre 5 anni di esperienza nel settore del software, ho collaborato con startup e aziende consolidate per tradurre visioni complesse in prodotti digitali concreti. La mia passione risiede nell'intersezione tra ingegneria robusta e design intuitivo.
 
-### Cosa faccio quando non programmo
-Amo la montagna, i giochi di ruolo (come avrai notato dalla versione precedente di questo sito!) e la buona musica.
-
-[Scarica il mio CV (PDF)](#){ .cv-button }
+## Esperienza
+- **Senior Developer** / 2022 - Oggi
+- **Full Stack Web Dev** / 2020 - 2022
+- **Junior Developer** / 2018 - 2020
 
 ---
 
-### Esperienza in pillole
-
-- **Senior Developer** @ TechSolutions (2022 - Oggi)
-- **Web Developer** @ CreativeLabs (2020 - 2022)
-- **Junior Developer** @ StartUp Hub (2018 - 2020)
+[Scarica Curriculum Vitae](#){ .btn-huge }
 
 </div>

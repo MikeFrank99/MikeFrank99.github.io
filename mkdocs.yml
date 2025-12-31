@@ -1,5 +1,5 @@
 site_name: Michael Francazzi
-site_description: Portfolio personale di Michael Francazzi - Full Stack Developer & Designer. Progetti, competenze e contatti.
+site_description: Personal Portfolio - Michael Francazzi
 site_author: Michael Francazzi
 site_url: https://michaelfrancazzi.com/
 repo_url: https://github.com/MikeFrank99/MikeFrank99.github.io
@@ -7,46 +7,28 @@ repo_url: https://github.com/MikeFrank99/MikeFrank99.github.io
 theme:
   name: material
   language: it
+  custom_dir: overrides
   icon:
-    logo: material/account-circle-outline
-    favicon: material/briefcase-outline
+    logo: material/circle
+    favicon: material/circle
   features:
     - navigation.sections
     - navigation.top
-    - navigation.tracking
-    - navigation.tabs
-    - navigation.tabs.sticky
     - search.suggest
     - search.highlight
     - content.code.copy
-    - content.tooltips
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: white
       accent: black
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
       accent: white
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
   font:
     text: Inter
     code: JetBrains Mono
-
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/MikeFrank99
-    - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/michaelfrancazzi
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/MichaelF
 
 extra_css:
   - stylesheets/extra.css
@@ -62,11 +44,9 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.tabbed:
-      alternate_style: true
 
 nav:
-  - Home: index.md
-  - Progetti: progetti/index.md
-  - Chi Sono: chi-sono.md
-  - Contatti: contatti.md
+  - HOME: index.md
+  - PROGETTI: progetti/index.md
+  - CHI SONO: chi-sono.md
+  - CONTATTI: contatti.md

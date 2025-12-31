@@ -1,48 +1,42 @@
-# Progetti Selezione
-{ .animate-fade-in }
+# Lavori Scelti
+{ .reveal }
 
-Una raccolta di lavori che rappresentano il mio approccio allo sviluppo e al design.
+<div class="project-container reveal">
 
-<div class="project-grid animate-fade-in">
-
-<a href="https://github.com/MikeFrank99" class="project-card">
-    <h3>Sotterranei & Dragoni</h3>
-    <p>Un generatore di lore e documentazione per campagne D&D basato su MkDocs e Material theme.</p>
-    <div class="project-tags">
-        <span class="tag">MkDocs</span>
-        <span class="tag">Python</span>
-        <span class="tag">Documentation</span>
+<a href="#" class="project-item">
+    <div class="project-meta">01 / Web Development</div>
+    <div>
+        <div class="project-title">Sotterranei & Dragoni</div>
+        <div class="project-desc">Una piattaforma di documentazione avanzata per RPG, focalizzata sull'usabilità e la narrazione visiva.</div>
     </div>
 </a>
 
-<a href="#" class="project-card">
-    <h3>EcoTrack Pro</h3>
-    <p>Dashboard per il monitoraggio dei consumi energetici in tempo reale con analisi predittiva.</p>
-    <div class="project-tags">
-        <span class="tag">React</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">IoT</span>
+<a href="#" class="project-item">
+    <div class="project-meta">02 / UI Design</div>
+    <div>
+        <div class="project-title">Minimal Portfolio</div>
+        <div class="project-desc">Studio sulla tipografia e sugli spazi bianchi applicato a un sito statico performante.</div>
     </div>
 </a>
 
-<a href="#" class="project-card">
-    <h3>Minimal Portfolio</h3>
-    <p>Il design di questo sito, ottimizzato per performance e leggibilità estrema.</p>
-    <div class="project-tags">
-        <span class="tag">Design</span>
-        <span class="tag">CSS3</span>
-        <span class="tag">Static Site</span>
+<a href="#" class="project-item">
+    <div class="project-meta">03 / Software Architecture</div>
+    <div>
+        <div class="project-title">EcoTrack Dashboard</div>
+        <div class="project-desc">Sistema di monitoraggio energetico con analisi dati in tempo reale e visualizzazioni minimaliste.</div>
     </div>
 </a>
 
-<a href="#" class="project-card">
-    <h3>CryptoPulse</h3>
-    <p>Analizzatore di sentiment per mercati crypto basato su elaborazione del linguaggio naturale.</p>
-    <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">AI</span>
-        <span class="tag">Finance</span>
+<a href="#" class="project-item">
+    <div class="project-meta">04 / Open Source</div>
+    <div>
+        <div class="project-title">CodeFlow Tools</div>
+        <div class="project-desc">Una suite di script per automatizzare il workflow di sviluppo e CI/CD.</div>
     </div>
 </a>
 
 </div>
+
+<p style="margin-top: 6rem; text-align: center;">
+[Vedi altri su GitHub](https://github.com/MikeFrank99){ .btn-huge }
+</p>

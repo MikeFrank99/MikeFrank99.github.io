@@ -1,35 +1,26 @@
-# Contatti
-{ .animate-fade-in }
+# Inizia un<br>progetto
+{ .reveal }
 
-Sei interessato a collaborare o vuoi semplicemente fare due chiacchiere?
+<div class="reveal">
 
-<div class="animate-fade-in">
+<p style="font-size: 1.5rem; margin: 4rem 0;">
+Hai un'idea o una sfida tecnica? Parliamone. Sono sempre alla ricerca di collaborazioni stimolanti.
+</p>
 
-### Parliamo!
-
-Il modo più veloce per raggiungermi è via email o attraverso i social professionali.
-
-- **Email**: [michele@esempio.com](mailto:michele@esempio.com)
-- **LinkedIn**: [linkedin.com/in/michaelfrancazzi](https://linkedin.com/in/michaelfrancazzi)
-- **GitHub**: [@MikeFrank99](https://github.com/MikeFrank99)
-- **Twitter**: [@MichaelF](https://twitter.com/MichaelF)
+### Online
+- [Email](mailto:michele@esempio.com)
+- [LinkedIn](https://linkedin.com/in/michaelfrancazzi)
+- [GitHub](https://github.com/MikeFrank99)
 
 ---
 
-### Oppure compila il form
+### Invia un Messaggio
 
-*Nota: Questo è un esempio di integrazione form.*
-
-<form action="https://formspree.io/f/your-id" method="POST">
-  <label>
-    Tua email:
-    <input type="email" name="email" style="width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px;">
-  </label>
-  <label>
-    Messaggio:
-    <textarea name="message" style="width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; height: 100px;"></textarea>
-  </label>
-  <button type="submit" class="cv-button" style="border: none; cursor: pointer;">Invia</button>
+<form action="#" method="POST" style="margin-top: 2rem; max-width: 500px;">
+  <input type="text" placeholder="Nome" style="width: 100%; background: transparent; border: none; border-bottom: 2px solid #ccc; padding: 1rem 0; font-size: 1.2rem; margin-bottom: 2rem;">
+  <input type="email" placeholder="Email" style="width: 100%; background: transparent; border: none; border-bottom: 2px solid #ccc; padding: 1rem 0; font-size: 1.2rem; margin-bottom: 2rem;">
+  <textarea placeholder="Il tuo messaggio" style="width: 100%; background: transparent; border: none; border-bottom: 2px solid #ccc; padding: 1rem 0; font-size: 1.2rem; margin-bottom: 2rem; height: 100px;"></textarea>
+  <button type="submit" class="btn-huge" style="background: none; border: none; border-bottom: 4px solid currentColor; cursor: pointer; padding: 0;">Invia Messaggio</button>
 </form>
 
 </div>
