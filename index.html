@@ -125,6 +125,62 @@
             text-shadow: 0 0 15px rgba(139, 233, 253, 0.4);
         }
 
+        header {
+            margin-bottom: 4rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 400;
+            color: var(--pink);
+            margin-top: 1rem;
+        }
+
+        .philosophy {
+            margin-top: 4rem;
+        }
+
+        h2 {
+            font-family: var(--font-nothing);
+            font-size: 1.2rem;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy p {
+            color: var(--fg);
+            max-width: 700px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Elements without boxes */
+        .terminal-block {
+            padding-left: 1rem;
+            border-left: 2px solid var(--comment);
+        }
+
+        .terminal-block h3 {
+            font-family: var(--font-nothing);
+            font-size: 1.1rem;
+            color: var(--orange);
+            margin: 0 0 0.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .terminal-block p {
+            font-size: 0.95rem;
+            color: var(--fg);
+            margin: 0;
+        }
+
         /* Terminal Cursor */
         .typing::after {
             content: '▊';
@@ -208,7 +264,7 @@
 /_/   /_/   \__,_/_/ /_/\___/\__,_/ /___/ /___/ /___/_/   
                 </pre>
                 <p class="subtitle typewriter-text">Full Stack Developer & Digital Architect.</p>
-                <a href="mailto:michael.francazzi @gmail.com" class="btn-huge typewriter-text">connect --start</a>
+                <a href="mailto:michael.francazzi@gmail.com" class="btn-huge typewriter-text">connect --start</a>
             </header>
 
             <section class="philosophy">
@@ -285,35 +341,31 @@
             element.textContent = '';
             element.style.visibility = 'visible';
             element.classList.add('typing');
-            element.classList.add('typing-prefix'); // Keep prompt during typing
+            element.classList.add('typing-prefix'); 
             
             let i = 0;
             while (i < text.length) {
-                // Random typo chance (5%)
                 if (Math.random() < 0.05 && i > 0 && i < text.length - 1) {
                     const typoChar = randomChars.charAt(Math.floor(Math.random() * randomChars.length));
                     element.textContent += typoChar;
                     playKeySound();
                     await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 200));
                     
-                    // Backspace correction
                     await new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 200));
                     element.textContent = element.textContent.slice(0, -1);
                     playKeySound();
                     await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
-                    // Now continue with the correct character
                 }
 
                 element.textContent += text.charAt(i);
                 playKeySound();
                 
-                const delay = 50 + Math.random() * 100; // Human-like variable speed
+                const delay = 50 + Math.random() * 100; 
                 await new Promise(resolve => setTimeout(resolve, delay));
                 i++;
             }
             
             element.classList.remove('typing');
-            // We keep typing-prefix if we want the prompt to stay after typing
         }
 
         async function initTypewriter() {
@@ -335,7 +387,6 @@
             });
 
             if (elements.length > 0) {
-                // Initial random delay 1-2 seconds
                 await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
 
                 for (let i = 0; i < elements.length; i++) {
@@ -357,13 +408,6 @@
                 }
             }
         }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initTypewriter);
-        } else {
-            initTypewriter();
-        }
-    </script>
 
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initTypewriter);
