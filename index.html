@@ -115,70 +115,14 @@
 
         .ascii-art {
             font-family: monospace;
-            font-size: clamp(0.35rem, 1.3vw, 1rem); /* Optimized for Slant style */
-            line-height: 1.1;
+            font-size: clamp(0.4rem, 2.5vw, 1.8rem); /* Maximized size */
+            line-height: 1;
             color: var(--cyan);
-            margin: 0 0 4rem 0;
+            margin: 0 0 5rem 0;
             white-space: pre;
             pointer-events: none;
             user-select: none;
-            text-shadow: 0 0 10px rgba(139, 233, 253, 0.3);
-        }
-
-        header {
-            margin-bottom: 4rem;
-        }
-
-        .subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: 400;
-            color: var(--pink);
-            margin-top: 1rem;
-        }
-
-        .philosophy {
-            margin-top: 4rem;
-        }
-
-        h2 {
-            font-family: var(--font-nothing);
-            font-size: 1.2rem;
-            color: var(--green);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-        }
-
-        .philosophy p {
-            color: var(--fg);
-            max-width: 700px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        /* Elements without boxes */
-        .terminal-block {
-            padding-left: 1rem;
-            border-left: 2px solid var(--comment);
-        }
-
-        .terminal-block h3 {
-            font-family: var(--font-nothing);
-            font-size: 1.1rem;
-            color: var(--orange);
-            margin: 0 0 0.5rem 0;
-            text-transform: uppercase;
-        }
-
-        .terminal-block p {
-            font-size: 0.95rem;
-            color: var(--fg);
-            margin: 0;
+            text-shadow: 0 0 15px rgba(139, 233, 253, 0.4);
         }
 
         /* Terminal Cursor */
@@ -190,7 +134,7 @@
         }
 
         .typing-prefix::before {
-            content: 'λ ';
+            content: '> ';
             color: var(--green);
             font-weight: bold;
         }
@@ -298,7 +242,6 @@
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let keySoundBuffer;
 
-        // Try to load sound from local assets
         async function loadSound() {
             try {
                 const response = await fetch('assets/audio/keypress.mp3'); 
@@ -333,26 +276,44 @@
             }
         });
 
-        async function typeSentence(element, speedMultiplier = 1) {
+        const randomChars = "abcdefghijklmnopqrstuvwxyz";
+
+        async function typeSentence(element) {
             const text = element.getAttribute('data-text') || element.textContent.trim();
             if (!text) return;
             
             element.textContent = '';
             element.style.visibility = 'visible';
             element.classList.add('typing');
+            element.classList.add('typing-prefix'); // Keep prompt during typing
             
-            for (let i = 0; i < text.length; i++) {
-                element.textContent += text.charAt(i);
-                playKeySound(); 
-                
-                if (i === 0 && element.classList.contains('typing-prefix')) {
-                    element.classList.remove('typing-prefix');
+            let i = 0;
+            while (i < text.length) {
+                // Random typo chance (5%)
+                if (Math.random() < 0.05 && i > 0 && i < text.length - 1) {
+                    const typoChar = randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+                    element.textContent += typoChar;
+                    playKeySound();
+                    await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 200));
+                    
+                    // Backspace correction
+                    await new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 200));
+                    element.textContent = element.textContent.slice(0, -1);
+                    playKeySound();
+                    await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
+                    // Now continue with the correct character
                 }
-                const delay = (Math.random() * 40 + 30) / speedMultiplier; // Slower unified delay
+
+                element.textContent += text.charAt(i);
+                playKeySound();
+                
+                const delay = 50 + Math.random() * 100; // Human-like variable speed
                 await new Promise(resolve => setTimeout(resolve, delay));
+                i++;
             }
             
             element.classList.remove('typing');
+            // We keep typing-prefix if we want the prompt to stay after typing
         }
 
         async function initTypewriter() {
@@ -374,33 +335,35 @@
             });
 
             if (elements.length > 0) {
-                const first = elements[0];
-                
-                // Start typing immediately with consistent slower speed
-                first.style.visibility = 'visible';
-                first.classList.add('typing');
-                first.classList.add('typing-prefix');
-                
-                // Small initial wait for window animation to settle
-                await new Promise(resolve => setTimeout(resolve, 800));
-                
-                await typeSentence(first, 1);
+                // Initial random delay 1-2 seconds
+                await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
 
-                for (let i = 1; i < elements.length; i++) {
+                for (let i = 0; i < elements.length; i++) {
                     const el = elements[i];
-                    await new Promise(resolve => {
-                        const observer = new IntersectionObserver((entries) => {
-                            if (entries[0].isIntersecting) {
-                                observer.disconnect();
-                                resolve();
-                            }
-                        }, { threshold: 0.1 });
-                        observer.observe(el);
-                    });
-                    await typeSentence(el, 1);
+                    
+                    if (i > 0) {
+                        await new Promise(resolve => {
+                            const observer = new IntersectionObserver((entries) => {
+                                if (entries[0].isIntersecting) {
+                                    observer.disconnect();
+                                    resolve();
+                                }
+                            }, { threshold: 0.1 });
+                            observer.observe(el);
+                        });
+                    }
+
+                    await typeSentence(el);
                 }
             }
         }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTypewriter);
+        } else {
+            initTypewriter();
+        }
+    </script>
 
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initTypewriter);
