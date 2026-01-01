@@ -222,11 +222,10 @@
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let keySoundBuffer;
 
-        // Try to load sound from a more CORS-friendly source or fail gracefully
+        // Try to load sound from local assets
         async function loadSound() {
             try {
-                const response = await fetch('https://raw.githubusercontent.com/MikeFrank99/MikeFrank99.github.io/main/assets/keypress.mp3'); 
-                // Note: I will need to provide a valid local fallback or a reliable CORS-enabled URL
+                const response = await fetch('assets/audio/keypress.mp3'); 
                 if (!response.ok) throw new Error('Sound load failed');
                 const data = await response.arrayBuffer();
                 keySoundBuffer = await audioCtx.decodeData(data);
