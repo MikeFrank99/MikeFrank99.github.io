@@ -115,14 +115,16 @@
 
         .ascii-art {
             font-family: monospace;
-            font-size: clamp(0.35rem, 1.2vw, 0.9rem);
+            font-size: clamp(0.2rem, 1.8vw, 2.5rem); /* Dynamically fills width */
             line-height: 1;
             color: var(--cyan);
             margin: 0 0 3rem 0;
+            padding: 0 1rem;
             white-space: pre;
             pointer-events: none;
             user-select: none;
             text-shadow: 0 0 15px rgba(139, 233, 253, 0.4);
+            text-align: center; /* Center to look better as it expands */
         }
 
         header {
