@@ -101,28 +101,27 @@
                 text-transform: lowercase;
             }
     
-            .container {
-                padding: 2rem;
-                text-align: left;
-            }
-    
-            header {
-                margin-bottom: 4rem;
-            }
-    
-            h1 {
-                font-family: var(--font-nothing);
-                font-size: clamp(2rem, 8vw, 4rem);
-                font-weight: 400;
-                line-height: 1.1;
-                text-transform: uppercase;
-                color: var(--cyan);
-                margin: 0;
-                white-space: normal;
-            }
-    
-            .subtitle {
-                font-size: clamp(1rem, 2.5vw, 1.2rem);
+                    .container {
+                        padding: 2rem;
+                        text-align: left;
+                    }
+            
+                    .ascii-art {
+                        font-family: monospace;
+                        font-size: clamp(0.4rem, 1.2vw, 1rem);
+                        line-height: 1.2;
+                        color: var(--cyan);
+                        margin: 0 0 3rem 0;
+                        white-space: pre;
+                        pointer-events: none;
+                        user-select: none;
+                    }
+            
+                    header {
+                        margin-bottom: 4rem;
+                    }
+            
+                    .subtitle {                font-size: clamp(1rem, 2.5vw, 1.2rem);
                 font-weight: 400;
                 color: var(--pink);
                 margin-top: 1rem;
@@ -240,13 +239,24 @@
                 <div style="width: 45px;"></div> <!-- spacer -->
             </div>
             
-            <div class="container">
-                <header>
-                    <h1 class="typewriter-text">Michael Francazzi</h1>
-                    <p class="subtitle typewriter-text">Full Stack Developer & Digital Architect.</p>
-                    <a href="mailto:michael.francazzi @gmail.com" class="btn-huge typewriter-text">connect --start</a>
-                </header>
-    
+                    <div class="container">
+                        <header>
+                            <pre class="ascii-art">
+               __  ____      __                __ 
+              /  |/  (_)____/ /_  ____ _ ___  / / 
+             / /|_/ / / ___/ __ \/ __ `/ _ \/ /  
+            / /  / / / /__/ / / / /_/ /  __/ /   
+            /_/  /_/_/\___/_/ /_/\__,_/\___/_/    
+                                                  
+                ______                                             _
+               / ____/________ _____  _________ _____________ ____(_)
+              / /_  / ___/ __ `/ __ \/ ___/ __ `/_  /_  /_  / /_  / / 
+             / __/ / /  / /_/ / / / / /__/ /_/ / / /_ / /_ / /_  / /  
+            /_/   /_/   \__,_/_/ /_/\___/\__,_/ /___/ /___/ /___/_/   
+                            </pre>
+                            <p class="subtitle typewriter-text">Full Stack Developer & Digital Architect.</p>
+                            <a href="mailto:michael.francazzi @gmail.com" class="btn-huge typewriter-text">connect --start</a>
+                        </header>    
                 <section class="philosophy">
                     <h2 class="typewriter-text">Philosophy</h2>
                     <p class="typewriter-text">Design isn't just how it looks. It's how it works. I build clean interfaces and code that scales.</p>
