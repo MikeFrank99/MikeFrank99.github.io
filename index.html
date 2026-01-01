@@ -163,8 +163,8 @@
 
         /* Elements without boxes */
         .terminal-block {
-            padding-left: 1rem;
-            border-left: 2px solid var(--comment);
+            padding-left: 0;
+            border-left: none;
         }
 
         .terminal-block h3 {
@@ -208,7 +208,7 @@
             font-family: 'Inter', sans-serif;
             margin-top: 5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid var(--selection);
+            border-top: none;
             font-size: 0.75rem;
             color: var(--comment);
         }
@@ -345,27 +345,28 @@
             
             let i = 0;
             while (i < text.length) {
-                if (Math.random() < 0.05 && i > 0 && i < text.length - 1) {
+                if (Math.random() < 0.02 && i > 0 && i < text.length - 1) {
                     const typoChar = randomChars.charAt(Math.floor(Math.random() * randomChars.length));
                     element.textContent += typoChar;
                     playKeySound();
-                    await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 200));
+                    await new Promise(resolve => setTimeout(resolve, 80 + Math.random() * 150));
                     
-                    await new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 200));
+                    await new Promise(resolve => setTimeout(resolve, 150 + Math.random() * 150));
                     element.textContent = element.textContent.slice(0, -1);
                     playKeySound();
-                    await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
+                    await new Promise(resolve => setTimeout(resolve, 80 + Math.random() * 80));
                 }
 
                 element.textContent += text.charAt(i);
                 playKeySound();
                 
-                const delay = 50 + Math.random() * 100; 
+                const delay = 30 + Math.random() * 70; 
                 await new Promise(resolve => setTimeout(resolve, delay));
                 i++;
             }
             
             element.classList.remove('typing');
+            element.classList.remove('typing-prefix');
         }
 
         async function initTypewriter() {
