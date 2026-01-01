@@ -244,7 +244,7 @@
                 <div class="control minimize"></div>
                 <div class="control maximize"></div>
             </div>
-            <div class="terminal-title">mikefrank@archlinux: ~</div>
+            <div class="terminal-title">michelio@michaelfrancazzi.com: ~</div>
             <div style="width: 45px;"></div> <!-- spacer -->
         </div>
         
@@ -345,7 +345,7 @@
             
             let i = 0;
             while (i < text.length) {
-                if (Math.random() < 0.02 && i > 0 && i < text.length - 1) {
+                if (Math.random() < 0.01 && i > 0 && i < text.length - 1) {
                     const typoChar = randomChars.charAt(Math.floor(Math.random() * randomChars.length));
                     element.textContent += typoChar;
                     playKeySound();
@@ -360,7 +360,7 @@
                 element.textContent += text.charAt(i);
                 playKeySound();
                 
-                const delay = 30 + Math.random() * 70; 
+                const delay = 15 + Math.random() * 35; 
                 await new Promise(resolve => setTimeout(resolve, delay));
                 i++;
             }
