@@ -222,32 +222,41 @@
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let keySoundBuffer;
 
-        // Load sound
-        fetch('https://www.soundjay.com/communication/typewriter-key-1.mp3')
-            .then(response => response.arrayBuffer())
-            .then(data => audioCtx.decodeData(data))
-            .then(buffer => { keySoundBuffer = buffer; });
+        // Try to load sound from a more CORS-friendly source or fail gracefully
+        async function loadSound() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/MikeFrank99/MikeFrank99.github.io/main/assets/keypress.mp3'); 
+                // Note: I will need to provide a valid local fallback or a reliable CORS-enabled URL
+                if (!response.ok) throw new Error('Sound load failed');
+                const data = await response.arrayBuffer();
+                keySoundBuffer = await audioCtx.decodeData(data);
+            } catch (e) {
+                console.warn('Audio could not be loaded, typewriter will continue silently.', e);
+            }
+        }
+        
+        // Alternative: Use a small base64 beep if external sound fails
+        loadSound();
 
         function playKeySound() {
             if (!keySoundBuffer) return;
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            
-            const source = audioCtx.createBufferSource();
-            source.buffer = keySoundBuffer;
-            
-            // Add a little pitch variation for realism
-            const gainNode = audioCtx.createGain();
-            gainNode.gain.value = 0.4;
-            
-            source.playbackRate.value = 0.9 + Math.random() * 0.2;
-            source.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            source.start(0);
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const source = audioCtx.createBufferSource();
+                source.buffer = keySoundBuffer;
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.value = 0.2;
+                source.playbackRate.value = 0.9 + Math.random() * 0.2;
+                source.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                source.start(0);
+            } catch (e) {
+                // Silently ignore audio errors during playback
+            }
         }
 
         // Manual keydown listener
         document.body.addEventListener('keydown', (e) => {
-            // Avoid sounds for modifier keys unless desired
             if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) {
                 playKeySound();
             }
@@ -263,7 +272,7 @@
             
             for (let i = 0; i < text.length; i++) {
                 element.textContent += text.charAt(i);
-                playKeySound(); // Play sound during auto-typing
+                playKeySound(); 
                 
                 if (i === 0 && element.classList.contains('typing-prefix')) {
                     element.classList.remove('typing-prefix');
@@ -276,6 +285,17 @@
         }
 
         async function initTypewriter() {
+            // Resume audio context on first user interaction
+            const resumeAudio = () => {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                document.removeEventListener('click', resumeAudio);
+                document.removeEventListener('scroll', resumeAudio);
+                document.removeEventListener('keydown', resumeAudio);
+            };
+            document.addEventListener('click', resumeAudio);
+            document.addEventListener('scroll', resumeAudio);
+            document.addEventListener('keydown', resumeAudio);
+
             const elements = Array.from(document.querySelectorAll('.typewriter-text'));
             
             elements.forEach(el => {
@@ -300,7 +320,7 @@
                                 observer.disconnect();
                                 resolve();
                             }
-                        }, { threshold: 0.2 });
+                        }, { threshold: 0.1 });
                         observer.observe(el);
                     });
                     await typeSentence(el, 2.5);
