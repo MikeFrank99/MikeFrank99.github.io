@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael Francazzi | Digital Architect</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/d7a74ed36ff0603a3e41b6da32c47f03?family=Ndot+57+Aligned" rel="stylesheet">
     <style>
         :root {
             --bg-overlay: rgba(0, 0, 0, 0.7);
             --accent: #ffffff;
             --text-main: #f0f0f0;
             --text-dim: #b0b0b0;
+            --font-nothing: 'Ndot 57 Aligned', sans-serif;
         }
 
         * {
@@ -27,7 +29,7 @@
             background-attachment: fixed;
             font-family: 'Inter', sans-serif;
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
@@ -35,6 +37,7 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 10vh 5vw;
+            text-align: left;
         }
 
         header {
@@ -42,13 +45,15 @@
         }
 
         h1 {
+            font-family: var(--font-nothing);
             font-size: clamp(3rem, 12vw, 8rem);
-            font-weight: 900;
+            font-weight: 400;
             line-height: 0.9;
             text-transform: uppercase;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.02em;
             margin: 0;
-            animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            text-align: left;
+            white-space: normal; /* As requested */
         }
 
         .subtitle {
@@ -56,7 +61,32 @@
             font-weight: 300;
             color: var(--text-dim);
             margin-top: 1rem;
-            animation: reveal 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+            text-align: justify;
+            max-width: 800px;
+        }
+
+        /* Typewriter Cursor Styles */
+        .typing::after {
+            content: '█';
+            margin-left: 2px;
+            animation: blink 0.7s step-end infinite;
+            color: var(--accent);
+        }
+
+        .typing-prefix::before {
+            content: '> ';
+            color: var(--accent);
+            font-family: var(--font-nothing);
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Hide text before typing */
+        .typewriter-text {
+            visibility: hidden;
         }
 
         .philosophy {
@@ -64,9 +94,14 @@
             max-width: 600px;
         }
 
+        .philosophy p {
+            text-align: justify;
+        }
+
         h2 {
+            font-family: var(--font-nothing);
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             margin-bottom: 2rem;
@@ -95,8 +130,9 @@
         }
 
         .card h3 {
+            font-family: var(--font-nothing);
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 400;
             text-transform: uppercase;
             margin-top: 0;
             color: var(--accent);
@@ -109,11 +145,12 @@
         }
 
         @keyframes reveal {
-            from { clip-path: inset(100% 0 0 0); transform: translateY(30px); opacity: 0; }
-            to { clip-path: inset(0 0 0 0); transform: translateY(0); opacity: 1; }
+            from { clip-path: inset(0 100% 0 0); transform: translateX(-50px); opacity: 0; }
+            to { clip-path: inset(0 0 0 0); transform: translateX(0); opacity: 1; }
         }
 
         footer {
+            font-family: var(--font-nothing);
             margin-top: 10rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -150,34 +187,132 @@
 <body>
     <div class="container">
         <header>
-            <h1>Michael<br>Francazzi</h1>
-            <p class="subtitle">Full Stack Developer & Digital Architect.</p>
-            <a href="mailto:michael.francazzi@gmail.com" class="btn-huge">Inizia un progetto</a>
+            <h1 class="typewriter-text">Michael Francazzi</h1>
+            <p class="subtitle typewriter-text">Full Stack Developer & Digital Architect.</p>
+            <a href="mailto:michael.francazzi@gmail.com" class="btn-huge typewriter-text">Inizia un progetto</a>
         </header>
 
         <section class="philosophy">
-            <h2>Filosofia</h2>
-            <p>Il design non è solo come appare, ma come funziona. Costruisco interfacce che parlano chiaro e codice che dura nel tempo.</p>
+            <h2 class="typewriter-text">Filosofia</h2>
+            <p class="typewriter-text">Il design non è solo come appare, ma come funziona. Costruisco interfacce che parlano chiaro e codice che dura nel tempo.</p>
         </section>
 
         <div class="grid">
             <div class="card">
-                <h3>Semplifica</h3>
-                <p>Rimuovere il superfluo finché non resta solo l'essenziale.</p>
+                <h3 class="typewriter-text">Semplifica</h3>
+                <p class="typewriter-text">Rimuovere il superfluo finché non resta solo l'essenziale.</p>
             </div>
             <div class="card">
-                <h3>Esegui</h3>
-                <p>Precisione tecnica e performance come standard di base.</p>
+                <h3><span class="typewriter-text">Esegui</span></h3>
+                <p class="typewriter-text">Precisione tecnica e performance come standard di base.</p>
             </div>
             <div class="card">
-                <h3>Evolvi</h3>
-                <p>Apprendimento continuo e adattamento alle nuove sfide.</p>
+                <h3 class="typewriter-text">Evolvi</h3>
+                <p class="typewriter-text">Apprendimento continuo e adattamento alle nuove sfide.</p>
             </div>
         </div>
 
         <footer>
-            &copy; 2025 Michael Francazzi — Digital Excellence
+            <span class="typewriter-text">&copy; 2025 Michael Francazzi — Digital Excellence</span>
         </footer>
     </div>
+
+    <script>
+        // Audio Setup
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let keySoundBuffer;
+
+        // Load sound
+        fetch('https://www.soundjay.com/communication/typewriter-key-1.mp3')
+            .then(response => response.arrayBuffer())
+            .then(data => audioCtx.decodeData(data))
+            .then(buffer => { keySoundBuffer = buffer; });
+
+        function playKeySound() {
+            if (!keySoundBuffer) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            const source = audioCtx.createBufferSource();
+            source.buffer = keySoundBuffer;
+            
+            // Add a little pitch variation for realism
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.value = 0.4;
+            
+            source.playbackRate.value = 0.9 + Math.random() * 0.2;
+            source.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            source.start(0);
+        }
+
+        // Manual keydown listener
+        document.body.addEventListener('keydown', (e) => {
+            // Avoid sounds for modifier keys unless desired
+            if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) {
+                playKeySound();
+            }
+        });
+
+        async function typeSentence(element, speedMultiplier = 1) {
+            const text = element.getAttribute('data-text') || element.textContent.trim();
+            if (!text) return;
+            
+            element.textContent = '';
+            element.style.visibility = 'visible';
+            element.classList.add('typing');
+            
+            for (let i = 0; i < text.length; i++) {
+                element.textContent += text.charAt(i);
+                playKeySound(); // Play sound during auto-typing
+                
+                if (i === 0 && element.classList.contains('typing-prefix')) {
+                    element.classList.remove('typing-prefix');
+                }
+                const delay = (Math.random() * 30 + 15) / speedMultiplier;
+                await new Promise(resolve => setTimeout(resolve, delay));
+            }
+            
+            element.classList.remove('typing');
+        }
+
+        async function initTypewriter() {
+            const elements = Array.from(document.querySelectorAll('.typewriter-text'));
+            
+            elements.forEach(el => {
+                el.setAttribute('data-text', el.textContent.trim());
+                el.textContent = '';
+            });
+
+            if (elements.length > 0) {
+                const first = elements[0];
+                first.style.visibility = 'visible';
+                first.classList.add('typing');
+                first.classList.add('typing-prefix');
+                
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                await typeSentence(first, 0.4);
+
+                for (let i = 1; i < elements.length; i++) {
+                    const el = elements[i];
+                    await new Promise(resolve => {
+                        const observer = new IntersectionObserver((entries) => {
+                            if (entries[0].isIntersecting) {
+                                observer.disconnect();
+                                resolve();
+                            }
+                        }, { threshold: 0.2 });
+                        observer.observe(el);
+                    });
+                    await typeSentence(el, 2.5);
+                }
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTypewriter);
+        } else {
+            initTypewriter();
+        }
+    </script>
 </body>
 </html>
