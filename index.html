@@ -113,6 +113,42 @@
             text-align: left;
         }
 
+        /* Navigation Style */
+        .terminal-nav {
+            margin: 2rem 0;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-family: var(--font-nothing);
+        }
+
+        .nav-item {
+            cursor: pointer;
+            color: var(--comment);
+            transition: all 0.2s ease;
+            user-select: none;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+        }
+
+        .nav-item:hover {
+            color: var(--cyan);
+            text-shadow: 0 0 8px var(--cyan);
+        }
+
+        .nav-item.active {
+            color: var(--pink);
+            font-weight: bold;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
         .ascii-art {
             font-family: monospace;
             font-size: clamp(0.2rem, 1.8vw, 2.5rem); /* Dynamically fills width */
@@ -259,33 +295,72 @@
 / /  / / / /__/ / / / /_/ /  __/ /   
 /_/  /_/_/\___/_/ /_/\__,_/\___/_/    
                                       
-    ______                                             _
-   / ____/________ _____  _________ _____________ ____(_)
-  / /_  / ___/ __ `/ __ \/ ___/ __ `/_  /_  /_  / /_  / / 
- / __/ / /  / /_/ / / / / /__/ /_/ / / /_ / /_ / /_  / /  
-/_/   /_/   \__,_/_/ /_/\___/\__,_/ /___/ /___/ /___/_/   
+    ______                                         _ 
+   / ____/________ _____  _________  __________   (_)
+  / /_  / ___/ __ `/ __ \/ ___/ __ `/ _  /_  /   / / 
+ / __/ / /  / /_/ / / / / /__/ /_/ / / /_ / /   / /  
+/_/   /_/   \__,_/_/ /_/\___/\__,_/ /___//___/ /_/   
                 </pre>
                 <p class="subtitle typewriter-text">Full Stack Developer & Digital Architect.</p>
-                <a href="mailto:michael.francazzi@gmail.com" class="btn-huge typewriter-text">connect --start</a>
+                
+                <nav class="terminal-nav">
+                    <span class="nav-item active" onclick="switchView('home')">[ ~/home ]</span>
+                    <span class="nav-item" onclick="switchView('projects')">[ ~/projects ]</span>
+                    <span class="nav-item" onclick="switchView('journal')">[ ~/journal ]</span>
+                    <span class="nav-item" onclick="switchView('passions')">[ ~/passions ]</span>
+                </nav>
             </header>
 
-            <section class="philosophy">
-                <h2 class="typewriter-text">Philosophy</h2>
-                <p class="typewriter-text">Design isn't just how it looks. It's how it works. I build clean interfaces and code that scales.</p>
-            </section>
+            <div id="view-home" class="view active">
+                <section class="philosophy">
+                    <h2 class="typewriter-text">Philosophy</h2>
+                    <p class="typewriter-text">Design isn't just how it looks. It's how it works. I build clean interfaces and code that scales.</p>
+                </section>
 
-            <div class="grid">
-                <div class="terminal-block">
-                    <h3 class="typewriter-text">Simplify</h3>
-                    <p class="typewriter-text">Remove the unnecessary until only the essential remains.</p>
+                <div class="grid">
+                    <div class="terminal-block">
+                        <h3 class="typewriter-text">Simplify</h3>
+                        <p class="typewriter-text">Remove the unnecessary until only the essential remains.</p>
+                    </div>
+                    <div class="terminal-block">
+                        <h3 class="typewriter-text">Execute</h3>
+                        <p class="typewriter-text">Technical precision and performance as a baseline standard.</p>
+                    </div>
+                    <div class="terminal-block">
+                        <h3 class="typewriter-text">Evolve</h3>
+                        <p class="typewriter-text">Continuous learning and adaptation to new digital challenges.</p>
+                    </div>
                 </div>
-                <div class="terminal-block">
-                    <h3 class="typewriter-text">Execute</h3>
-                    <p class="typewriter-text">Technical precision and performance as a baseline standard.</p>
+                <a href="mailto:michael.francazzi@gmail.com" class="btn-huge typewriter-text">connect --start</a>
+            </div>
+
+            <div id="view-projects" class="view">
+                <h2 class="typewriter-text">Projects</h2>
+                <div class="grid">
+                    <div class="terminal-block">
+                        <h3 class="typewriter-text">Coming Soon</h3>
+                        <p class="typewriter-text">ls -la projects/ ...</p>
+                    </div>
                 </div>
-                <div class="terminal-block">
-                    <h3 class="typewriter-text">Evolve</h3>
-                    <p class="typewriter-text">Continuous learning and adaptation to new digital challenges.</p>
+            </div>
+
+            <div id="view-journal" class="view">
+                <h2 class="typewriter-text">Journal</h2>
+                <div class="grid">
+                    <div class="terminal-block">
+                        <h3 class="typewriter-text">System Log</h3>
+                        <p class="typewriter-text">Initial diary entry pending...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-passions" class="view">
+                <h2 class="typewriter-text">Passions</h2>
+                <div class="grid">
+                    <div class="terminal-block">
+                        <h3 class="typewriter-text">Interests</h3>
+                        <p class="typewriter-text">Music, Philosophy, and the Art of the Terminal.</p>
+                    </div>
                 </div>
             </div>
 
@@ -371,6 +446,47 @@
             element.classList.remove('typing-prefix');
         }
 
+        async function runTypewriter(container) {
+            const elements = Array.from(container.querySelectorAll('.typewriter-text'));
+            
+            for (let el of elements) {
+                if (!el.getAttribute('data-text')) {
+                    el.setAttribute('data-text', el.textContent.trim());
+                }
+                el.textContent = '';
+                el.style.visibility = 'hidden';
+            }
+
+            for (let i = 0; i < elements.length; i++) {
+                const el = elements[i];
+                await typeSentence(el);
+            }
+        }
+
+        function switchView(viewId) {
+            // Update Navigation UI
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('onclick').includes(`'${viewId}'`)) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Switch Views
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
+            });
+
+            const activeView = document.getElementById(`view-${viewId}`);
+            activeView.classList.add('active');
+
+            // Update Window Title
+            document.querySelector('.terminal-title').textContent = `michelio@michaelfrancazzi.com: ~/${viewId === 'home' ? '' : viewId}`;
+
+            // Trigger Typewriter for new view
+            runTypewriter(activeView);
+        }
+
         async function initTypewriter() {
             const resumeAudio = () => {
                 if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -382,33 +498,10 @@
             document.addEventListener('scroll', resumeAudio);
             document.addEventListener('keydown', resumeAudio);
 
-            const elements = Array.from(document.querySelectorAll('.typewriter-text'));
-            
-            elements.forEach(el => {
-                el.setAttribute('data-text', el.textContent.trim());
-                el.textContent = '';
-            });
-
-            if (elements.length > 0) {
-                await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
-
-                for (let i = 0; i < elements.length; i++) {
-                    const el = elements[i];
-                    
-                    if (i > 0) {
-                        await new Promise(resolve => {
-                            const observer = new IntersectionObserver((entries) => {
-                                if (entries[0].isIntersecting) {
-                                    observer.disconnect();
-                                    resolve();
-                                }
-                            }, { threshold: 0.1 });
-                            observer.observe(el);
-                        });
-                    }
-
-                    await typeSentence(el);
-                }
+            const activeView = document.querySelector('.view.active');
+            if (activeView) {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                runTypewriter(activeView);
             }
         }
 
