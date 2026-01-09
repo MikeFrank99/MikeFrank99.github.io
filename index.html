@@ -229,30 +229,35 @@
                     margin: 0;
                 }
         
-                /* Terminal Cursor */
-                .typing::after {
-                    content: '▊';
-                    margin-left: 4px;
-                    animation: blink 0.7s step-end infinite;
-                    color: var(--accent);
-                }
-        
-                .typing-prefix::before {
-                    content: '> '; 
-                    color: var(--green);
-                    font-weight: bold;
-                }
-        
-                @keyframes blink {
-                    from, to { opacity: 1; }
-                    50% { opacity: 0; }
-                }
-        
-                .typewriter-text {
-                    visibility: hidden;
-                    font-family: inherit; /* Allow sections to use their specific fonts */
-                }
-        
+                        /* Terminal Cursor */
+                        .typing::after {
+                            content: '▊';
+                            margin-left: 4px;
+                            animation: blink 0.7s step-end infinite;
+                            color: var(--accent);
+                        }
+                
+                        .typewriter-text {
+                            visibility: hidden;
+                            font-family: inherit;
+                            display: block;
+                            position: relative;
+                            padding-left: 1.5rem; /* Reserve space for the prompt */
+                            min-height: 1.5rem;
+                        }
+                
+                        .typewriter-text::before {
+                            content: '>'; 
+                            position: absolute;
+                            left: 0;
+                            color: var(--green);
+                            font-weight: bold;
+                        }
+                
+                        @keyframes blink {
+                            from, to { opacity: 1; }
+                            50% { opacity: 0; }
+                        }        
                 footer {
                     font-family: var(--font-nothing);
                     margin-top: 1rem; /* Minimized margin */
@@ -428,13 +433,11 @@
             element.textContent = '';
             element.style.visibility = 'visible';
             element.classList.add('typing');
-            element.classList.add('typing-prefix'); 
             
             let i = 0;
             while (i < text.length) {
                 if (signal.aborted) {
                     element.classList.remove('typing');
-                    element.classList.remove('typing-prefix');
                     return;
                 }
 
@@ -463,7 +466,6 @@
             }
             
             element.classList.remove('typing');
-            element.classList.remove('typing-prefix');
         }
 
         async function runTypewriter(container) {
