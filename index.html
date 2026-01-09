@@ -131,277 +131,29 @@
         
 
                                         .container {
-
-        
-
-                                            padding: 2rem 2rem 20px 2rem; /* Fixed bottom padding */
-
-        
-
+                                            padding: 2rem 2rem 30px 2rem; /* Increased and standardized bottom padding */
                                             text-align: left;
-
-        
-
                                         }
-
-                
 
                         /* Mobile specific container padding */
-
                         @media (max-width: 600px) {
-
                             .container {
-
-                                padding: 1.5rem 10px 1rem 10px; /* Reduced side padding to 10px */
-
+                                padding: 1.5rem 10px 20px 10px;
                             }
-
                         }
 
-        
-
-                        /* Navigation Style */
-
-                        .terminal-nav {
-
-                            margin: 0.5rem auto 2rem auto;
-
-                            display: flex;
-
-                            gap: clamp(0.5rem, 3vw, 1.2rem); /* Responsive gap */
-
-                            justify-content: center;
-
-                            flex-wrap: wrap;
-
-                            font-family: var(--font-nothing);
-
-                            width: 95%; 
-
-                            max-width: 750px;
-
-                        }
-
-                
-
-                        .nav-item {
-
-                            cursor: pointer;
-
-                            color: var(--comment);
-
-                            transition: all 0.2s ease;
-
-                            user-select: none;
-
-                            font-size: clamp(0.7rem, 2.5vw, 1rem); /* More aggressive scaling */
-
-                        }
-
-                
-
-                        .nav-item:hover {
-
-                            color: var(--cyan);
-
-                            text-shadow: 0 0 12px var(--cyan);
-
-                        }
-
-                
-
-                        .nav-item.active {
-
-                            color: var(--pink);
-
-                            font-weight: bold;
-
-                            text-shadow: 0 0 10px rgba(255, 0, 124, 0.4);
-
-                        }
-
-                
-
-                        .view {
-
-                            display: none;
-
-                        }
-
-                
-
-                        .view.active {
-
-                            display: block;
-
-                        }
-
-                
-
-                                                                                        .ascii-art {
-
-                
-
-                                                                                            font-family: 'Roboto Mono', monospace;
-
-                
-
-                                                                                            font-size: clamp(4px, 1.4vw, 2rem); 
-
-                
-
-                                                                                            line-height: 1;
-
-                
-
-                                                                                            color: var(--blue);
-
-                
-
-                                                                                            margin: 0 auto 1rem auto;
-
-                
-
-                                                                                            padding: 0;
-
-                
-
-                                                                                            white-space: pre;
-
-                
-
-                                                                                            display: table; /* Shrink-to-fit content */
-
-                
-
-                                                                                            pointer-events: none;
-
-                
-
-                                                                                            user-select: none;
-
-                
-
-                                                                                            text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
-
-                
-
-                                                                                            text-align: center;
-
-                
-
-                                                                                        }
-
-                
-
-                                
-
-                
-
-                                        /* Mobile specific adjustment for ASCII art - more precise scaling */
-
-                
-
-                                        @media (max-width: 800px) {
-
-                
-
-                                            .ascii-art {
-
-                
-
-                                                font-size: 1.6vw; 
-
-                
-
-                                            }
-
-                
-
-                                        }
-
-                
-
-                        
-
-                
-
-                                        @media (max-width: 500px) {
-
-                
-
-                                            .ascii-art {
-
-                
-
-                                                font-size: 2.2vw;
-
-                
-
-                                            }
-
-                
-
-                                        }
-
-                
-
-                header {
-
-                    margin-bottom: 2rem;
-
-                }
-
-        
-
-                .philosophy {
-
-                    margin-top: 1rem;
-
-                }
-
-                
-
-                        h2 {
-
-                            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
-
-                            font-size: clamp(1.2rem, 5vw, 2rem); /* Responsive section titles */
-
-                            color: var(--green);
-
-                            text-transform: uppercase;
-
-                            letter-spacing: 0.1em;
-
-                            margin-bottom: 1.5rem;
-
-                        }
-
-                
-
-                        .philosophy p {
-
-                            color: var(--fg);
-
-                            max-width: 700px;
-
-                            font-size: clamp(0.85rem, 3vw, 1rem);
-
-                        }
-
-                
+        /* ... */
 
                         .grid {
-
                             display: grid;
-
                             grid-template-columns: 1fr;
-
                             gap: 1.2rem;
+                            margin-top: 1rem; /* Reduced from 1.2rem or more */
+                        }
 
-                            margin-top: 2rem;
-
+                        /* Ensure no extra space at the end of views */
+                        .view > *:last-child {
+                            margin-bottom: 0;
                         }
 
                 
