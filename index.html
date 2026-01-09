@@ -178,24 +178,17 @@
                     }
                 }
         
-                header {
-                    margin-bottom: 3rem;
-                }
+        header {
+            margin-bottom: 3rem;
+        }
+
+        .philosophy {
+            margin-top: 1rem;
+        }
         
-                        .subtitle {
-                            font-family: var(--font-nothing);
-                            font-size: clamp(1rem, 2vw, 1.2rem);
-                            font-weight: 400;
-                            color: var(--cyan);
-                            margin-top: 1rem;
-                        }
-                
-                        .philosophy {
-                            margin-top: 1rem; /* Reduced from 3rem to match other views */
-                        }
-                
-                        h2 {
-                            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;                    font-size: 2rem;
+                h2 {
+                    font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
+                    font-size: 2rem;
                     color: var(--green);
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
@@ -545,11 +538,7 @@
 
             const activeView = document.querySelector('.view.active');
             
-            // First type the header subtitle
-            const subtitle = document.querySelector('.subtitle');
-            if (subtitle) await typeSentence(subtitle, new AbortController().signal);
-
-            // Then type the active view
+            // Type the active view
             if (activeView) {
                 await runTypewriter(activeView);
             }
