@@ -237,24 +237,25 @@
                             color: var(--accent);
                         }
                 
-                        .typewriter-text {
-                            visibility: hidden;
-                            font-family: inherit;
-                            display: block;
-                            position: relative;
-                            padding-left: 1.5rem; /* Reserve space for the prompt */
-                            min-height: 1.5rem;
-                        }
-                
+                                .typewriter-text {
+                                    visibility: hidden;
+                                    font-family: inherit;
+                                    display: block;
+                                    position: relative;
+                                    padding-left: 1.5rem; /* Reserve space for the prompt for all lines */
+                                    min-height: 1.2rem;
+                                    margin-bottom: 0.5rem;
+                                }
+                        
                                 .typewriter-text::before {
                                     content: '>'; 
                                     position: absolute;
+                                    top: 0; /* Anchor to the first line */
                                     left: 0;
                                     color: var(--green);
                                     font-weight: bold;
-                                    visibility: hidden; /* Hidden by default */
-                                }
-                        
+                                    visibility: hidden;
+                                }                        
                                 .typewriter-text.typing::before {
                                     visibility: visible; /* Show only during typing */
                                 }                
