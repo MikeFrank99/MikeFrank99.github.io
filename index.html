@@ -232,18 +232,18 @@
             display: table;
             font-family: var(--font-nothing);
             font-size: 1rem;
-            color: var(--orange);
+            color: var(--btn-color, var(--orange));
             text-decoration: none;
-            border: 1px solid var(--orange);
+            border: 1px solid var(--btn-color, var(--orange));
             padding: 10px 20px;
             margin: 0.5rem auto 1.5rem auto;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 158, 100, 0.2);
+            box-shadow: 0 0 10px var(--btn-glow, rgba(255, 158, 100, 0.2));
         }
         .btn-huge:hover {
-            background: var(--orange);
+            background: var(--btn-color, var(--orange));
             color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(255, 158, 100, 0.4);
+            box-shadow: 0 0 20px var(--btn-color, var(--orange));
         }
 
         @media (max-width: 600px) {
@@ -281,9 +281,9 @@
                 </pre>
                 
                 <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                    <a href="mailto:michael.francazzi@gmail.com" class="btn-huge" style="margin: 0; border-color: var(--red); color: var(--red);">email</a>
-                    <a href="https://github.com/MikeFrank99" target="_blank" class="btn-huge" style="margin: 0; font-size: 0.85rem; border-color: var(--comment); color: var(--fg);">github</a>
-                    <a href="https://t.me/michelio_0" target="_blank" class="btn-huge" style="margin: 0; font-size: 0.85rem; border-color: var(--cyan); color: var(--cyan);">@michelio_0</a>
+                    <a href="mailto:michael.francazzi@gmail.com" class="btn-huge" style="margin: 0; --btn-color: var(--red);">email</a>
+                    <a href="https://github.com/MikeFrank99" target="_blank" class="btn-huge" style="margin: 0; font-size: 0.85rem; --btn-color: var(--comment); color: var(--fg); border-color: var(--comment);">github</a>
+                    <a href="https://t.me/michelio_0" target="_blank" class="btn-huge" style="margin: 0; font-size: 0.85rem; --btn-color: var(--cyan);">@michelio_0</a>
                 </div>
 
                 <nav class="terminal-nav">
