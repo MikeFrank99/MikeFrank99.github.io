@@ -182,21 +182,20 @@
                     margin-bottom: 3rem;
                 }
         
-                .subtitle {
-                    font-family: var(--font-nothing);
-                    font-size: clamp(1rem, 2vw, 1.2rem);
-                    font-weight: 400;
-                    color: var(--cyan);
-                    margin-top: 1rem;
-                }
-        
-                .philosophy {
-                    margin-top: 3rem;
-                }
-        
-                h2 {
-                    font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
-                    font-size: 2rem;
+                        .subtitle {
+                            font-family: var(--font-nothing);
+                            font-size: clamp(1rem, 2vw, 1.2rem);
+                            font-weight: 400;
+                            color: var(--cyan);
+                            margin-top: 1rem;
+                        }
+                
+                        .philosophy {
+                            margin-top: 1rem; /* Reduced from 3rem to match other views */
+                        }
+                
+                        h2 {
+                            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;                    font-size: 2rem;
                     color: var(--green);
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
@@ -537,11 +536,28 @@
             document.addEventListener('scroll', resumeAudio);
             document.addEventListener('keydown', resumeAudio);
 
-            const activeView = document.querySelector('.view.active');
-            if (activeView) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                runTypewriter(activeView);
+            // Initial global typing (Header & Footer)
+            const globalElements = Array.from(document.querySelectorAll('header .typewriter-text, footer .typewriter-text'));
+            for (let el of globalElements) {
+                el.setAttribute('data-text', el.textContent.trim());
+                el.textContent = '';
+                el.style.visibility = 'hidden';
             }
+
+            const activeView = document.querySelector('.view.active');
+            
+            // First type the header subtitle
+            const subtitle = document.querySelector('.subtitle');
+            if (subtitle) await typeSentence(subtitle, new AbortController().signal);
+
+            // Then type the active view
+            if (activeView) {
+                await runTypewriter(activeView);
+            }
+
+            // Finally type the footer
+            const footerText = document.querySelector('footer .typewriter-text');
+            if (footerText) await typeSentence(footerText, new AbortController().signal);
         }
 
         if (document.readyState === 'loading') {
