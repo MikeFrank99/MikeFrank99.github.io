@@ -167,6 +167,13 @@
             display: block;
         }
 
+        /* Prevent any trailing margins from adding extra space */
+        .view > *:last-child,
+        .view > *:last-child > *:last-child,
+        .grid > *:last-child {
+            margin-bottom: 0 !important;
+        }
+
         .ascii-art {
             font-family: 'Roboto Mono', monospace;
             font-size: clamp(4px, 1.4vw, 2rem);
