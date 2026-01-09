@@ -701,6 +701,8 @@
                     <span class="nav-item" onclick="switchView('diario')">[ ~/diario ]</span>
                     <span class="nav-item" onclick="switchView('passioni')">[ ~/passioni ]</span>
                 </nav>
+
+                <a href="mailto:michael.francazzi@gmail.com" class="btn-huge typewriter-text">connetti --start</a>
             </header>
 
             <div id="view-home" class="view active">
@@ -723,7 +725,6 @@
                         <p class="typewriter-text">Sperimentazione costante con nuovi linguaggi e formati digitali.</p>
                     </div>
                 </div>
-                <a href="mailto:michael.francazzi@gmail.com" class="btn-huge typewriter-text">connetti --start</a>
             </div>
 
             <div id="view-progetti" class="view">
@@ -905,16 +906,21 @@
             document.addEventListener('keydown', resumeAudio);
 
             // Initial global typing (Header)
-            const globalElements = Array.from(document.querySelectorAll('header .typewriter-text'));
+            const globalElements = Array.from(document.querySelectorAll('header .typewriter-text, .btn-huge.typewriter-text'));
             for (let el of globalElements) {
                 el.setAttribute('data-text', el.textContent.trim());
                 el.textContent = '';
-                el.style.visibility = 'hidden';
+                el.classList.remove('active');
             }
 
             const activeView = document.querySelector('.view.active');
             
-            // Type the active view
+            // Type the global elements first
+            for (let el of globalElements) {
+                await typeSentence(el, new AbortController().signal);
+            }
+
+            // Then type the active view
             if (activeView) {
                 await runTypewriter(activeView);
             }
