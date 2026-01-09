@@ -353,7 +353,7 @@
                     <span class="nav-item" onclick="switchView('4')">[ ~/scheda 4 ]</span>
                 </nav>
 
-                <a href="mailto:michael.francazzi@gmail.com" class="btn-huge typewriter-text">connetti --start</a>
+                <a href="mailto:michael.francazzi@gmail.com" class="btn-huge">connetti --start</a>
             </header>
 
             <div id="view-1" class="view active">
@@ -521,7 +521,7 @@
             document.addEventListener('keydown', resumeAudio);
 
             // Initial global typing (Header)
-            const globalElements = Array.from(document.querySelectorAll('header .typewriter-text, .btn-huge.typewriter-text'));
+            const globalElements = Array.from(document.querySelectorAll('header .typewriter-text'));
             for (let el of globalElements) {
                 el.setAttribute('data-text', el.textContent.trim());
                 el.textContent = '';
@@ -530,7 +530,7 @@
 
             const activeView = document.querySelector('.view.active');
             
-            // Type the global elements first
+            // Type the header global elements if any
             for (let el of globalElements) {
                 await typeSentence(el, new AbortController().signal);
             }
