@@ -247,16 +247,15 @@
                                     margin-bottom: 0.5rem;
                                 }
                         
-                                .typewriter-text::before {
-                                    content: '>'; 
-                                    position: absolute;
-                                    top: 0; /* Anchor to the first line */
-                                    left: 0;
-                                    color: var(--green);
-                                    font-weight: bold;
-                                    visibility: hidden;
-                                }                        
-                                .typewriter-text.typing::before {
+                                        .typewriter-text::before {
+                                            content: '>'; 
+                                            position: absolute;
+                                            bottom: 0; /* Anchor to the last line being typed */
+                                            left: 0;
+                                            color: var(--green);
+                                            font-weight: bold;
+                                            visibility: hidden;
+                                        }                                .typewriter-text.typing::before {
                                     visibility: visible; /* Show only during typing */
                                 }                
                         @keyframes blink {
