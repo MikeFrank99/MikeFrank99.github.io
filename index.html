@@ -120,14 +120,14 @@
         
                 /* Navigation Style */
                 .terminal-nav {
-                    margin: 1rem auto 2rem auto; /* Centered with auto margins */
+                    margin: 0.5rem auto 2rem auto;
                     display: flex;
-                    gap: 1.5rem;
+                    gap: 1.2rem;
                     justify-content: center;
                     flex-wrap: wrap;
                     font-family: var(--font-nothing);
-                    max-width: min(100%, 800px); /* Matches typical ASCII art width */
-                    width: fit-content;
+                    width: 90%; /* Constrain to be slightly less wide than the header */
+                    max-width: 750px; /* Cap for very large screens */
                 }
         
                 .nav-item {
