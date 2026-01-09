@@ -157,29 +157,28 @@
                     display: block;
                 }
         
-                .ascii-art {
-                    font-family: monospace;
-                    font-size: min(1.6vw, 1.8rem); /* Fluid scaling with a cap for large screens */
-                    line-height: 1.1;
-                    color: var(--blue);
-                    margin: 0 0 1rem 0;
-                    padding: 0 1rem;
-                    white-space: pre;
-                    pointer-events: none;
-                    user-select: none;
-                    text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
-                    text-align: center;
-                    overflow-x: hidden; /* Prevent accidental horizontal scroll */
-                }
-        
-                /* Mobile specific adjustment for ASCII art */
-                @media (max-width: 600px) {
-                    .ascii-art {
-                        font-size: 1.2vw; /* Scale down further on mobile */
-                        letter-spacing: -0.5px;
-                    }
-                }
-        
+                        .ascii-art {
+                            font-family: monospace;
+                            font-size: clamp(8px, 1.8vw, 2.5rem); /* Fluid scaling with a safe minimum */
+                            line-height: 1.1;
+                            color: var(--blue);
+                            margin: 0 0 1rem 0;
+                            padding: 0 1rem;
+                            white-space: pre;
+                            pointer-events: none;
+                            user-select: none;
+                            text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
+                            text-align: center;
+                            overflow-x: hidden;
+                        }
+                
+                        /* Mobile specific adjustment for ASCII art - increase scale factor */
+                        @media (max-width: 600px) {
+                            .ascii-art {
+                                font-size: 2.8vw; /* Significantly larger on small screens to fill width */
+                                letter-spacing: normal;
+                            }
+                        }        
         header {
             margin-bottom: 3rem;
         }
