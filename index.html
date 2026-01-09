@@ -61,12 +61,6 @@
             justify-content: center;
             text-align: center;
             animation: fadeIn 1s ease-out;
-            height: 100vh; /* Ensure it takes full viewport height */
-            background-color: var(--bg); /* Explicit background to ensure visibility */
-            flex-grow: 1; /* Allow it to grow and fill space */
-            width: 100%; /* Ensure it takes full width */
-            box-sizing: border-box; /* Include padding in width calculation */
-            padding: 2rem; /* Aggiunto padding per il contenuto della schermata di caricamento */
         }
 
         .loading-screen .ascii-art {
@@ -273,16 +267,20 @@
         }
 
         #run-button {
-            background: transparent;
+            display: table;
+            font-family: var(--font-nothing);
+            font-size: 1rem;
             color: var(--green);
+            text-decoration: none;
             border: 1px solid var(--green);
             padding: 10px 20px;
-            font-family: var(--font-main);
-            font-size: 1.2rem;
-            cursor: pointer;
+            margin: 2rem auto 1.5rem auto;
             transition: all 0.3s ease;
-            margin-top: 2rem;
-            box-shadow: 0 0 10px rgba(158, 206, 106, 0.4);
+            box-shadow: 0 0 10px rgba(158, 206, 106, 0.2);
+            background: rgba(26, 27, 38, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            cursor: pointer;
         }
 
         #run-button:hover {
@@ -299,7 +297,9 @@
 </head>
 <body>
     <div id="loading-screen" class="loading-screen">
-        <button id="run-button"> > RUN</button>
+        <div class="start-button-container">
+            <button id="run-button"> > RUN TERMINAL</button>
+        </div>
     </div>
 
     <div class="terminal-window" id="main-terminal">
@@ -431,6 +431,7 @@
 
         const randomChars = "abcdefghijklmnopqrstuvwxyz";
         let typingAbortController = new AbortController();
+        const typedViews = new Set();
 
         async function typeSentence(element, signal) {
             // No need to await initAudio here, as it's handled by the RUN button click.
@@ -462,10 +463,7 @@
             element.classList.remove('typing');
         }
 
-        async function runTypewriter(container) {
-            typingAbortController.abort();
-            typingAbortController = new AbortController();
-            const signal = typingAbortController.signal;
+        async function runTypewriter(container, signal) {
             const elements = Array.from(container.querySelectorAll('.typewriter-text'));
             for (let el of elements) {
                 if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
@@ -479,6 +477,8 @@
         }
 
         function switchView(viewId) {
+            typingAbortController.abort(); // Abort previous animation immediately
+
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
                 if (item.getAttribute('onclick').includes(`'${viewId}'`)) item.classList.add('active');
@@ -487,16 +487,32 @@
             const activeView = document.getElementById(`view-${viewId}`);
             activeView.classList.add('active');
             document.querySelector('.terminal-title').textContent = `michelio@michaelfrancazzi.com: ~/${viewId}`;
-            runTypewriter(activeView);
+
+            if (typedViews.has(viewId)) {
+                const elements = activeView.querySelectorAll('.typewriter-text');
+                elements.forEach(el => {
+                    if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
+                    el.textContent = el.getAttribute('data-text');
+                    el.classList.add('active');
+                    el.classList.remove('typing');
+                });
+            } else {
+                typingAbortController = new AbortController();
+                const signal = typingAbortController.signal;
+                runTypewriter(activeView, signal).then(() => {
+                    if (!signal.aborted) {
+                        typedViews.add(viewId);
+                    }
+                });
+            }
         }
 
         async function initApp() {
             const loadingScreen = document.getElementById('loading-screen');
             const mainTerminal = document.getElementById('main-terminal');
             const runButton = document.getElementById('run-button');
+            const closeButton = document.querySelector('.control.close');
 
-            // Ensure main terminal is hidden initially and loading screen is shown
-            mainTerminal.style.display = 'none';
             loadingScreen.style.display = 'flex'; // Assuming flex for centering
 
             runButton.addEventListener('click', async () => {
@@ -504,8 +520,21 @@
                 loadingScreen.style.display = 'none';
                 mainTerminal.style.display = 'block';
 
-                const activeView = document.querySelector('.view.active');
-                if (activeView) runTypewriter(activeView);
+                // Reset state for a fresh start
+                typedViews.clear();
+                document.querySelectorAll('.view .typewriter-text').forEach(el => {
+                    el.textContent = '';
+                    el.classList.remove('active', 'typing');
+                });
+                
+                // This will set the active tab and trigger the typewriter
+                switchView('about_me');
+            });
+
+            closeButton.addEventListener('click', () => {
+                typingAbortController.abort(); // Stop any ongoing typing animation
+                mainTerminal.style.display = 'none';
+                loadingScreen.style.display = 'flex';
             });
 
             // Handle browser tab visibility to suspend/resume audio context

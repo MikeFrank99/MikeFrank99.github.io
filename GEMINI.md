@@ -20,6 +20,7 @@ This project is a bespoke personal portfolio website for Michael Francazzi, desi
 
 ## Key Design Elements
 - **Terminal Window UI**: Centered container anchored to the top, with blur (12px) and adaptive width (max 1200px).
+- **Functional Terminal Controls**: The close button reopens the start screen, simulating native window behavior.
 - **Italic ASCII Art Header**: Slanted "Michael Francazzi" header in Tokyo Night blue with a custom bloom effect.
 - **Multi-View Navigation**: Virtual directory system (`about_me`, `business`, `hobbies`, `projects`) simulating a shell terminal.
 - **Dynamic Typewriter**: Sequential typing effect with variable speed, dynamic prompt indicators (`>`), and optimized mobile scaling.
@@ -33,5 +34,5 @@ This project is a bespoke personal portfolio website for Michael Francazzi, desi
 - **Do not** re-introduce MkDocs/Jekyll.
 - **Language**: The site is fully localized in **Italian**. Maintain this for all content updates.
 - **Maintain the Rice Aesthetic**: High-contrast colors, terminal-style prompts (`> `), and monospace typography.
-- **Animation Logic**: Always use the `AbortController` in `runTypewriter` to prevent animation glitches when switching views.
+- **Animation Logic**: Always use the `AbortController` to prevent animation glitches. The state of typed-out views is cached, so the animation only runs once per view per session.
 - **Audio Context**: Browser security requires a user gesture (click/scroll) before audio can play.
