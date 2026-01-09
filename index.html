@@ -246,14 +246,18 @@
                             min-height: 1.5rem;
                         }
                 
-                        .typewriter-text::before {
-                            content: '>'; 
-                            position: absolute;
-                            left: 0;
-                            color: var(--green);
-                            font-weight: bold;
-                        }
-                
+                                .typewriter-text::before {
+                                    content: '>'; 
+                                    position: absolute;
+                                    left: 0;
+                                    color: var(--green);
+                                    font-weight: bold;
+                                    visibility: hidden; /* Hidden by default */
+                                }
+                        
+                                .typewriter-text.typing::before {
+                                    visibility: visible; /* Show only during typing */
+                                }                
                         @keyframes blink {
                             from, to { opacity: 1; }
                             50% { opacity: 0; }
