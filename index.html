@@ -179,34 +179,27 @@
         }
 
         .ascii-art {
-            font-family: 'Ndot 57 Aligned', 'Roboto Mono', monospace;
-            font-size: clamp(6px, 1.2vw, 1.8rem); 
-            line-height: 1.2;
-            color: #ffff00; /* Bright Signal Yellow */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: clamp(4px, 1.4vw, 2rem); 
+            line-height: 1;
+            color: #ff00ff; /* Bright Pink */
             margin: 0 auto 1rem auto;
             padding: 0;
             white-space: pre;
             display: table;
             pointer-events: none;
             user-select: none;
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5); /* Bloom effect */
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.4); /* Pink bloom effect */
             text-align: center;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-weight: bold;
         }
 
         @media (max-width: 800px) {
-            .ascii-art { 
-                font-size: 1.8vw;
-                letter-spacing: 1px;
-            }
+            .ascii-art { font-size: 1.6vw; }
         }
 
         @media (max-width: 500px) {
-            .ascii-art { 
-                font-size: 2.5vw;
-                letter-spacing: 0.5px;
-            }
+            .ascii-art { font-size: 2.2vw; }
         }
 
         header {
