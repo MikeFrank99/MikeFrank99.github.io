@@ -104,157 +104,337 @@
         .minimize { background: var(--yellow); }
         .maximize { background: var(--green); }
 
-        .terminal-title {
-            font-family: var(--font-main);
-            font-size: 0.85rem;
-            color: var(--blue);
-            letter-spacing: 0.5px;
-            text-transform: lowercase;
-            opacity: 0.8;
-        }
+                .terminal-title {
 
-                .container {
-                    padding: 2rem 2rem 1.5rem 2rem; /* Uniformed bottom padding */
-                    text-align: left;
+                    font-family: var(--font-main);
+
+                    font-size: clamp(0.7rem, 2vw, 0.85rem); /* Responsive window title */
+
+                    color: var(--blue);
+
+                    letter-spacing: 0.5px;
+
+                    text-transform: lowercase;
+
+                    opacity: 0.8;
+
                 }
+
         
-                /* Navigation Style */
-                .terminal-nav {
-                    margin: 0.5rem auto 2rem auto;
-                    display: flex;
-                    gap: 1.2rem;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                    font-family: var(--font-nothing);
-                    width: 90%; /* Constrain to be slightly less wide than the header */
-                    max-width: 750px; /* Cap for very large screens */
-                }
-        
-                .nav-item {
-                    cursor: pointer;
-                    color: var(--comment);
-                    transition: all 0.2s ease;
-                    user-select: none;
-                    font-size: clamp(0.8rem, 1.5vw, 1rem);
-                }
-        
-                .nav-item:hover {
-                    color: var(--cyan);
-                    text-shadow: 0 0 12px var(--cyan);
-                }
-        
-                .nav-item.active {
-                    color: var(--pink);
-                    font-weight: bold;
-                    text-shadow: 0 0 10px rgba(255, 0, 124, 0.4);
-                }
-        
-                .view {
-                    display: none;
-                }
-        
-                .view.active {
-                    display: block;
-                }
-        
-                        .ascii-art {
-                            font-family: monospace;
-                            font-size: clamp(8px, 1.8vw, 2.5rem); /* Fluid scaling with a safe minimum */
-                            line-height: 1.1;
-                            color: var(--blue);
-                            margin: 0 0 1rem 0;
-                            padding: 0 1rem;
-                            white-space: pre;
-                            pointer-events: none;
-                            user-select: none;
-                            text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
-                            text-align: center;
-                            overflow-x: hidden;
+
+                        .container {
+
+                            padding: 2rem 2rem 1.5rem 2rem;
+
+                            text-align: left;
+
                         }
+
                 
-                        /* Mobile specific adjustment for ASCII art - increase scale factor */
+
+                        /* Mobile specific container padding */
+
                         @media (max-width: 600px) {
-                            .ascii-art {
-                                font-size: 2.8vw; /* Significantly larger on small screens to fill width */
-                                letter-spacing: normal;
-                            }
-                        }        
-        header {
-            margin-bottom: 3rem;
-        }
 
-        .philosophy {
-            margin-top: 1rem;
-        }
-        
-                h2 {
-                    font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
-                    font-size: 2rem;
-                    color: var(--green);
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-bottom: 1.5rem;
-                }
-        
-                .philosophy p {
-                    color: var(--fg);
-                    max-width: 700px;
-                }
-        
-                .grid {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    gap: 1.2rem;
-                    margin-top: 2rem;
-                }
-        
-                /* Elements without boxes */
-                .terminal-block {
-                    padding-left: 0;
-                    border-left: none;
-                }
-        
-                .terminal-block h3 {
-                    font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
-                    font-size: 1.1rem;
-                    color: var(--orange);
-                    margin: 0 0 0.4rem 0;
-                    text-transform: uppercase;
-                }
-        
-                .terminal-block p {
-                    font-size: 0.95rem;
-                    color: var(--fg);
-                    margin: 0;
-                }
-        
-                        /* Terminal Cursor */
-                        .typing::after {
-                            content: '▊';
-                            margin-left: 4px;
-                            animation: blink 0.7s step-end infinite;
-                            color: var(--accent);
+                            .container {
+
+                                padding: 1.5rem 10px 1rem 10px; /* Reduced side padding to 10px */
+
+                            }
+
                         }
+
+        
+
+                        /* Navigation Style */
+
+                        .terminal-nav {
+
+                            margin: 0.5rem auto 2rem auto;
+
+                            display: flex;
+
+                            gap: clamp(0.5rem, 3vw, 1.2rem); /* Responsive gap */
+
+                            justify-content: center;
+
+                            flex-wrap: wrap;
+
+                            font-family: var(--font-nothing);
+
+                            width: 95%; 
+
+                            max-width: 750px;
+
+                        }
+
                 
-                                .typewriter-text {
-                                    visibility: hidden;
-                                    font-family: inherit;
-                                    display: block;
-                                    position: relative;
-                                    padding-left: 1.5rem; /* Reserve space for the prompt for all lines */
-                                    min-height: 1.2rem;
-                                    margin-bottom: 0.5rem;
+
+                        .nav-item {
+
+                            cursor: pointer;
+
+                            color: var(--comment);
+
+                            transition: all 0.2s ease;
+
+                            user-select: none;
+
+                            font-size: clamp(0.7rem, 2.5vw, 1rem); /* More aggressive scaling */
+
+                        }
+
+                
+
+                        .nav-item:hover {
+
+                            color: var(--cyan);
+
+                            text-shadow: 0 0 12px var(--cyan);
+
+                        }
+
+                
+
+                        .nav-item.active {
+
+                            color: var(--pink);
+
+                            font-weight: bold;
+
+                            text-shadow: 0 0 10px rgba(255, 0, 124, 0.4);
+
+                        }
+
+                
+
+                        .view {
+
+                            display: none;
+
+                        }
+
+                
+
+                        .view.active {
+
+                            display: block;
+
+                        }
+
+                
+
+                        .ascii-art {
+
+                            font-family: monospace;
+
+                            font-size: clamp(6px, 1.8vw, 2.5rem); 
+
+                            line-height: 1.1;
+
+                            color: var(--blue);
+
+                            margin: 0 0 1rem 0;
+
+                            padding: 0;
+
+                            white-space: pre;
+
+                            pointer-events: none;
+
+                            user-select: none;
+
+                            text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
+
+                            text-align: center;
+
+                            overflow-x: hidden;
+
+                        }
+
+                
+
+                        /* Mobile specific adjustment for ASCII art */
+
+                        @media (max-width: 600px) {
+
+                            .ascii-art {
+
+                                font-size: 3.2vw; /* Larger factor for mobile */
+
+                                letter-spacing: -0.2px;
+
+                            }
+
+                        }
+
+                
+
+                header {
+
+                    margin-bottom: 2rem;
+
+                }
+
+        
+
+                .philosophy {
+
+                    margin-top: 1rem;
+
+                }
+
+                
+
+                        h2 {
+
+                            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
+
+                            font-size: clamp(1.2rem, 5vw, 2rem); /* Responsive section titles */
+
+                            color: var(--green);
+
+                            text-transform: uppercase;
+
+                            letter-spacing: 0.1em;
+
+                            margin-bottom: 1.5rem;
+
+                        }
+
+                
+
+                        .philosophy p {
+
+                            color: var(--fg);
+
+                            max-width: 700px;
+
+                            font-size: clamp(0.85rem, 3vw, 1rem);
+
+                        }
+
+                
+
+                        .grid {
+
+                            display: grid;
+
+                            grid-template-columns: 1fr;
+
+                            gap: 1.2rem;
+
+                            margin-top: 2rem;
+
+                        }
+
+                
+
+                        /* Elements without boxes */
+
+                        .terminal-block {
+
+                            padding-left: 0;
+
+                            border-left: none;
+
+                        }
+
+                
+
+                        .terminal-block h3 {
+
+                            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
+
+                            font-size: clamp(0.9rem, 4vw, 1.1rem);
+
+                            color: var(--orange);
+
+                            margin: 0 0 0.4rem 0;
+
+                            text-transform: uppercase;
+
+                        }
+
+                
+
+                        .terminal-block p {
+
+                            font-size: clamp(0.8rem, 3vw, 0.95rem);
+
+                            color: var(--fg);
+
+                            margin: 0;
+
+                        }
+
+                
+
+                                /* Terminal Cursor */
+
+                                .typing::after {
+
+                                    content: '▊';
+
+                                    margin-left: 4px;
+
+                                    animation: blink 0.7s step-end infinite;
+
+                                    color: var(--accent);
+
                                 }
+
                         
-                                        .typewriter-text::before {
-                                            content: '>'; 
-                                            position: absolute;
-                                            bottom: 0; /* Anchor to the last line being typed */
-                                            left: 0;
-                                            color: var(--green);
-                                            font-weight: bold;
+
+                                        .typewriter-text {
+
                                             visibility: hidden;
-                                        }                                .typewriter-text.typing::before {
+
+                                            font-family: inherit;
+
+                                            display: block;
+
+                                            position: relative;
+
+                                            padding-left: 1.2rem; /* Reduced from 1.5rem to save space */
+
+                                            min-height: 1.2rem;
+
+                                            margin-bottom: 0.5rem;
+
+                                        }
+
+        
+
+                                        @media (max-width: 600px) {
+
+                                            .typewriter-text {
+
+                                                padding-left: 0.8rem; /* Even tighter for mobile */
+
+                                            }
+
+                                        }
+
+                                
+
+                                                .typewriter-text::before {
+
+                                                    content: '>'; 
+
+                                                    position: absolute;
+
+                                                    bottom: 0; 
+
+                                                    left: 0;
+
+                                                    color: var(--green);
+
+                                                    font-weight: bold;
+
+                                                    visibility: hidden;
+
+                                                }                                .typewriter-text.typing::before {
                                     visibility: visible; /* Show only during typing */
                                 }                
                         @keyframes blink {
