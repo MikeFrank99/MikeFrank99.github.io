@@ -104,557 +104,197 @@
         .minimize { background: var(--yellow); }
         .maximize { background: var(--green); }
 
-                        .terminal-title {
-
-                            font-family: var(--font-main);
-
-                            font-size: clamp(0.7rem, 2vw, 0.85rem); /* Responsive window title */
-
-                            color: var(--blue);
-
-                            letter-spacing: 0.5px;
-
-                            text-transform: lowercase;
-
-                            opacity: 0.8;
-
-                            margin-left: 15px; /* Spacing from controls */
-
-                            white-space: nowrap;
-
-                            overflow: hidden;
-
-                            text-overflow: ellipsis;
-
-                        }
-
-        
-
-                                        .container {
-
-        
-
-                                            padding: 2rem 2rem 20px 2rem; /* Fixed bottom padding */
-
-        
-
-                                            text-align: left;
-
-        
-
-                                        }
-
-                
-
-                        /* Mobile specific container padding */
-
-                        @media (max-width: 600px) {
-
-                            .container {
-
-                                padding: 1.5rem 10px 1rem 10px; /* Reduced side padding to 10px */
-
-                            }
-
-                        }
-
-        
-
-                        /* Navigation Style */
-
-                        .terminal-nav {
-
-                            margin: 0.5rem auto 2rem auto;
-
-                            display: flex;
-
-                            gap: clamp(0.5rem, 3vw, 1.2rem); /* Responsive gap */
-
-                            justify-content: center;
-
-                            flex-wrap: wrap;
-
-                            font-family: var(--font-nothing);
-
-                            width: 95%; 
-
-                            max-width: 750px;
-
-                        }
-
-                
-
-                        .nav-item {
-
-                            cursor: pointer;
-
-                            color: var(--comment);
-
-                            transition: all 0.2s ease;
-
-                            user-select: none;
-
-                            font-size: clamp(0.7rem, 2.5vw, 1rem); /* More aggressive scaling */
-
-                        }
-
-                
-
-                        .nav-item:hover {
-
-                            color: var(--cyan);
-
-                            text-shadow: 0 0 12px var(--cyan);
-
-                        }
-
-                
-
-                        .nav-item.active {
-
-                            color: var(--pink);
-
-                            font-weight: bold;
-
-                            text-shadow: 0 0 10px rgba(255, 0, 124, 0.4);
-
-                        }
-
-                
-
-                        .view {
-
-                            display: none;
-
-                        }
-
-                
-
-                        .view.active {
-
-                            display: block;
-
-                        }
-
-                
-
-                                                                                        .ascii-art {
-
-                
-
-                                                                                            font-family: 'Roboto Mono', monospace;
-
-                
-
-                                                                                            font-size: clamp(4px, 1.4vw, 2rem); 
-
-                
-
-                                                                                            line-height: 1;
-
-                
-
-                                                                                            color: var(--blue);
-
-                
-
-                                                                                            margin: 0 auto 1rem auto;
-
-                
-
-                                                                                            padding: 0;
-
-                
-
-                                                                                            white-space: pre;
-
-                
-
-                                                                                            display: table; /* Shrink-to-fit content */
-
-                
-
-                                                                                            pointer-events: none;
-
-                
-
-                                                                                            user-select: none;
-
-                
-
-                                                                                            text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
-
-                
-
-                                                                                            text-align: center;
-
-                
-
-                                                                                        }
-
-                
-
-                                
-
-                
-
-                                        /* Mobile specific adjustment for ASCII art - more precise scaling */
-
-                
-
-                                        @media (max-width: 800px) {
-
-                
-
-                                            .ascii-art {
-
-                
-
-                                                font-size: 1.6vw; 
-
-                
-
-                                            }
-
-                
-
-                                        }
-
-                
-
-                        
-
-                
-
-                                        @media (max-width: 500px) {
-
-                
-
-                                            .ascii-art {
-
-                
-
-                                                font-size: 2.2vw;
-
-                
-
-                                            }
-
-                
-
-                                        }
-
-                
-
-                header {
-
-                    margin-bottom: 2rem;
-
-                }
-
-        
-
-                .philosophy {
-
-                    margin-top: 1rem;
-
-                }
-
-                
-
-                        h2 {
-
-                            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
-
-                            font-size: clamp(1.2rem, 5vw, 2rem); /* Responsive section titles */
-
-                            color: var(--green);
-
-                            text-transform: uppercase;
-
-                            letter-spacing: 0.1em;
-
-                            margin-bottom: 1.5rem;
-
-                        }
-
-                
-
-                        .philosophy p {
-
-                            color: var(--fg);
-
-                            max-width: 700px;
-
-                            font-size: clamp(0.85rem, 3vw, 1rem);
-
-                        }
-
-                
-
-                        .grid {
-
-                            display: grid;
-
-                            grid-template-columns: 1fr;
-
-                            gap: 1.2rem;
-
-                            margin-top: 2rem;
-
-                        }
-
-                
-
-                        /* Elements without boxes */
-
-                        .terminal-block {
-
-                            padding-left: 0;
-
-                            border-left: none;
-
-                        }
-
-                
-
-                        .terminal-block h3 {
-
-                            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
-
-                            font-size: clamp(0.9rem, 4vw, 1.1rem);
-
-                            color: var(--orange);
-
-                            margin: 0 0 0.4rem 0;
-
-                            text-transform: uppercase;
-
-                        }
-
-                
-
-                        .terminal-block p {
-
-                            font-size: clamp(0.8rem, 3vw, 0.95rem);
-
-                            color: var(--fg);
-
-                            margin: 0;
-
-                        }
-
-                
-
-                                /* Terminal Cursor */
-
-                                .typing::after {
-
-                                    content: '▊';
-
-                                    margin-left: 4px;
-
-                                    animation: blink 0.7s step-end infinite;
-
-                                    color: var(--accent);
-
-                                }
-
-                        
-
-                                                                                                .typewriter-text {
-
-                        
-
-                                                                                                    display: none; /* Changed from visibility: hidden to save space */
-
-                        
-
-                                                                                                    font-family: inherit;
-
-                        
-
-                                                                                                    position: relative;
-
-                        
-
-                                                                                                    padding-left: 1.2rem;
-
-                        
-
-                                                                                                    margin-bottom: 0.5rem;
-
-                        
-
-                                                                                                }
-
-                        
-
-                                                
-
-                        
-
-                                                                                                .typewriter-text.active {
-
-                        
-
-                                                                                                    display: block; /* Show only when typing or typed */
-
-                        
-
-                                                                                                }
-
-                        
-
-                                        
-
-                        
-
-                                                @media (max-width: 600px) {
-
-                        
-
-                                                    .typewriter-text {
-
-                        
-
-                                                        padding-left: 0.8rem;
-
-                        
-
-                                                    }
-
-                        
-
-                                                }
-
-                        
-
-                                        
-
-                        
-
-                                                .typewriter-text::before {
-
-                        
-
-                                                    content: '>'; 
-
-                        
-
-                                                    position: absolute;
-
-                        
-
-                                                    bottom: 0; 
-
-                        
-
-                                                    left: 0;
-
-                        
-
-                                                    color: var(--green);
-
-                        
-
-                                                    font-weight: bold;
-
-                        
-
-                                                    visibility: hidden;
-
-                        
-
-                                                }
-
-                        
-
-                                        
-
-                        
-
-                                                .typewriter-text.typing::before {
-
-                        
-
-                                                    visibility: visible;
-
-                        
-
-                                                }
-
-                        
-
-                                        
-
-                        
-
-                                                @keyframes blink {
-
-                        
-
-                                                    from, to { opacity: 1; }
-
-                        
-
-                                                    50% { opacity: 0; }
-
-                        
-
-                                                }
-
-                        
-
-                                        
-
-                        
-
-                                                .btn-huge {
-
-                        
-
-                                                    display: inline-block;
-
-                        
-
-                                                    font-family: var(--font-nothing);
-
-                        
-
-                                                    font-size: 1rem;
-
-                        
-
-                                                    color: var(--orange);
-
-                        
-
-                                                    text-decoration: none;
-
-                        
-
-                                                    border: 1px solid var(--orange);
-
-                        
-
-                                                    padding: 10px 20px;
-
-                        
-
-                                                    margin-top: 1rem;
-
-                        
-
-                                                    transition: all 0.3s ease;
-
-                        
-
-                                                    box-shadow: 0 0 10px rgba(255, 158, 100, 0.2);
-
-                        
-
-                                                }
+        .terminal-title {
+            font-family: var(--font-main);
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            color: var(--blue);
+            letter-spacing: 0.5px;
+            text-transform: lowercase;
+            opacity: 0.8;
+            margin-left: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .container {
+            padding: 2rem 2rem 0 2rem; /* Bottom padding moved to views */
+            text-align: left;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem 10px 0 10px;
+            }
+        }
+
+        .terminal-nav {
+            margin: 0.5rem auto 1.5rem auto;
+            display: flex;
+            gap: clamp(0.5rem, 3vw, 1.2rem);
+            justify-content: center;
+            flex-wrap: wrap;
+            font-family: var(--font-nothing);
+            width: 95%;
+            max-width: 750px;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            color: var(--comment);
+            transition: all 0.2s ease;
+            user-select: none;
+            font-size: clamp(0.7rem, 2.5vw, 1rem);
+        }
+
+        .nav-item:hover {
+            color: var(--cyan);
+            text-shadow: 0 0 12px var(--cyan);
+        }
+
+        .nav-item.active {
+            color: var(--pink);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 0, 124, 0.4);
+        }
+
+        .view {
+            display: none;
+            padding-bottom: 28px; /* Standardized spacing */
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        .ascii-art {
+            font-family: 'Roboto Mono', monospace;
+            font-size: clamp(4px, 1.4vw, 2rem);
+            line-height: 1;
+            color: var(--blue);
+            margin: 0 auto 1rem auto;
+            padding: 0;
+            white-space: pre;
+            display: table;
+            pointer-events: none;
+            user-select: none;
+            text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
+            text-align: center;
+        }
+
+        @media (max-width: 800px) {
+            .ascii-art { font-size: 1.6vw; }
+        }
+
+        @media (max-width: 500px) {
+            .ascii-art { font-size: 2.2vw; }
+        }
+
+        header {
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy {
+            margin-top: 0.5rem;
+        }
+
+        h2 {
+            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
+            font-size: clamp(1.2rem, 5vw, 2rem);
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy p {
+            color: var(--fg);
+            max-width: 700px;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .terminal-block {
+            padding-left: 0;
+            border-left: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .terminal-block h3 {
+            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            color: var(--orange);
+            margin: 0 0 0.3rem 0;
+            text-transform: uppercase;
+        }
+
+        .terminal-block p {
+            font-size: clamp(0.8rem, 3vw, 0.95rem);
+            color: var(--fg);
+            margin: 0;
+        }
+
+        .typing::after {
+            content: '▊';
+            margin-left: 4px;
+            animation: blink 0.7s step-end infinite;
+            color: var(--accent);
+        }
+
+        .typewriter-text {
+            display: none;
+            font-family: inherit;
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .typewriter-text.active {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .typewriter-text { padding-left: 0.8rem; }
+        }
+
+        .typewriter-text::before {
+            content: '>';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+            visibility: hidden;
+        }
+
+        .typewriter-text.typing::before {
+            visibility: visible;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .btn-huge {
+            display: inline-block;
+            font-family: var(--font-nothing);
+            font-size: 1rem;
+            color: var(--orange);
+            text-decoration: none;
+            border: 1px solid var(--orange);
+            padding: 10px 20px;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 158, 100, 0.2);
+        }
         .btn-huge:hover {
             background: var(--orange);
             color: var(--bg-dark);
