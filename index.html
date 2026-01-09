@@ -48,17 +48,16 @@
             line-height: 1.6;
             overflow-x: hidden;
             display: flex;
-            align-items: flex-start; /* Anchored to top */
+            align-items: flex-start;
             justify-content: center;
             min-height: 100vh;
-            padding: 4rem 2rem 2rem 2rem; /* Increased top padding */
+            padding: 4rem 2rem 2rem 2rem;
         }
 
-        /* Terminal Window Rice with Opening Animation */
         .terminal-window {
             width: 100%;
-            max-width: 1200px; /* Set to 1200px */
-            background: rgba(26, 27, 38, 0.85); /* Tokyo Night Bg with Opacity */
+            max-width: 1200px;
+            background: rgba(26, 27, 38, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(122, 162, 247, 0.2);
@@ -69,17 +68,10 @@
         }
 
         @keyframes terminalOpen {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.9) translateY(40px); 
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) translateY(0); 
-            }
+            0% { opacity: 0; transform: scale(0.9) translateY(40px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Title Bar */
         .title-bar {
             background: rgba(22, 22, 30, 0.6);
             padding: 12px 18px;
@@ -118,14 +110,12 @@
         }
 
         .container {
-            padding: 2rem 2rem 0 2rem; /* Bottom padding moved to views */
+            padding: 2rem 2rem 0 2rem;
             text-align: left;
         }
 
         @media (max-width: 600px) {
-            .container {
-                padding: 1.5rem 10px 0 10px;
-            }
+            .container { padding: 1.5rem 10px 0 10px; }
         }
 
         .terminal-nav {
@@ -160,21 +150,16 @@
 
         .view {
             display: none;
-            padding-bottom: 10px; /* Standard for most views */
+            padding-bottom: 10px;
         }
 
-        #view-home {
-            padding-bottom: 0px !important; /* Offset for Home content */
-        }
+        #view-1 { padding-bottom: 0px !important; }
 
         .view.active {
             display: block;
         }
 
-        /* Prevent any trailing margins from adding extra space */
-        .view > *:last-child,
-        .view > *:last-child > *:last-child,
-        .grid > *:last-child {
+        .view *:last-child {
             margin-bottom: 0 !important;
         }
 
@@ -182,34 +167,23 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: clamp(4px, 1.4vw, 2rem); 
             line-height: 1;
-            color: #7aa2f7; /* Tokyo Night Blue */
+            color: #7aa2f7;
             margin: 0 auto 1rem auto;
             padding: 0;
             white-space: pre;
             display: table;
             pointer-events: none;
             user-select: none;
-            text-shadow: 0 0 15px rgba(122, 162, 247, 0.4); /* Blue bloom effect */
+            text-shadow: 0 0 15px rgba(122, 162, 247, 0.4);
             text-align: center;
             font-weight: bold;
             font-style: italic;
         }
 
-        @media (max-width: 800px) {
-            .ascii-art { font-size: 1.6vw; }
-        }
+        @media (max-width: 800px) { .ascii-art { font-size: 1.6vw; } }
+        @media (max-width: 500px) { .ascii-art { font-size: 2.2vw; } }
 
-        @media (max-width: 500px) {
-            .ascii-art { font-size: 2.2vw; }
-        }
-
-        header {
-            margin-bottom: 1.5rem;
-        }
-
-        .philosophy {
-            margin-top: 0.5rem;
-        }
+        header { margin-bottom: 1.5rem; }
 
         h2 {
             font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
@@ -217,41 +191,7 @@
             color: var(--green);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 0.5rem; /* Reduced from 1rem */
-        }
-
-        .philosophy p {
-            color: var(--fg);
-            max-width: 700px;
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            margin-bottom: 0.8rem; /* Reduced from 1.5rem */
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.5rem; /* Reduced from 1rem */
-            margin-top: 0.5rem; /* Reduced from 1rem */
-        }
-
-        .terminal-block {
-            padding-left: 0;
-            border-left: none;
-            margin-bottom: 0.3rem; /* Reduced from 0.5rem */
-        }
-
-        .terminal-block h3 {
-            font-family: 'Ndot 57 Aligned', 'Inter', monospace !important;
-            font-size: clamp(0.9rem, 4vw, 1.1rem);
-            color: var(--orange);
-            margin: 0 0 0.2rem 0; /* Reduced from 0.3rem */
-            text-transform: uppercase;
-        }
-
-        .terminal-block p {
-            font-size: clamp(0.8rem, 3vw, 0.95rem);
-            color: var(--fg);
-            margin: 0;
+            margin-bottom: 0.5rem;
         }
 
         .typing::after {
@@ -266,16 +206,12 @@
             font-family: inherit;
             position: relative;
             padding-left: 1.2rem;
-            margin-bottom: 0.2rem; /* Reduced from 0.4rem */
+            margin-bottom: 0.2rem;
         }
 
-        .typewriter-text.active {
-            display: block;
-        }
+        .typewriter-text.active { display: block; }
 
-        @media (max-width: 600px) {
-            .typewriter-text { padding-left: 0.8rem; }
-        }
+        @media (max-width: 600px) { .typewriter-text { padding-left: 0.8rem; } }
 
         .typewriter-text::before {
             content: '>';
@@ -287,9 +223,7 @@
             visibility: hidden;
         }
 
-        .typewriter-text.typing::before {
-            visibility: visible;
-        }
+        .typewriter-text.typing::before { visibility: visible; }
 
         @keyframes blink {
             from, to { opacity: 1; }
@@ -297,14 +231,14 @@
         }
 
         .btn-huge {
-            display: table; /* Shrink-to-fit and allow centering with auto margin */
+            display: table;
             font-family: var(--font-nothing);
             font-size: 1rem;
             color: var(--orange);
             text-decoration: none;
             border: 1px solid var(--orange);
             padding: 10px 20px;
-            margin: 0.5rem auto 1.5rem auto; /* Explicitly centered with auto margins */
+            margin: 0.5rem auto 1.5rem auto;
             transition: all 0.3s ease;
             box-shadow: 0 0 10px rgba(255, 158, 100, 0.2);
         }
@@ -329,23 +263,23 @@
                 <div class="control maximize"></div>
             </div>
             <div class="terminal-title">michelio@michaelfrancazzi.com: ~</div>
-            <div style="width: 45px;"></div> <!-- spacer -->
+            <div style="width: 45px;"></div>
         </div>
         
         <div class="container">
             <header>
                 <pre class="ascii-art">
- __  __ _      _                     _ 
-|  \/  (_) ___| |__   __ _  ___| |
-| |\/| | |/ __| '_ \ / _` |/ _ \ |
-| |  | | | (__| | | | (_| |  __/ |
-|_|  |_|_|\___|_| |_|\__,_|\___|_|
-                                  
- _____                                     _ 
-|  ___| __ __ _ _ __   ___ __ _ _________(_)
-| |_ | '__/ _` | '_ \ / __/ _` |_  /_  / | |
-|  _|| | | (_| | | | | (_| (_| |/ / / /  | |
-|_|  |_|  \__,_/_/ /_|\___\__,_/___/___| |_|
+     __  ___ _      __                   __
+    /  |/  /(_)____/ /_  ____ _ ___     / /
+   / /|_/ / / / ___/ __ \/ __ `/ _ \   / / 
+  / /  / / / / /__/ / / / /_/ /  __/  / /  
+ /_/  /_/ /_/\___/_/ /_/\__,_/\___/  /_/   
+                                           
+     ______                                          _
+    / ____/________ _____  _________  __________    (_)
+   / /_  / ___/ __ `/ __ \/ ___/ __ `/ /_  /_  /   / / 
+  / __/ / /  / /_/ / / / / /__/ /_/ /  / /_ / /   / /  
+ /_/   /_/   \__,_/_/ /_/\___/\__,_/  /___//___/ /_/   
                 </pre>
                 
                 <nav class="terminal-nav">
@@ -358,26 +292,14 @@
                 <a href="mailto:michael.francazzi@gmail.com" class="btn-huge">connetti --start</a>
             </header>
 
-            <div id="view-1" class="view active">
-                <!-- Vuoto -->
-            </div>
-
-            <div id="view-2" class="view">
-                <!-- Vuoto -->
-            </div>
-
-            <div id="view-3" class="view">
-                <!-- Vuoto -->
-            </div>
-
-            <div id="view-4" class="view">
-                <!-- Vuoto -->
-            </div>
+            <div id="view-1" class="view active"></div>
+            <div id="view-2" class="view"></div>
+            <div id="view-3" class="view"></div>
+            <div id="view-4" class="view"></div>
         </div>
     </div>
 
     <script>
-        // Audio Setup
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let keySoundBuffer;
 
@@ -388,10 +310,9 @@
                 const data = await response.arrayBuffer();
                 keySoundBuffer = await audioCtx.decodeData(data);
             } catch (e) {
-                console.warn('Audio could not be loaded, typewriter will continue silently.', e);
+                console.warn('Audio could not be loaded silently.', e);
             }
         }
-        
         loadSound();
 
         function playKeySound() {
@@ -410,144 +331,78 @@
         }
 
         document.body.addEventListener('keydown', (e) => {
-            if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) {
-                playKeySound();
-            }
+            if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) playKeySound();
         });
 
         const randomChars = "abcdefghijklmnopqrstuvwxyz";
-
-        let isTyping = false;
         let typingAbortController = new AbortController();
 
         async function typeSentence(element, signal) {
             const text = element.getAttribute('data-text') || element.textContent.trim();
             if (!text) return;
-            
             element.textContent = '';
-            element.classList.add('active'); // Make element visible
+            element.classList.add('active');
             element.classList.add('typing');
-            
             let i = 0;
             while (i < text.length) {
-                if (signal.aborted) {
-                    element.classList.remove('typing');
-                    return;
-                }
-
-                if (Math.random() < 0.005 && i > 0 && i < text.length - 1) { // Probability reduced to 0.005
+                if (signal.aborted) { element.classList.remove('typing'); return; }
+                if (Math.random() < 0.005 && i > 0 && i < text.length - 1) {
                     const typoChar = randomChars.charAt(Math.floor(Math.random() * randomChars.length));
                     element.textContent += typoChar;
                     playKeySound();
-                    await new Promise(resolve => setTimeout(resolve, 50 + Math.random() * 80)); // Faster typo delay
-                    
+                    await new Promise(resolve => setTimeout(resolve, 50 + Math.random() * 80));
                     if (signal.aborted) return;
-
-                    await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100)); // Faster pause
+                    await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
                     element.textContent = element.textContent.slice(0, -1);
                     playKeySound();
-                    await new Promise(resolve => setTimeout(resolve, 40 + Math.random() * 40)); // Faster backspace
+                    await new Promise(resolve => setTimeout(resolve, 40 + Math.random() * 40));
                 }
-
                 if (signal.aborted) return;
-
                 element.textContent += text.charAt(i);
                 playKeySound();
-                
-                const delay = 10 + Math.random() * 20; // Faster typing delay (was 15-35)
-                await new Promise(resolve => setTimeout(resolve, delay));
+                await new Promise(resolve => setTimeout(resolve, 10 + Math.random() * 20));
                 i++;
             }
-            
             element.classList.remove('typing');
         }
 
         async function runTypewriter(container) {
-            // Abort any ongoing typing
             typingAbortController.abort();
             typingAbortController = new AbortController();
             const signal = typingAbortController.signal;
-
             const elements = Array.from(container.querySelectorAll('.typewriter-text'));
-            
-            // Initial clear
             for (let el of elements) {
-                if (!el.getAttribute('data-text')) {
-                    el.setAttribute('data-text', el.textContent.trim());
-                }
+                if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
                 el.textContent = '';
-                el.classList.remove('active'); // Hide elements initially
+                el.classList.remove('active');
             }
-
-            // Sequential typing
             for (let i = 0; i < elements.length; i++) {
                 if (signal.aborted) break;
-                const el = elements[i];
-                await typeSentence(el, signal);
+                await typeSentence(elements[i], signal);
             }
         }
 
         function switchView(viewId) {
-            // Update Navigation UI
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
-                if (item.getAttribute('onclick').includes(`'${viewId}'`)) {
-                    item.classList.add('active');
-                }
+                if (item.getAttribute('onclick').includes(`'${viewId}'`)) item.classList.add('active');
             });
-
-            // Switch Views
-            document.querySelectorAll('.view').forEach(view => {
-                view.classList.remove('active');
-            });
-
+            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
             const activeView = document.getElementById(`view-${viewId}`);
             activeView.classList.add('active');
-
-            // Update Window Title
             document.querySelector('.terminal-title').textContent = `michelio@michaelfrancazzi.com: ~/scheda ${viewId}`;
-
-            // Trigger Typewriter for new view
             runTypewriter(activeView);
         }
 
         async function initTypewriter() {
-            const resumeAudio = () => {
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                document.removeEventListener('click', resumeAudio);
-                document.removeEventListener('scroll', resumeAudio);
-                document.removeEventListener('keydown', resumeAudio);
-            };
-            document.addEventListener('click', resumeAudio);
-            document.addEventListener('scroll', resumeAudio);
-            document.addEventListener('keydown', resumeAudio);
-
-            // Initial global typing (Header)
-            const globalElements = Array.from(document.querySelectorAll('header .typewriter-text'));
-            for (let el of globalElements) {
-                el.setAttribute('data-text', el.textContent.trim());
-                el.textContent = '';
-                el.classList.remove('active');
-            }
-
+            const resumeAudio = () => { if (audioCtx.state === 'suspended') audioCtx.resume(); };
+            document.addEventListener('click', resumeAudio, { once: true });
             const activeView = document.querySelector('.view.active');
-            
-            // Type the header global elements if any
-            for (let el of globalElements) {
-                await typeSentence(el, new AbortController().signal);
-            }
-
-            // Then type the active view
-            if (activeView) {
-                await runTypewriter(activeView);
-            }
+            if (activeView) runTypewriter(activeView);
         }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initTypewriter);
-        } else {
-            initTypewriter();
-        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTypewriter);
+        else initTypewriter();
     </script>
 </body>
 </html>
