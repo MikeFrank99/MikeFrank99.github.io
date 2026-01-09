@@ -37,21 +37,45 @@
 
         body {
             margin: 0;
-            padding: 0;
+            padding: 0; /* Rimosso il padding per evitare offset */
             background-color: #0a0a0f;
             background-image: url('assets/images/background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             font-family: var(--font-main);
-            color: var(--text-main);
+            color: var(--text-main); /* Ensure main text color is applied */
             line-height: 1.6;
             overflow-x: hidden;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 4rem 2rem 2rem 2rem;
+            /* padding: 2rem; */ /* Rimosso */
+        }
+
+        .loading-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            height: 100vh; /* Ensure it takes full viewport height */
+            background-color: var(--bg); /* Explicit background to ensure visibility */
+            flex-grow: 1; /* Allow it to grow and fill space */
+            width: 100%; /* Ensure it takes full width */
+            box-sizing: border-box; /* Include padding in width calculation */
+            padding: 2rem; /* Aggiunto padding per il contenuto della schermata di caricamento */
+        }
+
+        .loading-screen .ascii-art {
+            max-width: 90%; /* Limita la larghezza dell'ASCII art nella schermata di caricamento */
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         .terminal-window {
@@ -65,6 +89,8 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
             overflow: hidden;
             animation: terminalOpen 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: none; /* Initially hidden */
+            flex-shrink: 0;
         }
 
         @keyframes terminalOpen {
@@ -246,6 +272,25 @@
             box-shadow: 0 0 20px var(--btn-color, var(--orange));
         }
 
+        #run-button {
+            background: transparent;
+            color: var(--green);
+            border: 1px solid var(--green);
+            padding: 10px 20px;
+            font-family: var(--font-main);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            box-shadow: 0 0 10px rgba(158, 206, 106, 0.4);
+        }
+
+        #run-button:hover {
+            background: var(--green);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--green);
+        }
+
         @media (max-width: 600px) {
             body { padding: 1rem; }
             .container { padding: 1.5rem; }
@@ -253,7 +298,11 @@
     </style>
 </head>
 <body>
-    <div class="terminal-window">
+    <div id="loading-screen" class="loading-screen">
+        <button id="run-button"> > RUN</button>
+    </div>
+
+    <div class="terminal-window" id="main-terminal">
         <div class="title-bar">
             <div class="window-controls">
                 <div class="control close"></div>
@@ -279,7 +328,6 @@
   / __/ / /  / /_/ / / / / /__/ /_/ / / /_ / /  / /  
  /_/   /_/   \__,_/_/ /_/\___/\__,_/ /___//___//_/   
                 </pre>
-                
                 <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
                     <a href="mailto:michael.francazzi@gmail.com" class="btn-huge" style="margin: 0; --btn-color: var(--red);">
                         <svg style="width: 16px; height: 16px; vertical-align: middle; margin-right: 8px; fill: currentColor;" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>mail
@@ -333,44 +381,59 @@
     </div>
 
     <script>
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let audioCtx;
         let keySoundBuffer;
+
+        async function initAudio() {
+            if (audioCtx && audioCtx.state !== 'closed') {
+                if (audioCtx.state === 'suspended') await audioCtx.resume();
+                return;
+            }
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            await loadSound();
+            if (audioCtx.state === 'suspended') await audioCtx.resume();
+        }
 
         async function loadSound() {
             try {
                 const response = await fetch('assets/audio/keypress.mp3'); 
-                if (!response.ok) throw new Error('Sound load failed');
+                if (!response.ok) throw new Error(`Failed to fetch audio: ${response.statusText}`);
                 const data = await response.arrayBuffer();
-                keySoundBuffer = await audioCtx.decodeData(data);
+                keySoundBuffer = await audioCtx.decodeAudioData(data);
             } catch (e) {
-                console.warn('Audio could not be loaded silently.', e);
+                console.error('Audio load error:', e);
             }
         }
-        loadSound();
 
         function playKeySound() {
-            if (!keySoundBuffer) return;
+            if (!audioCtx || !keySoundBuffer) return;
             try {
-                if (audioCtx.state === 'suspended') audioCtx.resume();
                 const source = audioCtx.createBufferSource();
                 source.buffer = keySoundBuffer;
                 const gainNode = audioCtx.createGain();
-                gainNode.gain.value = 0.2;
+                gainNode.gain.value = 0.001; // Set volume to minimum audible level
                 source.playbackRate.value = 0.9 + Math.random() * 0.2;
                 source.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
                 source.start(0);
-            } catch (e) {}
+            } catch (e) {
+                console.error('Error playing sound:', e);
+            }
         }
 
-        document.body.addEventListener('keydown', (e) => {
-            if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) playKeySound();
+        document.body.addEventListener('keydown', async (e) => {
+            // Only play sound if the main terminal is active (i.e., not on loading screen)
+            if (document.getElementById('main-terminal').style.display !== 'none') {
+                await initAudio();
+                if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) playKeySound();
+            }
         });
 
         const randomChars = "abcdefghijklmnopqrstuvwxyz";
         let typingAbortController = new AbortController();
 
         async function typeSentence(element, signal) {
+            // No need to await initAudio here, as it's handled by the RUN button click.
             const text = element.getAttribute('data-text') || element.textContent.trim();
             if (!text) return;
             element.textContent = '';
@@ -383,17 +446,17 @@
                     const typoChar = randomChars.charAt(Math.floor(Math.random() * randomChars.length));
                     element.textContent += typoChar;
                     playKeySound();
-                    await new Promise(resolve => setTimeout(resolve, 50 + Math.random() * 80));
+                    await new Promise(resolve => setTimeout(resolve, 80 + Math.random() * 120)); // Increased typo delay
                     if (signal.aborted) return;
-                    await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
+                    await new Promise(resolve => setTimeout(resolve, 150 + Math.random() * 150)); // Increased correction delay
                     element.textContent = element.textContent.slice(0, -1);
                     playKeySound();
-                    await new Promise(resolve => setTimeout(resolve, 40 + Math.random() * 40));
+                    await new Promise(resolve => setTimeout(resolve, 60 + Math.random() * 60)); // Increased correction backspace delay
                 }
                 if (signal.aborted) return;
                 element.textContent += text.charAt(i);
                 playKeySound();
-                await new Promise(resolve => setTimeout(resolve, 10 + Math.random() * 20));
+                await new Promise(resolve => setTimeout(resolve, 40 + Math.random() * 60)); // Increased regular typing delay
                 i++;
             }
             element.classList.remove('typing');
@@ -427,15 +490,27 @@
             runTypewriter(activeView);
         }
 
-        async function initTypewriter() {
-            const resumeAudio = () => { if (audioCtx.state === 'suspended') audioCtx.resume(); };
-            document.addEventListener('click', resumeAudio, { once: true });
-            const activeView = document.querySelector('.view.active');
-            if (activeView) runTypewriter(activeView);
+        async function initApp() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainTerminal = document.getElementById('main-terminal');
+            const runButton = document.getElementById('run-button');
+
+            // Ensure main terminal is hidden initially and loading screen is shown
+            mainTerminal.style.display = 'none';
+            loadingScreen.style.display = 'flex'; // Assuming flex for centering
+
+            runButton.addEventListener('click', async () => {
+                await initAudio(); // Initialize audio on user click
+                loadingScreen.style.display = 'none';
+                mainTerminal.style.display = 'block';
+
+                const activeView = document.querySelector('.view.active');
+                if (activeView) runTypewriter(activeView);
+            });
         }
 
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTypewriter);
-        else initTypewriter();
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initApp);
+        else initApp();
     </script>
 </body>
 </html>
