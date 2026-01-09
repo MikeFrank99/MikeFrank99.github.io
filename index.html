@@ -99,15 +99,14 @@
         .terminal-title {
             font-family: var(--font-main);
             font-size: clamp(0.7rem, 2vw, 0.85rem);
-            color: #8be9fd; /* Bright Cyan/Blue */
+            color: var(--blue);
             letter-spacing: 0.5px;
             text-transform: lowercase;
-            opacity: 0.9;
+            opacity: 0.8;
             margin-left: 15px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            filter: drop-shadow(0 0 10px #8be9fd); /* Bloom effect */
         }
 
         .container {
@@ -166,14 +165,14 @@
             font-family: 'Roboto Mono', monospace;
             font-size: clamp(4px, 1.4vw, 2rem); 
             line-height: 1;
-            color: #7aa2f7;
+            color: #8be9fd; /* Applied bright cyan here */
             margin: 0 auto 1rem auto;
             padding: 0;
             white-space: pre;
             display: table;
             pointer-events: none;
             user-select: none;
-            text-shadow: 0 0 15px rgba(122, 162, 247, 0.4);
+            text-shadow: 0 0 15px rgba(139, 233, 253, 0.6); /* Applied bloom here */
             text-align: center;
             font-weight: bold;
             font-style: italic;
