@@ -224,49 +224,111 @@
 
                 
 
-                        .ascii-art {
-
-                            font-family: monospace;
-
-                            font-size: clamp(6px, 1.8vw, 2.5rem); 
-
-                            line-height: 1.1;
-
-                            color: var(--blue);
-
-                            margin: 0 0 1rem 0;
-
-                            padding: 0;
-
-                            white-space: pre;
-
-                            pointer-events: none;
-
-                            user-select: none;
-
-                            text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
-
-                            text-align: center;
-
-                            overflow-x: hidden;
-
-                        }
+                                        .ascii-art {
 
                 
 
-                        /* Mobile specific adjustment for ASCII art */
+                                            font-family: 'Roboto Mono', monospace;
 
-                        @media (max-width: 600px) {
+                
 
-                            .ascii-art {
+                                            font-size: clamp(4px, 1.4vw, 2rem); 
 
-                                font-size: 3.2vw; /* Larger factor for mobile */
+                
 
-                                letter-spacing: -0.2px;
+                                            line-height: 1;
 
-                            }
+                
 
-                        }
+                                            color: var(--blue);
+
+                
+
+                                            margin: 0 auto 1rem auto;
+
+                
+
+                                            padding: 0;
+
+                
+
+                                            white-space: pre;
+
+                
+
+                                            display: table; /* Shrink-to-fit content */
+
+                
+
+                                            pointer-events: none;
+
+                
+
+                                            user-select: none;
+
+                
+
+                                            text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
+
+                
+
+                                            text-align: left;
+
+                
+
+                                        }
+
+                
+
+                                
+
+                
+
+                                        /* Mobile specific adjustment for ASCII art - more precise scaling */
+
+                
+
+                                        @media (max-width: 800px) {
+
+                
+
+                                            .ascii-art {
+
+                
+
+                                                font-size: 1.6vw; 
+
+                
+
+                                            }
+
+                
+
+                                        }
+
+                
+
+                        
+
+                
+
+                                        @media (max-width: 500px) {
+
+                
+
+                                            .ascii-art {
+
+                
+
+                                                font-size: 2.2vw;
+
+                
+
+                                            }
+
+                
+
+                                        }
 
                 
 
