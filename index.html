@@ -182,15 +182,16 @@
             font-family: 'Roboto Mono', monospace;
             font-size: clamp(4px, 1.4vw, 2rem); 
             line-height: 1;
-            color: var(--yellow); /* Changed to Tokyo Night Yellow */
+            color: #ffff00; /* Bright Signal Yellow */
             margin: 0 auto 1rem auto;
             padding: 0;
             white-space: pre;
-            display: table; /* Shrink-to-fit content */
+            display: table;
             pointer-events: none;
             user-select: none;
-            text-shadow: 0 0 20px rgba(224, 175, 104, 0.4); /* Glow matching yellow */
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5); /* Matte, sharp 'stamped' effect */
             text-align: center;
+            font-weight: 700; /* 50 micron thickness feel */
         }
 
         @media (max-width: 800px) {
