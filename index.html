@@ -462,39 +462,47 @@
 
                         
 
-                                                .typewriter-text {
+                                                                                                .typewriter-text {
 
                         
 
-                                                    visibility: hidden;
+                                                                                                    display: none; /* Changed from visibility: hidden to save space */
 
                         
 
-                                                    font-family: inherit;
+                                                                                                    font-family: inherit;
 
                         
 
-                                                    display: block;
+                                                                                                    position: relative;
 
                         
 
-                                                    position: relative;
+                                                                                                    padding-left: 1.2rem;
 
                         
 
-                                                    padding-left: 1.2rem;
+                                                                                                    margin-bottom: 0.5rem;
 
                         
 
-                                                    min-height: 1.2rem;
+                                                                                                }
 
                         
 
-                                                    margin-bottom: 0.5rem;
+                                                
 
                         
 
-                                                }
+                                                                                                .typewriter-text.active {
+
+                        
+
+                                                                                                    display: block; /* Show only when typing or typed */
+
+                        
+
+                                                                                                }
 
                         
 
@@ -799,7 +807,7 @@
             if (!text) return;
             
             element.textContent = '';
-            element.style.visibility = 'visible';
+            element.classList.add('active'); // Make element visible
             element.classList.add('typing');
             
             let i = 0;
@@ -850,7 +858,7 @@
                     el.setAttribute('data-text', el.textContent.trim());
                 }
                 el.textContent = '';
-                el.style.visibility = 'hidden';
+                el.classList.remove('active'); // Hide elements initially
             }
 
             // Sequential typing
