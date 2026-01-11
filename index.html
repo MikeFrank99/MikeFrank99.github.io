@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael Francazzi | Architetto Digitale</title>
     <meta name="description" content="Portfolio di Michael Francazzi, Full Stack Developer e Architetto Digitale. Esplora i miei progetti, la mia filosofia di design e il mio diario tecnico.">
+    <meta name="theme-color" content="#bb9af7">
+    <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://db.onlinewebfonts.com/c/d7a74ed36ff0603a3e41b6da32c47f03?family=Ndot+57+Aligned" rel="stylesheet">
     <style>
@@ -35,6 +37,22 @@
             box-sizing: border-box;
         }
 
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--comment);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
         body {
             margin: 0;
             padding: 2rem 20px;
@@ -51,6 +69,62 @@
             align-items: flex-start;
             justify-content: center;
             min-height: 100vh;
+            position: relative;
+        }
+
+        /* CRT Scanlines Overlay */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 9999;
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* CRT Flicker Animation */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(18, 16, 16, 0.1);
+            opacity: 0;
+            z-index: 9998;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.12739; }
+            5% { opacity: 0.05148; }
+            10% { opacity: 0.1066; }
+            15% { opacity: 0.03988; }
+            20% { opacity: 0.12528; }
+            25% { opacity: 0.11147; }
+            30% { opacity: 0.05513; }
+            35% { opacity: 0.12075; }
+            40% { opacity: 0.04692; }
+            45% { opacity: 0.08431; }
+            50% { opacity: 0.03835; }
+            55% { opacity: 0.02198; }
+            60% { opacity: 0.11583; }
+            65% { opacity: 0.13403; }
+            70% { opacity: 0.10285; }
+            75% { opacity: 0.04561; }
+            80% { opacity: 0.12528; }
+            85% { opacity: 0.10427; }
+            90% { opacity: 0.08345; }
+            95% { opacity: 0.06547; }
+            100% { opacity: 0.11333; }
         }
 
         .loading-screen {
@@ -86,6 +160,7 @@
             animation: terminalOpen 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: none; /* Initially hidden */
             flex-shrink: 0;
+            position: relative;
         }
 
         @keyframes terminalOpen {
@@ -100,11 +175,13 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid rgba(122, 162, 247, 0.1);
+            position: relative;
         }
 
         .window-controls {
             display: flex;
             gap: 8px;
+            z-index: 2;
         }
 
         .control {
@@ -124,19 +201,48 @@
             letter-spacing: 0.5px;
             text-transform: lowercase;
             opacity: 0.8;
-            margin-left: 15px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: fit-content;
+            max-width: 60%;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        #skip-btn {
+            font-family: var(--font-main);
+            font-size: 0.65rem;
+            color: var(--comment);
+            cursor: pointer;
+            padding: 2px 6px;
+            border: 1px solid var(--comment);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            display: none; /* Hidden by default */
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(22, 22, 30, 0.4);
+        }
+
+        #skip-btn:hover {
+            color: var(--yellow);
+            border-color: var(--yellow);
+            box-shadow: 0 0 8px rgba(224, 175, 104, 0.3);
+            background: rgba(224, 175, 104, 0.1);
         }
 
         .container {
-            padding: 2rem 2rem 0 2rem;
+            padding: 2rem 2rem 0.5rem 2rem;
             text-align: left;
         }
 
         @media (max-width: 600px) {
-            .container { padding: 1.5rem 10px 0 10px; }
+            .container { padding: 1.5rem 10px 0.5rem 10px; }
         }
 
         .terminal-nav {
@@ -171,7 +277,7 @@
 
         .view {
             display: none;
-            padding-bottom: 20px; /* Standardized padding for all views */
+            padding-bottom: 10px; /* Standardized padding for all views */
         }
 
         .view.active {
@@ -211,6 +317,24 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 0.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); text-shadow: none; }
+            20% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan); }
+            40% { transform: translate(-2px, -2px); text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan); }
+            60% { transform: translate(2px, 2px); text-shadow: -2px 0 var(--pink), 2px 0 var(--cyan); }
+            80% { transform: translate(2px, -2px); text-shadow: -2px 0 var(--pink), 2px 0 var(--cyan); }
+            100% { transform: translate(0); text-shadow: none; }
         }
 
         .typing::after {
@@ -290,6 +414,63 @@
             box-shadow: 0 0 20px #00bcd4;
         }
 
+        /* CLI Style Prompt */
+        .cli-prompt-area {
+            margin-top: 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+        }
+
+        .cli-prompt-area.active {
+            display: flex;
+        }
+
+        .cli-label {
+            color: var(--cyan);
+            white-space: nowrap;
+            font-weight: bold;
+        }
+
+        .cli-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--fg);
+            font-family: inherit;
+            font-size: inherit;
+            flex-grow: 1;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Dynamic Projects Styling */
+        .repo-item {
+            margin-bottom: 1.5rem;
+            border-left: 2px solid var(--comment);
+            padding-left: 1rem;
+        }
+        .repo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.2rem;
+        }
+        .repo-name {
+            color: var(--orange);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .repo-name:hover {
+            text-decoration: underline;
+        }
+        .repo-meta {
+            font-size: 0.8rem;
+            color: var(--comment);
+        }
+
         @media (max-width: 600px) {
             body { padding-left: 1rem; padding-right: 1rem; }
             .container { padding: 1.5rem; }
@@ -311,21 +492,21 @@
                 <div class="control maximize"></div>
             </div>
             <div class="terminal-title">michelio@michaelfrancazzi.com: ~</div>
-            <div style="width: 45px;"></div>
         </div>
         
         <div class="container">
+            <div id="skip-btn" onclick="skipCurrentAnimation()">[ SKIP ]</div>
             <header>
-                <pre class="ascii-art">
+                <pre class="ascii-art" role="img" aria-label="Logo Michael Francazzi">
      __  ___ _       __                __
-    /  |/  /(_)____ / /_   ___ _ __   / /
-   / /|_/ / / / __// __ \/ __ `/ _ \ / / 
-  / /  / / / / /__/ / / / /_/ /  __// /  
- /_/  /_/ /_/\___/_/ /_/\__,_/\___//_/   
+    /  |/  /(_)____ / /_   ___ _ __   / / 
+   / /|_/ / / / __// __ \/ __ `/ _ \ / /  
+  / /  / / / / /__/ / / / /_/ /  __// /   
+ /_/  /_/ /_/\___/_/ /_/\__,_/\___//_/    
                                            
      ______                                        _
     / ____/____ ___ _ ___  _____ ___ _ ________   (_)
-   / /_  / ___/ __ `/ __ \/ ___/ __ `//_  /_  /  / / 
+   / /_  / ___/ __ `/ __ \/ ___/ __ `//_  /_  /  / /
   / __/ / /  / /_/ / / / / /__/ /_/ / / /_ / /  / /  
  /_/   /_/   \__,_/_/ /_/\___/\__,_/ /___//___//_/   
                 </pre>
@@ -365,18 +546,21 @@
 
             <div id="view-hobbies" class="view">
                 <h2>Side Quests</h2>
-                <p class="typewriter-text">Fondamentalmente sono un tipo curioso. Studio informatica da autodidatta, il che significa che passo un sacco di tempo a cercare di capire perché il mio codice non compila (e poi a esultare quando finalmente lo fa).</p>
+                <p class="typewriter-text">Fondamentmente sono un tipo curioso. Studio informatica da autodidatta, il che significa che passo un sacco di tempo a cercare di capire perché il mio codice non compila (e poi a esultare quando finalmente lo fa).</p>
                 <p class="typewriter-text">Quando stacco dal monitor, mi piace creare oggetti fisici, sperimentare col fai-da-te o perdermi in una sessione di <strong>Dungeons & Dragons</strong> con gli amici. C'è qualcosa di catartico nel lanciare un dado da 20 dopo una giornata passata a debuggare script.</p>
                 <p class="typewriter-text">In generale, mi piace tutto ciò che richiede un po' di inventiva e di strategia.</p>
             </div>
 
             <div id="view-projects" class="view">
-                <h2>Progetti in corso</h2>
-                <div class="terminal-block">
-                    <h3>Smarthub Utility</h3>
-                    <p class="typewriter-text">Al momento tutte le mie energie (letteralmente) sono concentrate qui. È il progetto dove metto in pratica tutto quello che imparo sull'automazione aziendale.</p>
-                    <a href="https://smarthubutility.it" target="_blank" class="typewriter-text" style="color: var(--pink); text-decoration: none; display: block; margin-top: 0.5rem;">> visita smarthubutility.it</a>
+                <h2>Progetti GitHub</h2>
+                <div id="github-projects-container">
+                    <p class="typewriter-text">Caricamento progetti da GitHub in corso...</p>
                 </div>
+            </div>
+
+            <div class="cli-prompt-area" id="cli-area">
+                <span class="cli-label">michelio@michaelfrancazzi.com: <span id="cli-path">~/about_me</span> $</span>
+                <input type="text" class="cli-input" id="terminal-input" spellcheck="false" autocomplete="off">
             </div>
         </div>
     </div>
@@ -423,7 +607,18 @@
         }
 
         document.body.addEventListener('keydown', async (e) => {
-            // Only play sound if the main terminal is active (i.e., not on loading screen)
+            // Handle Escape key to skip animation
+            if (e.key === 'Escape') {
+                skipCurrentAnimation();
+                return;
+            }
+
+            // Focus CLI input on any keypress if terminal is active
+            const terminalInput = document.getElementById('terminal-input');
+            if (document.getElementById('main-terminal').style.display !== 'none' && document.activeElement !== terminalInput) {
+                terminalInput.focus();
+            }
+
             if (document.getElementById('main-terminal').style.display !== 'none') {
                 await initAudio();
                 if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) playKeySound();
@@ -447,10 +642,13 @@
         });
 
         // Initialize all typewriter texts immediately to preserve content
-        document.querySelectorAll('.view .typewriter-text').forEach(el => {
-            if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
-            el.textContent = ''; // Hide initially
-        });
+        function initTypewriterElements() {
+            document.querySelectorAll('.view .typewriter-text').forEach(el => {
+                if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
+                el.textContent = ''; // Hide initially
+            });
+        }
+        initTypewriterElements();
 
         async function typeSentence(element, signal, startIndex = 0, viewId, elementIndex) {
             const text = element.getAttribute('data-text');
@@ -463,7 +661,7 @@
             let i = startIndex;
             while (i < text.length) {
                 if (signal.aborted) {
-                    saveProgress(viewId, elementIndex, i);
+                    if (!signal.skip) saveProgress(viewId, elementIndex, i);
                     element.classList.remove('typing');
                     return false;
                 }
@@ -473,7 +671,7 @@
                     playKeySound();
                     await new Promise(resolve => setTimeout(resolve, 80 + Math.random() * 120));
                     if (signal.aborted) {
-                        saveProgress(viewId, elementIndex, i);
+                        if (!signal.skip) saveProgress(viewId, elementIndex, i);
                         return false;
                     }
                     await new Promise(resolve => setTimeout(resolve, 150 + Math.random() * 150));
@@ -482,7 +680,7 @@
                     await new Promise(resolve => setTimeout(resolve, 60 + Math.random() * 60));
                 }
                 if (signal.aborted) {
-                    saveProgress(viewId, elementIndex, i);
+                    if (!signal.skip) saveProgress(viewId, elementIndex, i);
                     return false;
                 }
                 element.textContent += text.charAt(i);
@@ -498,6 +696,16 @@
             const state = terminalState[viewId] || { elementIndex: 0, charIndex: 0, isComplete: false };
             const elements = Array.from(container.querySelectorAll('.typewriter-text'));
             
+            document.getElementById('cli-area').classList.remove('active');
+            
+            // Move skip button to current view header
+            const header = container.querySelector('h2');
+            const skipBtn = document.getElementById('skip-btn');
+            if (header && skipBtn) {
+                header.appendChild(skipBtn);
+                skipBtn.style.display = 'inline-block';
+            }
+
             // Set initial state based on progress
             elements.forEach((el, i) => {
                 if (i < state.elementIndex) {
@@ -506,7 +714,8 @@
                     el.classList.remove('typing');
                 } else if (i === state.elementIndex) {
                     // Prepare current element to show cursor during initial delay
-                    el.textContent = el.getAttribute('data-text').substring(0, state.charIndex);
+                    const fullText = el.getAttribute('data-text');
+                    el.textContent = fullText ? fullText.substring(0, state.charIndex) : '';
                     el.classList.add('active', 'typing');
                 } else {
                     el.textContent = '';
@@ -516,7 +725,10 @@
 
             // Initial delay of 1s before typing starts, cursor will blink
             if (elements.length > 0 && state.elementIndex < elements.length) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => {
+                    const timer = setTimeout(resolve, 1000);
+                    signal.addEventListener('abort', () => clearTimeout(timer));
+                });
             }
             if (signal.aborted) return;
 
@@ -533,30 +745,122 @@
                     saveProgress(viewId, elements.length, 0, true);
                 }
             }
+
+            // Show CLI prompt after typing finishes
+            if (!signal.aborted) {
+                const cliArea = document.getElementById('cli-area');
+                cliArea.classList.add('active');
+                if (skipBtn) skipBtn.style.display = 'none';
+                document.getElementById('terminal-input').focus();
+            }
         }
+
+        function skipCurrentAnimation() {
+            const activeView = document.querySelector('.view.active');
+            if (!activeView) return;
+            
+            const viewId = activeView.id.replace('view-', '');
+            const state = terminalState[viewId];
+            
+            // Only skip if not already complete
+            if (!state || !state.isComplete) {
+                // Set skip flag on signal so it doesn't save progress mid-sentence
+                if (typingAbortController.signal) typingAbortController.signal.skip = true;
+                typingAbortController.abort();
+                
+                const elements = activeView.querySelectorAll('.typewriter-text');
+                elements.forEach(el => {
+                    el.textContent = el.getAttribute('data-text');
+                    el.classList.add('active');
+                    el.classList.remove('typing');
+                });
+                
+                saveProgress(viewId, elements.length, 0, true);
+                const cliArea = document.getElementById('cli-area');
+                cliArea.classList.add('active');
+                document.getElementById('skip-btn').style.display = 'none';
+                document.getElementById('terminal-input').focus();
+            }
+        }
+
+        function triggerGlitch(viewId) {
+            const view = document.getElementById(`view-${viewId}`);
+            if (!view) return;
+            const headers = view.querySelectorAll('h2, h3');
+            headers.forEach(h => {
+                h.classList.add('glitch');
+                setTimeout(() => h.classList.remove('glitch'), 400);
+            });
+        }
+
+        async function fetchGitHubRepos() {
+            const container = document.getElementById('github-projects-container');
+            try {
+                const response = await fetch('https://api.github.com/users/MikeFrank99/repos?sort=updated&per_page=5');
+                if (!response.ok) throw new Error('GitHub API error');
+                const repos = await response.json();
+                
+                let html = '';
+                repos.forEach(repo => {
+                    html += `
+                        <div class="repo-item">
+                            <div class="repo-header">
+                                <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
+                                <span class="repo-meta">${repo.language || ''} ★${repo.stargazers_count}</span>
+                            </div>
+                            <p class="typewriter-text">${repo.description || 'Nessuna descrizione disponibile.'}</p>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+                initTypewriterElements();
+            } catch (e) {
+                container.innerHTML = '<p class="typewriter-text">Errore durante il caricamento dei progetti. Riprova più tardi.</p>';
+                initTypewriterElements();
+            }
+        }
+
+        let githubFetched = false;
 
         function switchView(viewId) {
             typingAbortController.abort(); // Stop current animation
 
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
-                if (item.getAttribute('onclick').includes(`'${viewId}'`)) item.classList.add('active');
+                if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(`'${viewId}'`)) item.classList.add('active');
             });
             document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
             const activeView = document.getElementById(`view-${viewId}`);
-            activeView.classList.add('active');
-            document.querySelector('.terminal-title').textContent = `michelio@michaelfrancazzi.com: ~/${viewId}`;
+            if (activeView) {
+                activeView.classList.add('active');
+                document.querySelector('.terminal-title').textContent = `michelio@michaelfrancazzi.com: ~/${viewId}`;
+                document.getElementById('cli-path').textContent = `~/${viewId}`;
+                document.getElementById('terminal-input').value = '';
+                triggerGlitch(viewId);
+            }
 
-            const state = terminalState[viewId];
-            if (state && state.isComplete) {
-                activeView.querySelectorAll('.typewriter-text').forEach(el => {
-                    el.textContent = el.getAttribute('data-text');
-                    el.classList.add('active');
-                    el.classList.remove('typing');
-                });
+            const executeViewLogic = () => {
+                const state = terminalState[viewId];
+                if (state && state.isComplete) {
+                    activeView.querySelectorAll('.typewriter-text').forEach(el => {
+                        el.textContent = el.getAttribute('data-text');
+                        el.classList.add('active');
+                        el.classList.remove('typing');
+                    });
+                    document.getElementById('cli-area').classList.add('active');
+                    document.getElementById('skip-btn').style.display = 'none';
+                    document.getElementById('terminal-input').focus();
+                } else {
+                    typingAbortController = new AbortController();
+                    runTypewriter(activeView, typingAbortController.signal, viewId);
+                }
+            };
+
+            if (viewId === 'projects' && !githubFetched) {
+                githubFetched = true;
+                fetchGitHubRepos().then(executeViewLogic);
             } else {
-                typingAbortController = new AbortController();
-                runTypewriter(activeView, typingAbortController.signal, viewId);
+                executeViewLogic();
             }
         }
 
@@ -565,6 +869,7 @@
             const mainTerminal = document.getElementById('main-terminal');
             const runButton = document.getElementById('run-button');
             const closeButton = document.querySelector('.control.close');
+            const terminalInput = document.getElementById('terminal-input');
 
             loadingScreen.style.display = 'flex';
 
@@ -572,8 +877,6 @@
                 await initAudio();
                 loadingScreen.style.display = 'none';
                 mainTerminal.style.display = 'block';
-
-                // Initial view trigger
                 switchView('about_me');
             });
 
@@ -582,13 +885,45 @@
                 mainTerminal.style.display = 'none';
                 loadingScreen.style.display = 'flex';
                 
-                // Reset state on terminal close
                 sessionStorage.removeItem('terminalState');
                 terminalState = {};
+                githubFetched = false; // Allow re-fetching on next open
                 document.querySelectorAll('.view .typewriter-text').forEach(el => {
                     el.textContent = '';
                     el.classList.remove('active', 'typing');
                 });
+                document.getElementById('cli-area').classList.remove('active');
+                document.getElementById('skip-btn').style.display = 'none';
+            });
+
+            // Handle CLI Commands
+            terminalInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const cmd = terminalInput.value.trim().toLowerCase();
+                    terminalInput.value = '';
+
+                    if (cmd === 'help') {
+                        alert('Comandi disponibili: ls, cd [scheda], clear, help, whoami\nSchede: about_me, business, hobbies, projects');
+                    } else if (cmd === 'ls') {
+                        alert('Direttori:\nabout_me/\nbusiness/\nhobbies/\nprojects/');
+                    } else if (cmd.startsWith('cd ')) {
+                        const target = cmd.split(' ')[1];
+                        const validViews = ['about_me', 'business', 'hobbies', 'projects'];
+                        if (validViews.includes(target)) {
+                            switchView(target);
+                        } else {
+                            alert(`bash: cd: ${target}: Nessun file o directory esistente`);
+                        }
+                    } else if (cmd === 'clear') {
+                        sessionStorage.removeItem('terminalState');
+                        terminalState = {};
+                        location.reload();
+                    } else if (cmd === 'whoami') {
+                        alert('michelio - Digital Architect & Automation Specialist');
+                    } else if (cmd !== '') {
+                        alert(`bash: ${cmd}: comando non trovato`);
+                    }
+                }
             });
 
             document.addEventListener('visibilitychange', () => {
@@ -601,6 +936,17 @@
 
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initApp);
         else initApp();
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(registration => {
+                    console.log('SW registered:', registration);
+                }).catch(error => {
+                    console.log('SW registration failed:', error);
+                });
+            });
+        }
     </script>
 </body>
 </html>

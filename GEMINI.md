@@ -9,26 +9,32 @@ This project is a bespoke personal portfolio website for Michael Francazzi, desi
     - **Tokyo Night Theme**: Official color palette for a deep-blue cyber-punk aesthetic.
     - **Web Audio API**: Low-latency mechanical keyboard sound effects (keypress.mp3).
     - **AbortController API**: Used to manage and cancel concurrent typing animations during view switches.
-    - **sessionStorage API**: Used for progress checkpointing and persistence of the typing state during a session.
+    - **sessionStorage API**: Used for character-level progress checkpointing and persistence of the typing state during a session.
+    - **Service Worker & Manifest**: Full PWA (Progressive Web App) support for offline caching and installation.
+    - **GitHub API**: Dynamically fetches recent public repositories for the `projects` view.
     - **Google Fonts**: Utilizing "Roboto Mono" for main text and "Ndot 57 Aligned" for headers.
 
 ## Structure
 - `index.html`: The core logic, styles (Tokyo Night), and localized Italian content.
-- `assets/images/background.jpg`: Optimized background image.
+- `manifest.json`: PWA configuration for app-like behavior on mobile and desktop.
+- `sw.js`: Service worker handling caching of assets for offline performance.
+- `assets/images/background.jpg`: Optimized background image (used as PWA icon placeholder).
 - `assets/audio/keypress.mp3`: Local audio asset for typewriter sound effects.
 - `CNAME`: Custom domain configuration (`michaelfrancazzi.com`).
 - `.nojekyll`: Disables Jekyll processing on GitHub Pages.
 
 ## Key Design Elements
-- **Terminal Window UI**: Centered container with 20px lateral padding (responsive) for optimal spacing from the viewport edges, blur (12px), and adaptive width (max 1200px).
-- **Functional Terminal Controls**: The close button reopens the start screen and resets the terminal state (`sessionStorage` and visible text).
-- **Italic ASCII Art Header**: Slanted "Michael Francazzi" header in Tokyo Night blue with a custom bloom effect.
-- **Multi-View Navigation**: Virtual directory system (`about_me`, `business`, `hobbies`, `projects`) simulating a shell terminal.
-- **Dynamic Typewriter**: Sequential typing effect with variable speed, dynamic prompt indicators (`>`), and optimized mobile scaling.
-    - **Checkpointing**: Typing progress is saved at the character level in `sessionStorage`. Switching views and returning will resume typing from the exact last position.
-    - **Pre-typing Delay**: A 1-second delay with a blinking cursor occurs before typing begins on a new element.
-    - **Header Exclusion**: `H1-H6` headers are excluded from the typing animation and are visible immediately upon view switch.
-- **Contact Area**: Monochrome SVG buttons for Email, GitHub, and Telegram with coherent hover effects.
+- **Terminal Window UI**: Centered glassmorphic container with 20px lateral padding.
+    - **Title Bar**: Centered title text (`michelio@michaelfrancazzi.com`) with macOS-style window controls.
+    - **CRT Overlay**: Fixed scanlines and subtle flickering effects for a retro-tech vibe.
+- **Interactive CLI**: Functional prompt area accepting commands like `help`, `ls`, `cd`, `clear`, `whoami`.
+- **Skip Animation**: 
+    - **Keyboard**: Pressing `Esc` immediately finishes the typing animation.
+    - **Visual**: A dynamic `[ SKIP ]` button appears next to the section header during typing.
+- **Dynamic Typewriter**: Sequential typing effect with variable speed and dynamic prompt indicators (`>`).
+    - **Checkpointing**: Typing progress is persistent across view switches via `sessionStorage`.
+    - **Pre-typing Delay**: 1-second delay with a blinking cursor before typing begins on a new element.
+- **Accessibility**: ASCII art is tagged with ARIA roles and labels; keyboard-first navigation for the CLI.
 
 ## Deployment
 - Hosted on **GitHub Pages** (main branch).
@@ -36,7 +42,7 @@ This project is a bespoke personal portfolio website for Michael Francazzi, desi
 
 ## Notes for Gemini
 - **Do not** re-introduce MkDocs/Jekyll.
-- **Language**: The site is fully localized in **Italian**. Maintain this for all content updates.
-- **Maintain the Rice Aesthetic**: High-contrast colors, terminal-style prompts (`> `), and monospace typography.
-- **Animation Logic**: Always use the `AbortController` to prevent animation glitches. Typing state is persistent across view switches via `sessionStorage` but resets on manual page reload (`beforeunload`) or terminal closure.
-- **Audio Context**: Browser security requires a user gesture (click/scroll) before audio can play.
+- **Language**: The site is fully localized in **Italian**.
+- **Animation Logic**: Always use the `AbortController`. Typing state is persistent across view switches but resets on manual page reload or terminal closure.
+- **Visuals**: Maintain the "Rice" aesthetic (high contrast, monospace, Tokyo Night colors).
+- **Audio Context**: Requires a user gesture (click/scroll) before audio can play.

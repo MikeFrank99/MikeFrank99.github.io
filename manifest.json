@@ -1,0 +1,21 @@
+{
+  "name": "Michael Francazzi | Architetto Digitale",
+  "short_name": "michelio",
+  "description": "Portfolio di Michael Francazzi, Full Stack Developer e Architetto Digitale.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a1b26",
+  "theme_color": "#bb9af7",
+  "icons": [
+    {
+      "src": "assets/images/background.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/images/background.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
