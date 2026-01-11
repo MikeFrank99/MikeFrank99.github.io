@@ -37,7 +37,8 @@
 
         body {
             margin: 0;
-            padding: 0; /* Rimosso il padding per evitare offset */
+            padding-left: 20px;
+            padding-right: 20px;
             background-color: #0a0a0f;
             background-image: url('assets/images/background.jpg');
             background-size: cover;
@@ -51,7 +52,6 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            /* padding: 2rem; */ /* Rimosso */
         }
 
         .loading-screen {
@@ -270,13 +270,13 @@
             display: table;
             font-family: var(--font-nothing);
             font-size: 1rem;
-            color: var(--green);
+            color: #00bcd4;
             text-decoration: none;
-            border: 1px solid var(--green);
+            border: 1px solid #00bcd4;
             padding: 10px 20px;
             margin: 2rem auto 1.5rem auto;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(158, 206, 106, 0.2);
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
             background: rgba(26, 27, 38, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -284,13 +284,13 @@
         }
 
         #run-button:hover {
-            background: var(--green);
+            background: #00bcd4;
             color: var(--bg-dark);
-            box-shadow: 0 0 20px var(--green);
+            box-shadow: 0 0 20px #00bcd4;
         }
 
         @media (max-width: 600px) {
-            body { padding: 1rem; }
+            body { padding-left: 1rem; padding-right: 1rem; }
             .container { padding: 1.5rem; }
         }
     </style>
@@ -349,30 +349,30 @@
             </header>
 
             <div id="view-about_me" class="view active">
-                <h2 class="typewriter-text">Ciao, sono Michael</h2>
+                <h2>Ciao, sono Michael</h2>
                 <p class="typewriter-text">In giro per il web mi trovi come <strong>michelio</strong>. Ho messo in piedi questo sito un po' per gioco e un po' perché volevo sperimentare con un'estetica diversa dal solito (sì, mi piacciono i terminali che luccicano).</p>
                 <p class="typewriter-text">Mi diverto a smanettare con il software, ma non disdegno affatto l'hardware. Mi piace l'idea di costruire strumenti che funzionino bene e che abbiano quel tocco "cyberpunk" che non guasta mai.</p>
                 <p class="typewriter-text">Se vuoi dare un'occhiata a quello che combino o semplicemente scrivermi, trovi i link qui sopra.</p>
             </div>
 
             <div id="view-business" class="view">
-                <h2 class="typewriter-text">Cosa faccio per vivere</h2>
+                <h2>Cosa faccio per vivere</h2>
                 <p class="typewriter-text">Di giorno mi occupo di energia ed efficientamento energetico. È un mondo che sembra noioso, ma in realtà è pieno di dati da analizzare e processi da ottimizzare.</p>
                 <p class="typewriter-text">Faccio parte di <strong>Smarthub Utility</strong>, un collettivo dove cerchiamo di rendere le aziende un po' più intelligenti (o almeno più automatizzate). In pratica, scrivo software personalizzato per risolvere problemi reali, quelli che fanno perdere tempo e pazienza ai dipendenti.</p>
                 <p class="typewriter-text">L'obiettivo è sempre lo stesso: togliere il lavoro ripetitivo agli umani e lasciarlo fare alle macchine.</p>
             </div>
 
             <div id="view-hobbies" class="view">
-                <h2 class="typewriter-text">Side Quests</h2>
+                <h2>Side Quests</h2>
                 <p class="typewriter-text">Fondamentalmente sono un tipo curioso. Studio informatica da autodidatta, il che significa che passo un sacco di tempo a cercare di capire perché il mio codice non compila (e poi a esultare quando finalmente lo fa).</p>
                 <p class="typewriter-text">Quando stacco dal monitor, mi piace creare oggetti fisici, sperimentare col fai-da-te o perdermi in una sessione di <strong>Dungeons & Dragons</strong> con gli amici. C'è qualcosa di catartico nel lanciare un dado da 20 dopo una giornata passata a debuggare script.</p>
                 <p class="typewriter-text">In generale, mi piace tutto ciò che richiede un po' di inventiva e di strategia.</p>
             </div>
 
             <div id="view-projects" class="view">
-                <h2 class="typewriter-text">Progetti in corso</h2>
+                <h2>Progetti in corso</h2>
                 <div class="terminal-block">
-                    <h3 class="typewriter-text">Smarthub Utility</h3>
+                    <h3>Smarthub Utility</h3>
                     <p class="typewriter-text">Al momento tutte le mie energie (letteralmente) sono concentrate qui. È il progetto dove metto in pratica tutto quello che imparo sull'automazione aziendale.</p>
                     <a href="https://smarthubutility.it" target="_blank" class="typewriter-text" style="color: var(--pink); text-decoration: none; display: block; margin-top: 0.5rem;">> visita smarthubutility.it</a>
                 </div>
@@ -431,53 +431,111 @@
 
         const randomChars = "abcdefghijklmnopqrstuvwxyz";
         let typingAbortController = new AbortController();
-        const typedViews = new Set();
+        
+        // Terminal state management
+        let terminalState = JSON.parse(sessionStorage.getItem('terminalState')) || {};
 
-        async function typeSentence(element, signal) {
-            // No need to await initAudio here, as it's handled by the RUN button click.
-            const text = element.getAttribute('data-text') || element.textContent.trim();
-            if (!text) return;
-            element.textContent = '';
-            element.classList.add('active');
-            element.classList.add('typing');
-            let i = 0;
+        function saveProgress(viewId, elementIndex, charIndex, isComplete = false) {
+            terminalState[viewId] = { elementIndex, charIndex, isComplete };
+            sessionStorage.setItem('terminalState', JSON.stringify(terminalState));
+        }
+
+        // Reset state on manual page reload
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.removeItem('terminalState');
+        });
+
+        // Initialize all typewriter texts immediately to preserve content
+        document.querySelectorAll('.view .typewriter-text').forEach(el => {
+            if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
+            el.textContent = ''; // Hide initially
+        });
+
+        async function typeSentence(element, signal, startIndex = 0, viewId, elementIndex) {
+            const text = element.getAttribute('data-text');
+            if (!text) return true;
+            
+            element.classList.add('active', 'typing');
+            if (startIndex === 0) element.textContent = '';
+            else element.textContent = text.substring(0, startIndex);
+
+            let i = startIndex;
             while (i < text.length) {
-                if (signal.aborted) { element.classList.remove('typing'); return; }
+                if (signal.aborted) {
+                    saveProgress(viewId, elementIndex, i);
+                    element.classList.remove('typing');
+                    return false;
+                }
                 if (Math.random() < 0.005 && i > 0 && i < text.length - 1) {
                     const typoChar = randomChars.charAt(Math.floor(Math.random() * randomChars.length));
                     element.textContent += typoChar;
                     playKeySound();
-                    await new Promise(resolve => setTimeout(resolve, 80 + Math.random() * 120)); // Increased typo delay
-                    if (signal.aborted) return;
-                    await new Promise(resolve => setTimeout(resolve, 150 + Math.random() * 150)); // Increased correction delay
+                    await new Promise(resolve => setTimeout(resolve, 80 + Math.random() * 120));
+                    if (signal.aborted) {
+                        saveProgress(viewId, elementIndex, i);
+                        return false;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 150 + Math.random() * 150));
                     element.textContent = element.textContent.slice(0, -1);
                     playKeySound();
-                    await new Promise(resolve => setTimeout(resolve, 60 + Math.random() * 60)); // Increased correction backspace delay
+                    await new Promise(resolve => setTimeout(resolve, 60 + Math.random() * 60));
                 }
-                if (signal.aborted) return;
+                if (signal.aborted) {
+                    saveProgress(viewId, elementIndex, i);
+                    return false;
+                }
                 element.textContent += text.charAt(i);
                 playKeySound();
-                await new Promise(resolve => setTimeout(resolve, 40 + Math.random() * 60)); // Increased regular typing delay
+                await new Promise(resolve => setTimeout(resolve, 40 + Math.random() * 60));
                 i++;
             }
             element.classList.remove('typing');
+            return true;
         }
 
-        async function runTypewriter(container, signal) {
+        async function runTypewriter(container, signal, viewId) {
+            const state = terminalState[viewId] || { elementIndex: 0, charIndex: 0, isComplete: false };
             const elements = Array.from(container.querySelectorAll('.typewriter-text'));
-            for (let el of elements) {
-                if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
-                el.textContent = '';
-                el.classList.remove('active');
+            
+            // Set initial state based on progress
+            elements.forEach((el, i) => {
+                if (i < state.elementIndex) {
+                    el.textContent = el.getAttribute('data-text');
+                    el.classList.add('active');
+                    el.classList.remove('typing');
+                } else if (i === state.elementIndex) {
+                    // Prepare current element to show cursor during initial delay
+                    el.textContent = el.getAttribute('data-text').substring(0, state.charIndex);
+                    el.classList.add('active', 'typing');
+                } else {
+                    el.textContent = '';
+                    el.classList.remove('active', 'typing');
+                }
+            });
+
+            // Initial delay of 1s before typing starts, cursor will blink
+            if (elements.length > 0 && state.elementIndex < elements.length) {
+                await new Promise(resolve => setTimeout(resolve, 1000));
             }
-            for (let i = 0; i < elements.length; i++) {
+            if (signal.aborted) return;
+
+            for (let i = state.elementIndex; i < elements.length; i++) {
                 if (signal.aborted) break;
-                await typeSentence(elements[i], signal);
+                const charStart = (i === state.elementIndex) ? state.charIndex : 0;
+                const completed = await typeSentence(elements[i], signal, charStart, viewId, i);
+                if (!completed) return;
+                
+                // Advance to next element state
+                if (i < elements.length - 1) {
+                    saveProgress(viewId, i + 1, 0);
+                } else {
+                    saveProgress(viewId, elements.length, 0, true);
+                }
             }
         }
 
         function switchView(viewId) {
-            typingAbortController.abort(); // Abort previous animation immediately
+            typingAbortController.abort(); // Stop current animation
 
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
@@ -488,22 +546,16 @@
             activeView.classList.add('active');
             document.querySelector('.terminal-title').textContent = `michelio@michaelfrancazzi.com: ~/${viewId}`;
 
-            if (typedViews.has(viewId)) {
-                const elements = activeView.querySelectorAll('.typewriter-text');
-                elements.forEach(el => {
-                    if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
+            const state = terminalState[viewId];
+            if (state && state.isComplete) {
+                activeView.querySelectorAll('.typewriter-text').forEach(el => {
                     el.textContent = el.getAttribute('data-text');
                     el.classList.add('active');
                     el.classList.remove('typing');
                 });
             } else {
                 typingAbortController = new AbortController();
-                const signal = typingAbortController.signal;
-                runTypewriter(activeView, signal).then(() => {
-                    if (!signal.aborted) {
-                        typedViews.add(viewId);
-                    }
-                });
+                runTypewriter(activeView, typingAbortController.signal, viewId);
             }
         }
 
@@ -513,38 +565,35 @@
             const runButton = document.getElementById('run-button');
             const closeButton = document.querySelector('.control.close');
 
-            loadingScreen.style.display = 'flex'; // Assuming flex for centering
+            loadingScreen.style.display = 'flex';
 
             runButton.addEventListener('click', async () => {
-                await initAudio(); // Initialize audio on user click
+                await initAudio();
                 loadingScreen.style.display = 'none';
                 mainTerminal.style.display = 'block';
 
-                // Reset state for a fresh start
-                typedViews.clear();
-                document.querySelectorAll('.view .typewriter-text').forEach(el => {
-                    el.textContent = '';
-                    el.classList.remove('active', 'typing');
-                });
-                
-                // This will set the active tab and trigger the typewriter
+                // Initial view trigger
                 switchView('about_me');
             });
 
             closeButton.addEventListener('click', () => {
-                typingAbortController.abort(); // Stop any ongoing typing animation
+                typingAbortController.abort();
                 mainTerminal.style.display = 'none';
                 loadingScreen.style.display = 'flex';
+                
+                // Reset state on terminal close
+                sessionStorage.removeItem('terminalState');
+                terminalState = {};
+                document.querySelectorAll('.view .typewriter-text').forEach(el => {
+                    el.textContent = '';
+                    el.classList.remove('active', 'typing');
+                });
             });
 
-            // Handle browser tab visibility to suspend/resume audio context
             document.addEventListener('visibilitychange', () => {
                 if (audioCtx) {
-                    if (document.hidden) {
-                        audioCtx.suspend();
-                    } else {
-                        audioCtx.resume();
-                    }
+                    if (document.hidden) audioCtx.suspend();
+                    else audioCtx.resume();
                 }
             });
         }

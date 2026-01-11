@@ -9,6 +9,7 @@ This project is a bespoke personal portfolio website for Michael Francazzi, desi
     - **Tokyo Night Theme**: Official color palette for a deep-blue cyber-punk aesthetic.
     - **Web Audio API**: Low-latency mechanical keyboard sound effects (keypress.mp3).
     - **AbortController API**: Used to manage and cancel concurrent typing animations during view switches.
+    - **sessionStorage API**: Used for progress checkpointing and persistence of the typing state during a session.
     - **Google Fonts**: Utilizing "Roboto Mono" for main text and "Ndot 57 Aligned" for headers.
 
 ## Structure
@@ -19,11 +20,14 @@ This project is a bespoke personal portfolio website for Michael Francazzi, desi
 - `.nojekyll`: Disables Jekyll processing on GitHub Pages.
 
 ## Key Design Elements
-- **Terminal Window UI**: Centered container anchored to the top, with blur (12px) and adaptive width (max 1200px).
-- **Functional Terminal Controls**: The close button reopens the start screen, simulating native window behavior.
+- **Terminal Window UI**: Centered container with 20px lateral padding (responsive) for optimal spacing from the viewport edges, blur (12px), and adaptive width (max 1200px).
+- **Functional Terminal Controls**: The close button reopens the start screen and resets the terminal state (`sessionStorage` and visible text).
 - **Italic ASCII Art Header**: Slanted "Michael Francazzi" header in Tokyo Night blue with a custom bloom effect.
 - **Multi-View Navigation**: Virtual directory system (`about_me`, `business`, `hobbies`, `projects`) simulating a shell terminal.
 - **Dynamic Typewriter**: Sequential typing effect with variable speed, dynamic prompt indicators (`>`), and optimized mobile scaling.
+    - **Checkpointing**: Typing progress is saved at the character level in `sessionStorage`. Switching views and returning will resume typing from the exact last position.
+    - **Pre-typing Delay**: A 1-second delay with a blinking cursor occurs before typing begins on a new element.
+    - **Header Exclusion**: `H1-H6` headers are excluded from the typing animation and are visible immediately upon view switch.
 - **Contact Area**: Monochrome SVG buttons for Email, GitHub, and Telegram with coherent hover effects.
 
 ## Deployment
@@ -34,5 +38,5 @@ This project is a bespoke personal portfolio website for Michael Francazzi, desi
 - **Do not** re-introduce MkDocs/Jekyll.
 - **Language**: The site is fully localized in **Italian**. Maintain this for all content updates.
 - **Maintain the Rice Aesthetic**: High-contrast colors, terminal-style prompts (`> `), and monospace typography.
-- **Animation Logic**: Always use the `AbortController` to prevent animation glitches. The state of typed-out views is cached, so the animation only runs once per view per session.
+- **Animation Logic**: Always use the `AbortController` to prevent animation glitches. Typing state is persistent across view switches via `sessionStorage` but resets on manual page reload (`beforeunload`) or terminal closure.
 - **Audio Context**: Browser security requires a user gesture (click/scroll) before audio can play.
