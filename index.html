@@ -57,12 +57,8 @@
             margin: 0;
             padding: 2rem 20px;
             background-color: #0a0a0f;
-            background-image: url('assets/images/background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             font-family: var(--font-main);
-            color: var(--text-main); /* Ensure main text color is applied */
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
             display: flex;
@@ -72,59 +68,20 @@
             position: relative;
         }
 
-        /* CRT Scanlines Overlay */
-        body::before {
-            content: " ";
-            display: block;
+        /* Parallax Background Layer */
+        .parallax-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 9999;
-            background-size: 100% 3px, 3px 100%;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-image: url('assets/images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            will-change: transform;
             pointer-events: none;
-        }
-
-        /* CRT Flicker Animation */
-        body::after {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: rgba(18, 16, 16, 0.1);
-            opacity: 0;
-            z-index: 9998;
-            pointer-events: none;
-            animation: flicker 0.15s infinite;
-        }
-
-        @keyframes flicker {
-            0% { opacity: 0.12739; }
-            5% { opacity: 0.05148; }
-            10% { opacity: 0.1066; }
-            15% { opacity: 0.03988; }
-            20% { opacity: 0.12528; }
-            25% { opacity: 0.11147; }
-            30% { opacity: 0.05513; }
-            35% { opacity: 0.12075; }
-            40% { opacity: 0.04692; }
-            45% { opacity: 0.08431; }
-            50% { opacity: 0.03835; }
-            55% { opacity: 0.02198; }
-            60% { opacity: 0.11583; }
-            65% { opacity: 0.13403; }
-            70% { opacity: 0.10285; }
-            75% { opacity: 0.04561; }
-            80% { opacity: 0.12528; }
-            85% { opacity: 0.10427; }
-            90% { opacity: 0.08345; }
-            95% { opacity: 0.06547; }
-            100% { opacity: 0.11333; }
+            transition: transform 0.1s ease-out;
         }
 
         .loading-screen {
@@ -134,12 +91,12 @@
             justify-content: center;
             text-align: center;
             animation: fadeIn 1s ease-out;
-            height: 80vh; /* Occupy height to remain visually centered */
+            height: 80vh;
             width: 100%;
         }
 
         .loading-screen .ascii-art {
-            max-width: 90%; /* Limita la larghezza dell'ASCII art nella schermata di caricamento */
+            max-width: 90%;
         }
 
         @keyframes fadeIn {
@@ -150,7 +107,7 @@
         .terminal-window {
             width: 100%;
             max-width: 1200px;
-            background: rgba(26, 27, 38, 0.85);
+            background: rgba(26, 27, 38, 0.9);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(122, 162, 247, 0.2);
@@ -158,7 +115,7 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
             overflow: hidden;
             animation: terminalOpen 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            display: none; /* Initially hidden */
+            display: none;
             flex-shrink: 0;
             position: relative;
         }
@@ -169,7 +126,7 @@
         }
 
         .title-bar {
-            background: rgba(22, 22, 30, 0.6);
+            background: rgba(22, 22, 30, 0.8);
             padding: 12px 18px;
             display: flex;
             align-items: center;
@@ -222,7 +179,7 @@
             border: 1px solid var(--comment);
             border-radius: 4px;
             transition: all 0.2s ease;
-            display: none; /* Hidden by default */
+            display: none;
             vertical-align: middle;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -277,7 +234,7 @@
 
         .view {
             display: none;
-            padding-bottom: 10px; /* Standardized padding for all views */
+            padding-bottom: 10px;
         }
 
         .view.active {
@@ -291,18 +248,18 @@
         .ascii-art {
             font-family: 'Roboto Mono', monospace;
             font-size: clamp(4px, 1.4vw, 2rem); 
-            line-height: 1;
-            color: #8be9fd; /* Applied bright cyan here */
-            margin: 0 auto 1rem auto;
+            line-height: 1.1;
+            color: var(--cyan);
+            margin: 0 auto 1.5rem auto;
             padding: 0;
             white-space: pre;
             display: table;
             pointer-events: none;
             user-select: none;
-            text-shadow: 0 0 15px rgba(139, 233, 253, 0.6); /* Applied bloom here */
             text-align: center;
             font-weight: bold;
             font-style: italic;
+            position: relative;
         }
 
         @media (max-width: 800px) { .ascii-art { font-size: 1.6vw; } }
@@ -321,20 +278,6 @@
             display: flex;
             align-items: center;
             gap: 15px;
-        }
-
-        /* Glitch Effect */
-        .glitch {
-            animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); text-shadow: none; }
-            20% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan); }
-            40% { transform: translate(-2px, -2px); text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan); }
-            60% { transform: translate(2px, 2px); text-shadow: -2px 0 var(--pink), 2px 0 var(--cyan); }
-            80% { transform: translate(2px, -2px); text-shadow: -2px 0 var(--pink), 2px 0 var(--cyan); }
-            100% { transform: translate(0); text-shadow: none; }
         }
 
         .typing::after {
@@ -414,7 +357,6 @@
             box-shadow: 0 0 20px #00bcd4;
         }
 
-        /* CLI Style Prompt */
         .cli-prompt-area {
             margin-top: 1.5rem;
             display: none;
@@ -446,7 +388,6 @@
             margin: 0;
         }
 
-        /* Dynamic Projects Styling */
         .repo-item {
             margin-bottom: 1.5rem;
             border-left: 2px solid var(--comment);
@@ -478,6 +419,9 @@
     </style>
 </head>
 <body>
+    <!-- Parallax Background Layer -->
+    <div id="parallax-bg" class="parallax-bg"></div>
+
     <div id="loading-screen" class="loading-screen">
         <div class="start-button-container">
             <button id="run-button"> > RUN TERMINAL</button>
@@ -502,13 +446,13 @@
     /  |/  /(_)____ / /_   ___ _ __   / / 
    / /|_/ / / / __// __ \/ __ `/ _ \ / /  
   / /  / / / / /__/ / / / /_/ /  __// /   
- /_/  /_/ /_/\___/_/ /_/\__,_/\___//_/    
+ /_/  /_/ /_/\t___/_/ /_/\t__,_/\t___//_/    
                                            
      ______                                        _
     / ____/____ ___ _ ___  _____ ___ _ ________   (_)
    / /_  / ___/ __ `/ __ \/ ___/ __ `//_  /_  /  / /
   / __/ / /  / /_/ / / / / /__/ /_/ / / /_ / /  / /  
- /_/   /_/   \__,_/_/ /_/\___/\__,_/ /___//___//_/   
+ /_/   /_/   \t__,_/_/ /_/\t___/\t__,_/ /___//___//_/   
                 </pre>
                 <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
                     <a href="mailto:michael.francazzi@gmail.com" class="btn-huge" style="margin: 0; --btn-color: var(--red);">
@@ -596,7 +540,7 @@
                 const source = audioCtx.createBufferSource();
                 source.buffer = keySoundBuffer;
                 const gainNode = audioCtx.createGain();
-                gainNode.gain.value = 0.001; // Set volume to minimum audible level
+                gainNode.gain.value = 0.001;
                 source.playbackRate.value = 0.9 + Math.random() * 0.2;
                 source.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
@@ -606,17 +550,24 @@
             }
         }
 
+        const parallaxBg = document.getElementById('parallax-bg');
+        
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            parallaxBg.style.transform = `translateY(${scrolled * 0.4}px)`;
+        });
+
+        document.body.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 60;
+            const y = (window.innerHeight / 2 - e.pageY) / 60;
+            const scrolled = window.pageYOffset;
+            parallaxBg.style.transform = `translateX(${x}px) translateY(${scrolled * 0.4 + y}px)`;
+        });
+
         document.body.addEventListener('keydown', async (e) => {
-            // Handle Escape key to skip animation
             if (e.key === 'Escape') {
                 skipCurrentAnimation();
                 return;
-            }
-
-            // Focus CLI input on any keypress if terminal is active
-            const terminalInput = document.getElementById('terminal-input');
-            if (document.getElementById('main-terminal').style.display !== 'none' && document.activeElement !== terminalInput) {
-                terminalInput.focus();
             }
 
             if (document.getElementById('main-terminal').style.display !== 'none') {
@@ -628,7 +579,6 @@
         const randomChars = "abcdefghijklmnopqrstuvwxyz";
         let typingAbortController = new AbortController();
         
-        // Terminal state management
         let terminalState = JSON.parse(sessionStorage.getItem('terminalState')) || {};
 
         function saveProgress(viewId, elementIndex, charIndex, isComplete = false) {
@@ -636,16 +586,14 @@
             sessionStorage.setItem('terminalState', JSON.stringify(terminalState));
         }
 
-        // Reset state on manual page reload
         window.addEventListener('beforeunload', () => {
             sessionStorage.removeItem('terminalState');
         });
 
-        // Initialize all typewriter texts immediately to preserve content
         function initTypewriterElements() {
             document.querySelectorAll('.view .typewriter-text').forEach(el => {
                 if (!el.getAttribute('data-text')) el.setAttribute('data-text', el.textContent.trim());
-                el.textContent = ''; // Hide initially
+                el.textContent = '';
             });
         }
         initTypewriterElements();
@@ -698,7 +646,6 @@
             
             document.getElementById('cli-area').classList.remove('active');
             
-            // Move skip button to current view header
             const header = container.querySelector('h2');
             const skipBtn = document.getElementById('skip-btn');
             if (header && skipBtn) {
@@ -706,14 +653,12 @@
                 skipBtn.style.display = 'inline-block';
             }
 
-            // Set initial state based on progress
             elements.forEach((el, i) => {
                 if (i < state.elementIndex) {
                     el.textContent = el.getAttribute('data-text');
                     el.classList.add('active');
                     el.classList.remove('typing');
                 } else if (i === state.elementIndex) {
-                    // Prepare current element to show cursor during initial delay
                     const fullText = el.getAttribute('data-text');
                     el.textContent = fullText ? fullText.substring(0, state.charIndex) : '';
                     el.classList.add('active', 'typing');
@@ -723,7 +668,6 @@
                 }
             });
 
-            // Initial delay of 1s before typing starts, cursor will blink
             if (elements.length > 0 && state.elementIndex < elements.length) {
                 await new Promise(resolve => {
                     const timer = setTimeout(resolve, 1000);
@@ -738,7 +682,6 @@
                 const completed = await typeSentence(elements[i], signal, charStart, viewId, i);
                 if (!completed) return;
                 
-                // Advance to next element state
                 if (i < elements.length - 1) {
                     saveProgress(viewId, i + 1, 0);
                 } else {
@@ -746,12 +689,10 @@
                 }
             }
 
-            // Show CLI prompt after typing finishes
             if (!signal.aborted) {
                 const cliArea = document.getElementById('cli-area');
                 cliArea.classList.add('active');
                 if (skipBtn) skipBtn.style.display = 'none';
-                document.getElementById('terminal-input').focus();
             }
         }
 
@@ -762,9 +703,7 @@
             const viewId = activeView.id.replace('view-', '');
             const state = terminalState[viewId];
             
-            // Only skip if not already complete
             if (!state || !state.isComplete) {
-                // Set skip flag on signal so it doesn't save progress mid-sentence
                 if (typingAbortController.signal) typingAbortController.signal.skip = true;
                 typingAbortController.abort();
                 
@@ -779,18 +718,7 @@
                 const cliArea = document.getElementById('cli-area');
                 cliArea.classList.add('active');
                 document.getElementById('skip-btn').style.display = 'none';
-                document.getElementById('terminal-input').focus();
             }
-        }
-
-        function triggerGlitch(viewId) {
-            const view = document.getElementById(`view-${viewId}`);
-            if (!view) return;
-            const headers = view.querySelectorAll('h2, h3');
-            headers.forEach(h => {
-                h.classList.add('glitch');
-                setTimeout(() => h.classList.remove('glitch'), 400);
-            });
         }
 
         async function fetchGitHubRepos() {
@@ -823,7 +751,7 @@
         let githubFetched = false;
 
         function switchView(viewId) {
-            typingAbortController.abort(); // Stop current animation
+            typingAbortController.abort();
 
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
@@ -836,7 +764,6 @@
                 document.querySelector('.terminal-title').textContent = `michelio@michaelfrancazzi.com: ~/${viewId}`;
                 document.getElementById('cli-path').textContent = `~/${viewId}`;
                 document.getElementById('terminal-input').value = '';
-                triggerGlitch(viewId);
             }
 
             const executeViewLogic = () => {
@@ -849,7 +776,6 @@
                     });
                     document.getElementById('cli-area').classList.add('active');
                     document.getElementById('skip-btn').style.display = 'none';
-                    document.getElementById('terminal-input').focus();
                 } else {
                     typingAbortController = new AbortController();
                     runTypewriter(activeView, typingAbortController.signal, viewId);
@@ -887,7 +813,7 @@
                 
                 sessionStorage.removeItem('terminalState');
                 terminalState = {};
-                githubFetched = false; // Allow re-fetching on next open
+                githubFetched = false;
                 document.querySelectorAll('.view .typewriter-text').forEach(el => {
                     el.textContent = '';
                     el.classList.remove('active', 'typing');
@@ -896,7 +822,6 @@
                 document.getElementById('skip-btn').style.display = 'none';
             });
 
-            // Handle CLI Commands
             terminalInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     const cmd = terminalInput.value.trim().toLowerCase();
@@ -937,7 +862,6 @@
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initApp);
         else initApp();
 
-        // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').then(registration => {
